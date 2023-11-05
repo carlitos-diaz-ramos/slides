@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Slides for Symmetry and Shape">
+<meta name="author" content="J. Carlos Diaz Ramos">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/x-icon" href="pics/favicon.ico" />
+
+<title>Homogeneous submanifolds in complex space forms</title>
+
+<link rel="stylesheet" media="all" href="code/html5-reset.css">
+<link rel="stylesheet" media="all" href="code/slides.css">
+<!-- Include the following stylesheet for printing: -->
+<!-- <link rel="stylesheet" media="all" href="code/print.css"> -->
+<!-- <link rel="stylesheet" media="all" href="code/notransitions.css"> -->
+<link rel="stylesheet" media="all" href="example.css">
+
+<script src="code/jax.js" async></script>
+<script src="code/slides.js" async></script>
+
+</head>
+
+<body>
+<main>
+
+<!--************************* Slide ****************************-->
+<article id="title">
+<section>
+<h1 style="font-size: 250%;">Homogeneous submanifolds in complex space forms</h1>
+
+<h2>Symmetry and shape</h2>
+<h3>Celebrating the 60th birthday of Prof. J. Berndt</h3>
+
+<footer>
+<img src="pics/logo-usc.jpg" alt="USC">
+<img src="pics/union_europea.png" alt="Feder">
+<button type="button" id="button-next">&#10095;</button>
+<ul>
+<li>Jos&eacute; Carlos D&iacute;az Ramos</li>
+<li>University of Santiago de Compostela</li>
+<li><time datetime="2019-10-31">October 31, 2019</time></li>
+</ul>
+</footer>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="contents">
+<header>
+<h1>Contents</h1>
+</header>
+
+<section>
+<h1><a href="#homogeneous-hypersurfaces">Homogeneous hypersurfaces</a></h1>
+<h2><a href="#space-forms">Homogeneous hypersurfaces in real space forms</a></h2>
+<h2><a href="#homogeneous-chn">Homogeneous hypersurfaces in $\C H^n$</a></h2>
+<h2 style="margin-right: -1ex;"><a href="#cpc">Hypersurfaces with constant principal curvatures in $\C H^n$</a></h2>
+<h2><a href="#isoparametric">Isoparametric hypersurfaces in $\C H^n$</a></h2>
+
+<h1><a href="#polar">Polar actions</a></h1>
+<h2><a href="#polar-space-forms">Polar actions in real space forms</a></h2>
+<h2><a href="#polar-chn">Polar actions on $\C H^n$</a></h2>
+<h2><a href="#isoparametric-submanifolds">Isoparametric submanifolds in $\C H^2$</a></h2>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Introduction</h1>
+</header>
+
+<section>
+<h1>Symmetry in Mathematics and Physics</h1>
+
+<div class="picture-text">
+<div class="column1">
+<img src="pics/klein.jpg" alt="">
+</div>
+<div class="column2">
+<p>Felix Klein</p>
+<blockquote>Geometry is the study of the symmetries of a space</blockquote>
+</div>
+
+<div class="column1">
+<img src="pics/noether.jpg" alt="">
+</div>
+<div class="column2">
+<p>Emmy Noether</p>
+<blockquote>The symmetries of a physical system correspond to conservation laws</blockquote>
+</div>
+
+<div class="column1">
+<img src="pics/anderson.jpg" alt="">
+</div>
+<div class="column2">
+<p>Philip Anderson</p>
+<blockquote>"It is only slightly overstating the case to say that physics is the study of symmetry"</blockquote>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1 id="homogeneous-hypersurfaces">Homogeneous hypersurfaces</h1>
+</header>
+
+<section>
+<p>$\bar{M}$ Riemannian manifold, $\bar{\nabla}$ Levi-Civita connection</p>
+<p>$M\subset\bar{M}$ hypersurface, $\xi$ unit normal, $\nabla$ Levi-Civita connection</p>
+
+<div class="two-boxes">
+<div class="bg-yellow">
+<p>$M$ <strong>homogeneous</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow center">
+<p>$M=G\cdot o$, with</p>
+<p>$o\in M$, $G\subset I(\bar{M})$</p>
+</div>
+</div>
+
+<p class="space-after">$G$ is said to act with <strong>cohomogeneity one</strong></p>
+
+<div class="problem show-10 space-before">
+<p></p>
+<ul>
+<li>Classify homogeneous hypersurfaces (up to isometric congruence)</li>
+<li>Characterize homogeneous hypersurfaces in terms of geometric data</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1 id="chn">Complex space forms</h1>
+</header>
+
+<section>
+<table class="two-columns smaller">
+<tr>
+<th>Complex projective space</th>
+<th>Complex hyperbolic space</th>
+</tr>
+<tr>
+<td>$(\C^{n+1}, i\cdot)$ &nbsp;
+$\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\sum_{i=0}^n \bar{v}_i w_i\Bigr)$</td>
+<td>$(\C^{1,n}, i\cdot)$ &nbsp;
+$\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i=1}^n \bar{v}_i w_i\!\Bigr)$</td>
+</tr>
+<tr>
+<td>$S^{2n+1}=\{z\in\C^{n+1}:\langle z,z\rangle=1\}$</td>
+<td>$H_1^{2n+1}=\{z\in\C^{1,n}:\langle z,z\rangle=-1\}$</td>
+</tr>
+<tr>
+<td>$z\sim w\Leftrightarrow \exists\lambda\in\C: w=\lambda z$</td>
+<td>$z\sim w\Leftrightarrow \exists\lambda\in\C: w=\lambda z$</td>
+</tr>
+<tr>
+<td>
+<div class="definition">
+<p>\[\C P^n=S^{2n+1}/\sim\]</p>
+</div>
+</td>
+<td>
+<div class="definition">
+<p>\[\C H^n=H_1^{2n+1}/\sim\]</p>
+</div>
+</td>
+</tr>
+<tr>
+<td>$\pi\colon S^{2n+1}\to\C P^n$ &nbsp; Hopf map</td>
+<td>$\pi\colon H_1^{2n+1}\to\C H^n$ &nbsp; Hopf map</td>
+</tr>
+<tr>
+<td>$\pi$ Riemannian submersion</td>
+<td>$\pi$ semi-Riemannian submersion</td>
+</tr>
+<tr class="show-10">
+<td>
+<div class="boxed bg-pink center">
+<p>$\C P^n$ is a K&auml;hler manifold with constant positive holomorphic sectional curvature</p>
+</div>
+</td>
+<td>
+<div class="boxed bg-pink center">
+<p>$\C H^n$ is a K&auml;hler manifold with constant negative holomorphic sectional curvature</p>
+</div>
+</td>
+</tr>
+</table>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Complex space forms</h1>
+</header>
+
+<section>
+<table class="two-columns smaller">
+<tr>
+<th>Complex projective space</th>
+<th>Complex hyperbolic space</th>
+</tr>
+<tr>
+<td>$(\C^{n+1}, i\cdot)$ &nbsp;
+$\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\sum_{i=0}^n \bar{v}_i w_i\Bigr)$</td>
+<td>$(\C^{1,n}, i\cdot)$ &nbsp;
+$\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i=1}^n \bar{v}_i w_i\!\Bigr)$</td>
+</tr>
+<tr>
+<td>$S^{2n+1}=\{z\in\C^{n+1}:\langle z,z\rangle=1\}$</td>
+<td>$H_1^{2n+1}=\{z\in\C^{1,n}:\langle z,z\rangle=-1\}$</td>
+</tr>
+<tr>
+<td>
+<div class="definition">
+<p>\[\C P^n=S^{2n+1}/\sim\]</p>
+</div>
+</td>
+<td>
+<div class="definition">
+<p>\[\C H^n=H_1^{2n+1}/\sim\]</p>
+</div>
+</td>
+</tr>
+<tr>
+<td>$SU(n+1)$ acts transitively on $\C P^n$</td>
+<td>$SU(1,n)$ acts transitively on $\C H^n$</td>
+</tr>
+<tr>
+<td>
+<div class="definition">
+<p>\[
+\C P^n=\frac{SU(n+1)}{S(U(1)U(n))}
+\]</p>
+</div>
+</td>
+<td>
+<div class="definition">
+<p>\[
+\C H^n=\frac{SU(1,n)}{S(U(1)U(n))}
+\]</p>
+</div>
+</td>
+</tr>
+<tr class="show-10">
+<td>
+<div class="boxed bg-pink center">
+<p>$\C P^n$ is a symmetric space of rank one and compact type</p>
+</div>
+</td>
+<td>
+<div class="boxed bg-pink center">
+<p>$\C H^n$ is a symmetric space of rank one and noncompact type</p>
+</div>
+</td>
+</tr>
+</table>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>The complex hyperbolic space</h1>
+</header>
+
+<section>
+<div class="definition">
+<p class="center">$\displaystyle\C H^n=\frac{SU(1,n)}{S(U(1)U(n))}$</p>
+</div>
+
+<h1>Iwasawa decomposition</h1>
+
+<table class="iwasawa">
+<tr>
+<td>$I^0(\C H^n)$=</td>
+<td><p class="boxed bg-yellow">$K$</p></td>
+<td><p class="boxed bg-green">$A\ N$</p></td>
+<td><svg><use href="#implies" class="bg-green"/></svg></td>
+<td class="boxed bg-green">
+<p>acts simply transitively</p>
+<p>on $\C H^n$</p>
+</td>
+<td>
+<p>$\C H^n\cong AN$ with</p>
+<p>left-invariant metric</p>
+</td>
+</tr>
+<tr class="show-10">
+<td></td>
+<td><svg><use href="#down-arrow" class="bg-yellow"/></svg></td>
+<td><svg><use href="#down-arrow" class="bg-green"/></svg></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="show-10">
+<td colspan="2">$S(U(1)U(n))$</td>
+<td colspan="4">
+<div class="boxed bg-white">
+<p>$\begin{array}{rclcl}
+\g{n}& = & \g{g}_\alpha & \!\!\!\!\!\oplus\!\!\! & \g{g}_{2\alpha}\\
+&&\style{display: inline-block; transform: rotate(90deg)}{\cong} &&\style{display: inline-block; transform: rotate(90deg)}{\cong}\\
+&&\C^{n-1}\! && \R
+\end{array}$
+&nbsp;&nbsp;&nbsp; Heisenberg algebra</p>
+<p>$[U,V]=\langle JU,V\rangle Z$</p>
+<p>$[A,U]=\frac{1}{2}U$ &nbsp;&nbsp;&nbsp;&nbsp; $[A,Z]=Z$
+</div>
+</td>
+</tr>
+</table>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="space-forms">
+<header>
+<h1>Homogeneous hypersurfaces in space forms</h1>
+</header>
+
+<section class="vertical-justify">
+<ul>
+<li>
+<p>Euclidean spaces $\R^n$ [Somigliana, Levi-Civita, Segre]:</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/Rn.png" alt=""></figure>
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/cylinder.png" alt=""></figure>
+</div>
+</li>
+<li class="show-10">
+<p>Real hyperbolics spaces $\R H^n$ [Cartan]:</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/tubes.png" alt=""></figure>
+<figure><img src="pics/solvable.png" alt=""></figure>
+<figure><img src="pics/horosphere.png" alt=""></figure>
+</div>
+</li>
+<li class="show-20">
+<p>Spheres $S^n$ [Hsiang, Lawson]:</p>
+<p>Isotropy representations of symmetric spaces of rank 2</p>
+</li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="homogeneous-chn">
+<header>
+<h1>Homogeneous hypersurfaces in $\C P^n$ and $\C H^n$</h1>
+</header>
+
+<section>
+<div class="theorem">
+<p>[Takagi] A homogeneous hypersurface in $\C P^n$ is
+a principal orbit of the quotient of the isotropy representation of a Hermitian symmetric space of rank two.</p>
+</div>
+
+<div class="theorem show-10">
+<p>[Berndt, Tamaru] Homogeneous hypersurfaces in $\C H^n$:</p>
+<ul>
+<li>tubes around totally geodesic $\C H^k$, $k\in\{0,\ldots,n-1\}$</li>
+<li>tubes around totally geodesic $\R H^n$</li>
+<li>horospheres</li>
+<li>ruled homogeneous minimal Lohnherr hypersurfaces $W^{2n-1}$, or their equidistant hypersurfaces</li>
+<li>tubes around ruled homogeneous minimal Berndt-Br&uuml;ck submanifolds $W^{2n-k}_\varphi,$ for $k\in\{2,\ldots,n-1\}$, $\varphi\in(0,\pi/2]$ <br> ($k$ even if $\varphi\neq\pi/2$)</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Homogeneous hypersurfaces in $\C H^n$</h1>
+</header>
+
+<section>
+<h1>Hopf examples</h1>
+
+<ul>
+<li>
+<p class="boxed bg-white">Tubes around a totally geodesic $\C H^k$, $k\in\{0,\ldots,n-1\}$</p>
+<p>Group action: $S(U(1,k)\times U(n-k))$</p>
+<p>$g=2$ if $k\in\{0,n-1\}$; &nbsp; $g=3$ otherwise</p>
+</li>
+<li class="show-10">
+<p class="boxed bg-white">Tubes around a totally geodesic $\R H^n$</p>
+<p>Group action: $SO^0(1,n)$</p>
+<p>$g=2$ if $r=\log(2+\sqrt{3})$; &nbsp; $g=3$ otherwise</p>
+</li>
+<li class="show-20">
+<p class="boxed bg-white">Horospheres</p>
+<p>Group action: $N$</p>
+<p>$g=2$</p>
+</li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Homogeneous hypersurfaces in $\C H^n$</h1>
+</header>
+
+<section>
+<h1>Non-Hopf examples</h1>
+
+<div class="two-boxes">
+<div class="bg-yellow center">
+<p>$V\subset\,\C^n$ has</p>
+<p><strong>constant K&auml;hler angle $\varphi$</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow">
+<p>$\angle(Jv,V)=\varphi$, $\forall v\in V\setminus\{0\}$</p>
+</div>
+</div>
+
+<p class="show-10">$\g{w}\subset\,\g{g}_\alpha$ such that $\g{w}^\perp$ is of constant K&auml;hler angle $\varphi$, &nbsp; $k=\dim\,\g{w}^\perp$</p>
+<p class="show-10">$\g{s}_\g{w}=\g{a}\oplus\g{w}\oplus\g{g}_{2\alpha}$ subalgebra of $\g{a}\oplus\g{n}$</p>
+<p class="show-10">$S_\g{w}$ subgroup of $AN$ whose Lie algebra is $\g{s}_\g{w}$</p>
+
+<div class="theorem show-20">
+<p>[Berndt, Br&uuml;ck] Tubes around $W^{2n-k}_\varphi:=W_{\g{w}}=S_\g{w}\cdot o$ are homogeneous</p>
+</div>
+
+<ul class="show-30">
+<li>If $\g{w}$ is a hyperplane, $W_{\g{w}}$ is the Lohnherr hypersurface ($g=3$)</li>
+<li>If $\varphi=\pi/2$, then $g=3$ if $r=\log(2+\sqrt{3})$, otherwise $g=4$</li>
+<li>If $\varphi\neq\pi/2$, then $k$ is even; $g=4$ if $k=2$, otherwise $g=5$</li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Characterization of homogeneous hypersurfaces</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
+</div>
+</div>
+<p class="converse">?</p>
+<svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Characterization in real space forms</h1>
+</header>
+
+<section>
+<div class="theorem smaller" style="margin-top: -1.5ex;">
+<p>[Cartan] Isoparametric $\Leftrightarrow$ constant principal curvatures</p>
+</div>
+
+<ul>
+<li class="show-10">
+<p>Euclidean spaces $\R^n$:</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/Rn.png" alt=""></figure>
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/cylinder.png" alt=""></figure>
+</div>
+</li>
+<li class="show-20">
+<p>Real hyperbolics spaces $\R H^n$:</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/tubes.png" alt=""></figure>
+<figure><img src="pics/solvable.png" alt=""></figure>
+<figure><img src="pics/horosphere.png" alt=""></figure>
+</div>
+</li>
+<li class="show-30">
+<p>Spheres $S^n$:</p>
+<p>There are inhomogeneous examples</p>
+</li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="cpc"   >
+<header>
+<h1>Constant principal curvatures</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<p>constant principal curvatures</p>
+</div>
+</div>
+<p class="converse">?</p>
+<svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
+
+<p class="show-10"><strong>Shape operator</strong>: $\mathcal{S}X=-\bar{\nabla}_X\xi$</p>
+<div class="two-boxes show-10">
+<div class="bg-green">
+<p>$\mathcal{S}$ self-adjoint</p>
+<p>($\Rightarrow \mathcal{S}$ diagonalizable)</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-yellow">
+<p><strong>principal curvatures</strong>:</p>
+<p>eigenvalues of $\mathcal{S}$</p>
+</div>
+</div>
+
+<div class="definition show-20">
+<p><strong>$g$</strong>: number of principal curvatures</p>
+</div>
+<div class="definition show-20">
+<p>$J\xi$: <strong>Hopf vector field</strong></p>
+</div>
+<div class="definition show-20">
+<p><strong>$h$</strong>: # of nontrivial projections of $J\xi$ onto principal curvature spaces</p>
+</div>
+
+<p class="show-30">$M$ is <strong>Hopf</strong> $\Leftrightarrow$ $J\xi$ is an eigenvector of $\mathcal{S}$ $\Leftrightarrow$ $h=1$</p>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Constant principal curvatures</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<p>constant principal curvatures</p>
+</div>
+</div>
+<p class="converse">?</p>
+<svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
+
+<p style="margin-top: -2em;">The answer is <strong>YES</strong> if:</p>
+
+<div class="boxed bg-green smaller show-10">
+<p>$g=1$ &nbsp; [Tashiro, Tachibana] No umbilical hypersurfaces in $\C H^n$</p>
+</div>
+
+<div class="boxed bg-green smaller show-20">
+<p>$g=2$ &nbsp; [Montiel]</p>
+<ul>
+<li>tubes around totally geodesic $\C H^k$, $k\in\{0,n-1\}$</li>
+<li>tubes of radius $r=\log(2+\sqrt{3})$ around totally geodesic $\R H^n$</li>
+<li>horospheres</li>
+</ul>
+</div>
+
+<div class="boxed bg-green smaller show-30">
+<p>$g=3$ &nbsp; [Berndt, D&iacute;az-Ramos]</p>
+<ul>
+<li>tubes around totally geodesic $\C H^k$, $k\in\{1,\ldots,n-2\}$</li>
+<li>tubes of radii $r\neq \log(2+\sqrt{3})$ around totally geodesic $\R H^n$</li>
+<li>ruled Lohnherr hypersurfaces $W^{2n-1}_{\pi/2}$, or their equidistant hypersurfaces</li>
+<li>tubes of radius $r=\log(2+\sqrt{3})$ around Berndt-Br&uuml;ck submanifolds $W^{2n-k}_{\pi/2}$, for $k\in\{2,\ldots,n-1\}$</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Constant principal curvatures</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<p>constant principal curvatures</p>
+</div>
+</div>
+<p class="converse">?</p>
+<svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
+
+<p style="margin-top: -2em;">The answer is <strong>YES</strong> if:</p>
+
+<div class="boxed bg-green smaller show-10">
+<p>$h=1$ &nbsp; [Berndt]</p>
+<ul>
+<li>tubes around totally geodesic $\C H^k$, $k\in\{0,\ldots,n-1\}$</li>
+<li>tubes around totally geodesic $\R H^n$</li>
+<li>horospheres</li>
+</ul>
+</div>
+
+<div class="boxed bg-green smaller show-20">
+<p>$h=2$ &nbsp; [D&iacute;az-Ramos, Dom&iacute;nguez-V&aacute;zquez]</p>
+<ul>
+<li>ruled Lohnherr hypersurfaces $W^{2n-1}_{\pi/2}$, or their equidistant hypersurfaces</li>
+<li>tubes around Berndt-Br&uuml;ck submanifolds $W^{2n-k}_{\pi/2}$, for $k\in\{2,\ldots,n-1\}$</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="isoparametric">
+<header>
+<h1>Isoparametric hypersurfaces</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<p>isoparametric</p>
+</div>
+</div>
+<p class="converse">?</p>
+<svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
+
+<div class="two-boxes show-10">
+<div class="bg-yellow center">
+<p>$f\colon\bar{M}\to\R$</p>
+<p><strong>isoparametric function</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow center">
+<p>$\lVert\nabla f\rVert^2$ and $\Delta f$ constant</p>
+<p>along the level sets of $f$</p>
+</div>
+</div>
+
+<div class="two-boxes show-10">
+<div class="bg-yellow center">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric hypersurface</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow center">
+<p>level set of codimension $1$</p>
+<p>of isoparametric function</p>
+</div>
+</div>
+
+<p class="show-20">[Cartan]</p>
+<div class="two-boxes show-20">
+<div class="bg-green center">
+<p>$M$ isoparametric hypersurface</p>
+</div>
+<svg><use href="#iff" class="bg-green"/></svg>
+<div class="bg-green center">
+<p>nearby parallel hypersurfaces</p>
+<p>of constant mean curvature</p>
+</div>
+</div>
+
+<p class="smaller show-30">In real space forms: isoparametric $\Leftrightarrow$ constant principal curvatures</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Isoparametric hypersurfaces in $\C H^n$</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<p>isoparametric</p>
+</div>
+</div>
+
+<h1>Inhomogeneous examples</h1>
+
+<div class="show-10">
+<p>$\g{w}\subset\,\g{g}_\alpha\cong\,\C^{n-1}$, &nbsp; $k=\dim\,\g{w}^\perp$</p>
+<p>$\g{s}_\g{w}=\g{a}\oplus\g{w}\oplus\,\g{g}_{2\alpha}$ subalgebra of $\g{a}\oplus\g{n}$</p>
+<p>$S_\g{w}$ subgroup of $AN$ whose Lie algebra is $\g{s}_\g{w}$</p>
+</div>
+
+<div class="theorem show-20">
+<p>[D&iacute;az-Ramos, Dom&iacute;nguez-V&aacute;zquez] Tubes around $W_{\g{w}}=S_\g{w}\cdot o$ are isoparametric</p>
+</div>
+
+<div class="show-30">
+<p>If $\g{w}\subset\,\g{g}_\alpha$, then
+$\g{w}^\perp=\bigoplus_{\varphi\in\Phi}\;\g{w}_\varphi^\perp$
+is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;nguez-V&aacute;zquez, Kollross]</p>
+
+<p class="boxed bg-white">Thus, $W_\g{w}$ is homogeneous if and only if $\g{w}^\perp$ has constant K&auml;hler angle</p>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Isoparametric hypersurfaces in $\C H^n$</h1>
+</header>
+
+<section>
+<div class="theorem">
+<p>[D&iacute;az-Ramos, Dom&iacute;nguez-V&aacute;zquez, Sanmart&iacute;n-L&oacute;pez] Isoparametric hypersurfaces in $\C H^n$:</p>
+<ul>
+<li>tubes around totally geodesic $\C H^k$, $k\in\{0,\ldots,n-1\}$</li>
+<li>tubes around totally geodesic $\R H^n$</li>
+<li>horospheres</li>
+<li>ruled homogeneous minimal Lohnherr hypersurfaces $W^{2n-1}_{\pi/2}$, or their equidistant hypersurfaces</li>
+<li>tubes around a ruled homogeneous minimal Berndt-Br&uuml;ck submanifolds $W^{2n-k}_\varphi$, for $k\in\{2,\ldots,n-1\}$, $\varphi\in(0,\pi/2]$ <br> ($k$ even if $\varphi\neq\pi/2$)</li>
+<li>tubes around ruled homogeneous minimal submanifolds $W_{\g{w}}$, for some proper real subspace $\g{w}$ of $\g{g}_\alpha\cong\C^{n-1}$ such that $\g{w}^\perp$ has nonconstant K&auml;hler angle</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Characterization of homogeneous hypersurfaces</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
+</div>
+</div>
+<p class="converse">?</p>
+<svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
+
+<div class="corollary show-10">
+<p>If $M$ is a connected complete hypersurface in $\C H^2$ then the following statements are equivalent:</p>
+<ul>
+<li>$M$ is homogeneous</li>
+<li>$M$ has constant principal curvatures</li>
+<li>$M$ is isoparametric</li>
+</ul>
+</div>
+
+<div class="corollary show-20">
+<p>If $M$ is a connected complete hypersurface in $\C H^n$ then, $M$ is homogeneous if and only if $M$ is isoparametric and has constant principal curvatures</p>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="polar">
+<header>
+<h1>Polar actions</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p>$G$ acts <strong>polarly</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow">
+<p>there is a <em>section</em></p>
+</div>
+</div>
+<p><strong>Section</strong>: submanifold that intersects <em>all</em> orbits of $G$ <em>orthogonally</em></p>
+
+<div class="row-pictures pictures-small space-before space-after">
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/cylinder.png" alt=""></figure>
+<figure><img src="pics/nonpolar.png" alt=""></figure>
+</div>
+
+<div class="show-10 space-before">
+<p>A section is thought as a set of "canonical forms"</p>
+<div class="example">
+<p>$Sl(n,\R)/SO(n)$ &nbsp; $\g{sl}(n,\R)=\g{so}(n)\oplus\{\text{symmetric matrices}\}$</p>
+<p>$SO(n)$ acts on symmetric matrices by conjugation</p>
+<p>$\{\text{diagonal matrices}\}$ is a section</p>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Polar actions</h1>
+</header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p>$G$ acts <strong>polarly</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow">
+<p>there is a <em>section</em></p>
+</div>
+</div>
+<p><strong>Section</strong>: submanifold that intersects <em>all</em> orbits of $G$ <em>orthogonally</em></p>
+
+<div class="row-pictures pictures-small space-before space-after">
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/cylinder.png" alt=""></figure>
+<figure><img src="pics/nonpolar.png" alt=""></figure>
+</div>
+
+<div class="problem space-before">
+<p></p>
+<ul>
+<li>Classify polar actions (up to isometric congruence)</li>
+<li>Characterize orbits of polar actions in terms of geometric data</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="polar-space-forms">
+<header>
+<h1>Polar actions on real space forms</h1>
+</header>
+
+<section>
+<ul>
+<li>
+<p>Spheres $S^n$:</p>
+<p>[Dadok] Isotropy representations of symmetric spaces</p>
+</li>
+<li class="show-10">
+<p>Euclidean spaces $\R^n$</p>
+<p>Isotropy representations of symmetric spaces $\times$ translations</p>
+</li>
+<li class="show-20">
+<p>Real hyperbolic spaces $\R H^n$</p>
+<p>[Wu] $SO(1,k)\times K$ or $N\times K$, where $K$ acts polarly on $\R^{n-k}$</p>
+<div class="row-pictures pictures-tiny">
+<figure><img src="pics/spheres.png" alt=""></figure>
+<figure><img src="pics/solvable.png" alt=""></figure>
+<figure><img src="pics/tubes.png" alt=""></figure>
+<figure><img src="pics/horosphere.png" alt=""></figure>
+</div>
+<div class="row-pictures pictures-tiny">
+<figure><img src="pics/polar1.png" alt=""></figure>
+<figure><img src="pics/polar5.png" alt=""></figure>
+<figure><img src="pics/polar7.png" alt=""></figure>
+</div>
+</li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="polar-chn">
+<header>
+<h1>Polar actions on $\C H^n$</h1>
+</header>
+
+<section>
+<div class="theorem">
+<p>[Podest&agrave;, Thorbergsson] A polar action on $\C P^n$ is orbit equivalent to the a quotient
+of an isotropy representation of a Hermitian symmetric space</p>
+</div>
+
+<div class="theorem show-10">
+<p>[-, Dom&iacute;nguez-V&aacute;zquez, Kollross] Polar actions on $\C H^n$:</p>
+<ul>
+<li>$\g{h}=\g{q}\oplus \g{so}(1,k)$, $k\in\{0,\ldots,n\}$ <br>
+$\g{q}$ subalgebra of $\g{u}(n-k)$<br>
+$Q$ acts polarly on $\C^{n-k}$ with totally real section</li>
+<li>$\g{h}=\g{q}\oplus\g{b}\oplus\g{w}\oplus\g{g}_{2\alpha}$ <br>
+$\g{b}$ linear subspace of $\g{a}$,
+$\g{w}$ real subspace of $\g{g}_\alpha$,<br>
+$\g{q}$ subalgebra of $\g{k}_0=\g{n}_K(\g{a})$,
+$\g{q}$ normalizes $\g{w}$,<br>
+$Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
+</ul>
+</div>
+
+<p class="show-10">Recall: $\g{w}=\bigoplus_{\varphi\in\Phi}\g{w}_\varphi$</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="isoparametric-submanifolds">
+<header>
+<h1>Characterization of orbits of polar actions</h1>
+</header>
+
+<section>
+<p>[Heintze, Liu, Olmos]</p>
+<div class="two-boxes distribute">
+<div class="bg-yellow">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow smaller">
+<ul>
+<li>normal bundle is flat</li>
+<li>parallel submanifolds have constant mean curvature in radial directions</li>
+<li>for any $p\in M$ there exists a <em>section</em> $\Sigma_p$ through $p$<br>
+(totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
+</ul>
+</div>
+</div>
+
+<div class="two-boxes show-10">
+<div class="bg-green">
+<p>Isoparametric in $\C H^2$</p>
+</div>
+<svg><use href="#iff" class="bg-green"/></svg>
+<div class="bg-green">
+<p>principal orbit of polar action</p>
+</div>
+</div>
+
+<p class="show-20">[Terng]</p>
+<div class="two-boxes distribute show-20">
+<div class="bg-yellow">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow smaller" style="width: 67%;">
+<ul>
+<li>normal bundle is flat</li>
+<li>eigenvalues of the shape operator with respect to any parallel normal vector field are constant</li>
+</ul>
+</div>
+</div>
+
+<div class="two-boxes show-30">
+<div class="bg-green center">
+<p>Terng-isoparametric</p>
+<p>in $\C H^2$</p>
+</div>
+<svg><use href="#iff" class="bg-green"/></svg>
+<div class="bg-green">
+<ul>
+<li>principal orbit of polar action</li>
+<li>Chen's surface</li>
+<li>circles</li>
+</ul>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="contents-back">
+<header>
+<h1>Contents</h1>
+</header>
+
+<section>
+<h1><a href="#homogeneous-hypersurfaces">Homogeneous hypersurfaces</a></h1>
+<h2><a href="#space-forms">Homogeneous hypersurfaces in real space forms</a></h2>
+<h2><a href="#homogeneous-chn">Homogeneous hypersurfaces in $\C H^n$</a></h2>
+<h2 style="margin-right: -1ex;"><a href="#cpc">Hypersurfaces with constant principal curvatures in $\C H^n$</a></h2>
+<h2><a href="#isoparametric">Isoparametric hypersurfaces in $\C H^n$</a></h2>
+
+<h1><a href="#polar">Polar actions</a></h1>
+<h2><a href="#polar-space-forms">Polar actions in real space forms</a></h2>
+<h2><a href="#polar-chn">Polar actions on $\C H^n$</a></h2>
+<h2><a href="#isoparametric-submanifolds">Isoparametric submanifolds in $\C H^2$</a></h2>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<!--
+<article>
+<header>
+<h1>title</h1>
+</header>
+
+<section>
+</section>
+</article>
+-->
+
+</main>
+
+<!-- The svg code that will be used later is placed here.
+To import it from a file, one has to run a server.
+See example-server.html -->
+<svg id="svg-code" xmlns="http://www.w3.org/2000/svg" xml:lang="en">
+ <title>Arrows and shadows</title>
+ <defs>
+  <filter id="shadow" x="-0.1" y="-0.1" width="125%" height="130%">
+   <feOffset result="offOut" in="SourceAlpha" dx="1" dy="0.5"/>
+   <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.6"/>
+   <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
+  </filter>
+  <use id="implies" href="#right-arrow">
+   <title>Implies</title>
+  </use>
+  <use id="iff" href="#left-right-arrow">
+   <title>If and only if</title>
+  </use>
+ </defs>
+ <linearGradient id="gradient-fill" x1="50%" y1="0%" x2="50%" y2="100%">
+  <stop stop-color="hsl(120, 73%, 95%)" offset="0"/>
+  <stop stop-color="hsl(120, 73%, 75%)" offset="0.3"/>
+  <stop stop-color="hsl(120, 73%, 95%)" offset="1"/>
+ </linearGradient>
+ <symbol id="right-arrow" viewBox="0,0 40,22">
+  <title>Right arrow</title>
+  <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 Q29,21 29,20 V16 H1 V11 z"/>
+ </symbol>
+ <symbol id="down-arrow" viewBox="0,0 22,40" >
+  <title>Down arrow</title>
+  <path d="M11,1 H6 V29 H2 Q1,29 1.70,29.71 L11,39 20.30,29.71 Q21,29 20,29 H16 V1 H11 z"/>
+ </symbol>
+ <symbol id="left-right-arrow" viewBox="0,0 40,22">
+  <title>Left and right arrow</title>
+  <path d="M11,6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 Q29,21 29,20
+   V16 H11 V20 Q11,21 10.29,20.30 L1,11 10.29,1.70 Q11,1 11,2 z"/>
+ </symbol>
+ <symbol viewBox="0,0 40,22" id="back-arrow">
+  <title>Back arrow</title>
+  <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 L14,2 z"/>
+ </symbol>
+</svg>
+
+</body>
+</html> 

@@ -1,0 +1,96 @@
+:root {
+    --bg-color: hsl(0, 0%, 7%);
+    --text-color: hsl(200, 6%, 80%);
+    --math-color: aliceblue;
+    --code-color: lightblue;
+    --strong-color: hsl(0, 100%, 85%);
+
+    --title-color: pink;
+
+    --header-color: hsl(0, 0%, 15%);
+    --header-text-color: hsl(200, 6%, 90%);
+
+    --shadow: none;
+}
+
+article {
+    background: none;
+}
+
+#title h1 {
+    text-shadow: none;
+}
+
+header {
+    box-shadow: none;
+}
+
+header h1 {
+    text-shadow: none;
+}
+
+#title h2 {
+    border-top: 1px solid white;
+}
+
+#title footer li:first-child {
+    color: white;
+}
+
+[id^="contents"] section h1 a:link, [id^="contents"] section h1 a:visited {
+    color: white;
+}
+
+.bg-pink {
+    --color-start: hsl(350, 100%, 15%);
+    --color-end: hsl(350, 100%, 20%);
+    --color-solid: hsl(350, 100%, 15%);
+}
+
+.definition, .bg-yellow {
+    --color-start: hsl(60, 100%, 15%);
+    --color-end: hsl(60, 100%, 20%);
+    --color-solid: hsl(60, 100%, 15%);
+}
+
+.lemma, .theorem, .proposition, .corollary, .bg-green {
+    --color-start: hsl(120, 73%, 15%);
+    --color-end: hsl(120, 73%, 20%);
+    --color-solid: hsl(120, 73%, 15%);
+}
+
+.problem, .bg-blue {
+    --color-start: hsl(180, 100%, 15%);
+    --color-end: hsl(195, 53%, 20%);
+    --color-solid: hsl(180, 100%, 15%);
+}
+
+.solution {
+    --color-start: hsl(180, 100%, 15%);
+    --color-end: hsl(180, 100%, 20%);
+    --color-solid: hsl(180, 100%, 15%);
+}
+
+.example, .remark, .exercise, .bg-white {
+    --color-start: hsl(0, 0%, 15%);
+    --color-end: hsl(0, 0%, 20%);
+    --color-solid: hsl(0, 0%, 15%);
+}
+
+.proof {
+    --color-start: hsl(120, 76%, 15%);
+    --color-end: hsl(120, 76%, 20%);
+    --color-solid: hsl(120, 73%, 15%);
+}
+
+blockquote {
+    color: hsl(220, 100%, 75%);
+}
+
+svg [class*="bg-"] {
+    filter: none;
+}
+
+.arrow-shadow {
+    filter: none;
+}
