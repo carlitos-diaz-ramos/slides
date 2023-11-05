@@ -295,7 +295,10 @@
                 event.stopPropagation();
                 this.move_backwards();
             } else if (code == "Home") {
-                this.move_home();
+                if (event.ctrlKey) 
+                    this.move_first();
+                else
+                    this.move_home();
             } else if (code == "End") {
                 this.move_end();
             } else if (code == "PageUp") {
@@ -387,6 +390,10 @@
         previous_slide() {
             this.change_slide(this.current-1);
             this._current.show_all();
+        }
+
+        move_first() {
+            this.change_slide(0);
         }
     
         print_mode() {
