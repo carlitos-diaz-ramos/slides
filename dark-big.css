@@ -113,3 +113,16 @@ svg [class*="bg-"] {
     color: gray;
 }
 
+/* Added styles */
+#duals tr:first-child {
+    background-color: hsl(0, 0%, 15%);
+    color: white;
+}
+#duals tr:nth-child(2n+3) {
+    background-color: hsl(0, 0%, 9%);
+}
+
+.right-top .MathJax {
+    color: hsl(0, 0%, 70%);
+}
+
