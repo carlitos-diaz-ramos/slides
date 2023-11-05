@@ -8,7 +8,10 @@
             macros: {
                 R: "{\\mathbb{R}}",
                 C: "{\\mathbb{C}}",
-                g: ["\\mathfrak{#1}", 1]
+                H: "{\\mathbb{H}}",
+                O: "{\\mathbb{O}}",
+                g: ["\\mathfrak{#1}", 1],
+                Id: "\\mathop{\\rm Id}",
             },
             autoload: {
                 color: [],

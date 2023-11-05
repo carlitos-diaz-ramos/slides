@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Codimension two homogeneous polar foliations">
+<meta name="author" content="J. Carlos Diaz Ramos">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Polar actions</title>
+
+<link rel="icon" type="image/x-icon" href="pics/favicon.ico" />
+
+<link rel="stylesheet" media="all" href="code/html5-reset.css">
+<link rel="stylesheet" media="all" href="code/slides.css">
+<!-- Include the following stylesheet for printing: -->
+<!-- <link rel="stylesheet" href="code/print.css"> -->
+<!-- <link rel="stylesheet" media="all" href="code/notransitions.css"> -->
+<link rel="stylesheet" href="custom-big.css">
+<!-- <link rel="stylesheet" href="dark.css"> -->
+
+<script src="code/jax.js" async></script>
+<script src="code/slides.js" async></script>
+
+</head>
+
+<body>
+<main>
+
+<!--------------------- Slide -------------------------->
+
+<article id="title">
+<section>
+<h1>Polar actions <br> on symmetric spaces</h1>
+
+<h2>Programa de Doutoramento en Matemáticas</h2>
+<h3>November 6, 2023</h3>
+
+<footer>
+<img src="pics/usc.png" alt="USC">
+<!-- <img src="pics/union_europea.png" alt="Feder"> -->
+<ul>
+<li>José Carlos D&iacute;az Ramos</li>
+<li>University of Santiago de Compostela</li>
+<li class="funding">PID2022-138988NB-I00, ED431F 2020/04, ED431C 2023/31</li>
+</ul>
+</footer>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article id="main-result">
+<header></header>
+
+<section>
+<div>
+<div class="theorem">
+<p></p>
+<p>Every codimension two <span class="highlight animate-10">polar</span> nonhyperpolar homogeneous foliation on a <span class="highlight animate-10">symmetric space</span> is orbit equivalent to the <span class="highlight animate-10">canonical extension</span> of a codimension two polar homogeneous foliation on a boundary component of <span class="highlight animate-10">rank one</span>.</p>
+</div>
+<p>(Joint work with J. M. Lorenzo Naveiro)</p>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article id="contents">
+<header>
+<h1>Contents</h1>
+</header>
+
+<section>
+<h1><a href="#main-result">Main result</a></h1>
+<h1><a href="#riemannian-manifold">Riemannian manifolds</a> and <a href="#isometric-action">isometric actions</a></h1>
+<h1><a href="#polar-action">Polar actions</a></h1>
+<h1><a href="#symmetric-space">Symmetric spaces</a></h1>
+<h2><a href="#rank-one">Rank one symmetric spaces of noncompact type</a></h2>
+<h1><a href="#canonical-extension">Canonical extension</a></h1>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p><strong>topological manifold</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p><em>locally Euclidean</em> second-countable Haussdorff topological space</p>
+</div>
+</div>
+
+<div class="row-pictures">
+<figure class="pictures-medium">
+<img src="pics/parametrizacion.png" alt="Chart.">
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p><strong>smooth manifold</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>topological manifold with an atlas whose change of coordinates are smooth</p>
+</div>
+</div>
+
+<div class="row-pictures">
+<figure class="pictures-medium">
+<img src="pics/cambio-cartas.png" alt="Chart.">
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article id="riemannian-manifold">
+<header></header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p><strong>Riemannian manifold</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>manifold with a smooth inner product in each tangent space</p>
+</div>
+</div>
+
+<div>
+<p class="show-10">In a Riemannian manifold we can measure:</p>
+<ul>
+<li class="show-10">Lengths of curves: 
+\[
+L(\gamma)=\int_a^b\lVert\dot\gamma(t)\rVert\,{\rm d}t
+\]</li>
+<li class="show-20">Distances: 
+\[
+d(p,q)=\inf\{L(\gamma):\text{$\gamma$ joins $p$ with $q$}\}
+\]</li>
+<!-- <li>Angles, volumes,...</li> -->
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p><strong>isometry</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>diffeomorphism that preserves <em>inner product</em></p>
+</div>
+</div>
+<div class="two-boxes" style="margin-top: -2em">
+<div style="box-shadow: none;"></div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>diffeomorphism that preserves <em>distances</em></p>
+</div>
+</div>
+
+<div class="show-10">
+<p><strong>$I(M)$</strong>: group of isometries of a Riemannian manifold $M$</p>
+
+<div class="theorem">
+<p>[Myers, Steenrod]</p>
+<p>$I(M)$ is a <em>Lie group</em></p>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article id="isometric-action">
+<header></header>
+
+<section>
+<div class="two-boxes">
+<div class="bg-yellow">
+<p>Lie group <strong>action</strong><br>
+$G\times M\to M$</p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<ul>
+<li>$e\cdot p=p$</li>
+<li>$g\cdot(h\cdot p)=(gh)\cdot p$</li>
+<li>smooth</li>
+</ul>
+</div>
+</div>
+
+<div class="two-boxes show-10">
+<div class="bg-yellow">
+<p><strong>isometric action</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>$p\mapsto g\cdot p$ <em>isometry</em><br>
+$\forall g\in G$</p>
+</div>
+</div>
+
+<div>
+<p class="show-20">$G$ connected closed subgroup of $I(M)$</p>
+<ul>
+<li class="show-30"><em>orbits</em> $G\cdot p=\{g\cdot p:g\in G\}$ closed embedded submanifolds</li>
+<li class="show-40"><em>isotropy groups</em> $G_p=\{g\in G:g\cdot p=p\}$ compact</li>
+<!-- <li class="show-50">quotient space $M/G$ Haussdorff</li> -->
+</ul>
+</div>
+</section>
+</article>
+
+<!--------------------- Slide -------------------------->
+<article id="polar-action">
+<header></header>
+
+<section>
+<div>
+<p>$M$ Riemannian manifold</p> 
+<p>$G$ connected closed Lie subgroup of $I(M)$</p>
+
+<div class="space-before">
+<div class="two-boxes">
+<div class="bg-yellow">
+<p>$G$ acts <strong>polarly</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>there is a <em>section</em></p>
+</div>
+</div>
+
+<p><strong>Section</strong>:
+submanifold that intersects <em>all</em> orbits <em>orthogonally</em>
+</div>
+</div>
+
+<div class="two-boxes show-10">
+<div class="bg-yellow">
+<p>$G$ acts <strong>hyperpolarly</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"/></svg>
+<div class="bg-yellow">
+<p>there is a <em>flat</em> section</p>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="row-pictures pictures-medium space-before">
+<figure><img src="pics/esfera.png" alt=""></figure>
+<figure><img src="pics/cylinders.png" alt=""></figure>
+</div>
+<div class="row-pictures pictures-medium">
+<figure><img src="pics/circles.png" alt=""></figure>
+<figure><img src="pics/nopolar.png" alt=""></figure>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="problem">
+<p></p>
+<p>Classify polar actions (up to orbit equivalence) on a given Riemannian manifold</p>
+</div>
+
+<div class="two-boxes show-10">
+<div class="bg-yellow">
+<p>$G_1$ and $G_2$ acting on $M$ <br><strong>orbit equivalent</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"></use></svg>
+<div class="bg-yellow">
+<p>$\exists\varphi\in I(M)$ such that $\varphi(G_1\cdot p)=G_2\cdot\varphi(p)$ $\forall p$</p>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article id="symmetric-space">
+<header></header>
+
+<section class="display-block">
+<div class="two-boxes" style="margin-top: 3em;">
+<div class="bg-yellow">
+<p><strong>symmetric space</strong></p>
+</div>
+<svg><use class="bg-yellow" href="#iff"></use></svg>
+<div class="bg-yellow">
+<p>all <em>geodesic reflections</em> are isometries</p>
+</div>
+</div>
+
+<figure class="symmetric-picture show-10">
+<img src="pics/reflection2.png" alt="Geodesic reflection.">
+</figure>
+<figure class="symmetric-picture erase-10">
+<img src="pics/reflection.png" alt="Geodesic reflection.">
+</figure>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="theorem">
+<p>De Rham decomposition of a symmetric space</p>
+
+<table id="de-rham">
+<tbody>
+<tr>
+<td>$\tilde{M}$</td><td>=</td><td>$\tilde{M}_0$</td><td>$\times$</td><td>$\tilde{M}_+$</td><td>$\times$</td><td>$\tilde{M}_-$</td>
+</tr>
+<tr>
+<td></td><td></td><td>Euclidean</td><td></td><td>compact type</td><td></td><td>noncompact type</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<table id="duals">
+<tbody>
+<tr><th class="show-10">compact type</th><th class="show-20">noncompact type</th></tr>
+<tr><td class="show-10">$\mathbb{S}^n$</td><td class="show-20">$\R \mathsf{H}^n$</td></tr>
+<tr><td class="show-10">$\C\mathsf{P}^n$</td><td class="show-20">$\C\mathsf{H}^n$</td></tr>
+<tr><td class="show-10">$\H\mathsf{P}^n$</td><td class="show-20">$\H\mathsf{H}^n$</td></tr>
+<tr><td class="show-10">$\O\mathsf{P}^2$</td><td class="show-20">$\O\mathsf{H}^2$</td></tr>
+<!-- <tr>
+<td>$Gr_k(\R^{k+n})$, $Gr_k(\C^{k+n})$, $Gr_k(\H^{k+n})$</td>
+<td>$Gr_k(\R^{k,n})$, $Gr_k(\C^{k,n})$, $Gr_k(\H^{k,n})$</td>
+</tr> -->
+<tr><td class="show-10">Grassmannians</td><td class="show-20">indefinite Grassmannians</td></tr>
+<tr><td class="show-10">$G$ compact Lie group</td><td class="show-20">$G^\C/G$</td></tr>
+</tbody>
+</table>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div>
+<div class="boxed bg-white">
+<p>Polar actions on symmetric spaces of <em>compact type</em></p>
+</div>
+<ul>
+<li>$\mathbb{S}^n$ isotropy representations of symmetric spaces of <br>rank 2 [Dadok]</li>
+<li>$\C\mathsf{P}^n$, $\H\mathsf{P}^n$, $\O\mathsf{P}^2$ [Podestà, Thorbergsson]</li>
+<li>Higher rank [Kollross, Lytchak] polar imples hyperpolar [Kollross]</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div>
+<div class="boxed bg-white">
+<p>Polar actions on symmetric spaces of <em>noncompact type</em></p>
+</div>
+<ul>
+<li>$\R\mathsf{H}^n$ reduces to the classification in spheres [Wu]
+<div class="rh2 erase-10">
+<img src="pics/rh2.svg" alt="RH2.">
+</div>
+<div class="row-pictures show-10">
+<figure class="pictures-medium polar-rh2">
+<img src="pics/rhn.png" alt="Polar actions on real hyperbolic spaces.">
+</figure>
+</div>
+</li>
+<li class="show-20">$\C\mathsf{H}^n$ [- , Domínguez-Vázquez, Kollross]</li>
+<li class="show-20">Homogeneous <em>hyperpolar</em> <span class="highlight animate-30">foliations</span> [Berndt, - , Tamaru]</li>
+</ul>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="problem">
+<p></p>
+<p>Study homogeneous polar <em>foliations</em> in symmetric spaces of noncompact type</p>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div>
+<p>Euclidean spaces</p>
+<ul>
+<li>Parallel affine spaces
+<div class="row-pictures pictures-small">
+  <figure>
+    <img src="pics/planes.png" alt="Parallel planes.">
+  </figure>
+</div>
+</ul>
+</div>
+
+<div class="display-block">
+<figure class="picture-side show-10">
+<img src="pics/focal.png" alt="Focal set." class="show-10">
+</figure>
+<p class="show-10">Assume $G\cdot o$ satisfies $S_\xi v=c v\neq 0$
+\[
+\begin{array}{rcl}
+F\colon G\cdot o\!  &amp; \!\!\!\to\!\!\! &amp; 
+\!\!\!G\cdot \bigl(o+\frac{1}{c}\xi_o\bigr)\\
+g(o)\! &amp; \!\!\!\mapsto\!\!\! &amp; \!\!\!g(o)+\frac{1}{c}\xi_{g(o)}
+\end{array}
+\]</p>
+<p class="show-20">$dF_{o}(v)=v-\frac{1}{c}S_\xi v=0$ contradiction</p>
+</div>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="rank-one">
+<header></header>
+
+<section class="display-block">
+<div class="definition smaller">
+<p class="center">
+<table>
+<tbody>
+<tr>
+<td>$\R \mathsf{H}^n=\frac{\mathsf{SO}(1,n)}{\mathsf{SO}(n)}$</td>
+<td>$\C \mathsf{H}^n=\frac{\mathsf{SU}(1,n)}{\mathsf{S}(\mathsf{U}(1)\mathsf{U}(n))}$</td>
+<td>$\H \mathsf{H}^n=\frac{\mathsf{Sp}(1,n)}{\mathsf{Sp}(1)\mathsf{Sp}(n)}$</td>
+<td>$\O \mathsf{H}^2=\frac{\mathsf{F}_4^{-20}}{\mathsf{Spin}(9)}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<table class="iwasawa show-10">
+<tr>
+<td>$I^0(\mathbb{K} \mathsf{H}^n)$=</td>
+<td><p>$K$</p></td>
+<td><p>$A\ N$</p></td>
+<td></td>
+<td style="visibility: hidden">
+<p>acts simply transitively</p>
+<p>on $\mathbb{K} \mathsf{H}^n$</p>
+</td>
+<td>
+</td>
+</tr>
+</table>
+<div class="row-pictures pictures-small show-10">
+<figure>
+<img src="pics/spheres.png" alt="K">
+<figcaption>$K$</figcaption>
+</figure>
+<figure>
+<img src="pics/polar1.png" alt="A">
+<figcaption>$A$</figcaption>
+</figure>
+<figure>
+<img src="pics/horosphere.png" alt="K">
+<figcaption>$N$</figcaption>
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header></header>
+
+<section class="display-block">
+<div class="definition smaller">
+<p class="center">
+<table>
+<tbody>
+<tr>
+<td>$\R \mathsf{H}^n=\frac{\mathsf{SO}(1,n)}{\mathsf{SO}(n)}$</td>
+<td>$\C \mathsf{H}^n=\frac{\mathsf{SU}(1,n)}{\mathsf{S}(\mathsf{U}(1)\mathsf{U}(n))}$</td>
+<td>$\H \mathsf{H}^n=\frac{\mathsf{Sp}(1,n)}{\mathsf{Sp}(1)\mathsf{Sp}(n)}$</td>
+<td>$\O \mathsf{H}^2=\frac{\mathsf{F}_4^{-20}}{\mathsf{Spin}(9)}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<table class="iwasawa">
+<tr>
+<td>$I^0(\mathbb{K} \mathsf{H}^n)$=</td>
+<td><p class="boxed bg-yellow">$K$</p></td>
+<td><p class="boxed bg-green">$A\ N$</p></td>
+<td><svg><use href="#implies" class="bg-green"/></svg></td>
+<td class="boxed bg-green">
+<p>acts simply transitively</p>
+</td>
+<td class="show-30">
+<p>$\mathbb{K} \mathsf{H}^n\cong AN$</p>
+</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td class="show-40"><svg><use href="#down-arrow" class="bg-green"/></svg></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td colspan="4">
+<div class="boxed bg-white show-40">
+<p>$\begin{array}{rclcl}
+\g{n}& = & \g{g}_\alpha & \!\!\!\!\!\oplus\!\!\! & \g{g}_{2\alpha}\\
+&&\style{display: inline-block; transform: rotate(90deg)}{\cong} &&\style{display: inline-block; transform: rotate(90deg)}{\cong}\\
+&&\mathbb{K}^{n-1}\! && \mathop{\rm Im}\mathbb{K}
+\end{array}$</p>
+</div>
+</td>
+</tr>
+</table>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div class="right-top boxed bg-white">
+<p>$\mathbb{K}\mathsf{H}^n\,\cong AN$</p>
+<p>$\begin{array}{rclcl}
+\g{n}\hspace{-0.5em} & \hspace{-0.5em}= \hspace{-1em}& \g{g}_\alpha & \hspace{-0.6em}\oplus\hspace{-0.6em} & \g{g}_{2\alpha}\\
+&&\style{display: inline-block; transform: rotate(90deg)}{\cong} &&\style{display: inline-block; transform: rotate(90deg)}{\cong}\\
+&&\mathbb{K}^{n-1}\hspace{-1.2em} &\hspace{-1.2em} & \mathop{\rm Im}\mathbb{K}
+\end{array}$</p>
+</div>
+<p>Hyperbolic spaces</p>
+<ul>
+<li>Nilpotent foliation
+<div class="display-block">
+  <figure class="picture-side">
+    <img src="pics/nilpotent2.png" alt="Nilpotent foliation.">
+  </figure>
+  <p>$\g{g}=\g{n}\ominus\ell$</p>
+  <p>$\ell$ line in $\g{g}_\alpha$</p>
+</div>
+</li>
+<li class="show-10 space-before">Solvable foliation 
+<div class="display-block">
+  <figure class="picture-side">
+    <img src="pics/solvable2.png" alt="Solvable foliation">
+  </figure>
+  <p>$\g{g}=\g{a}\oplus\bigl(\g{n}\ominus\g{v}\bigr)$</p>
+  <p>$\g{v}$ totally real plane in $\g{g}_\alpha$</p>
+</div>
+</li>
+</ul>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<article id="canonical-extension">
+<header></header>
+
+<section>
+<div class="definition center">
+<p>$M$ symmetric space of noncompact type</p>
+</div>
+
+<div>
+<p>Parabolic subalgebra</p> 
+<table class="parabolic">
+<tbody>
+<tr>
+<td class="boxed bg-white">$M_\Phi$</td><td>$A_\Phi N_\Phi$</td>
+</tr>
+<tr class="show-10">
+<td><svg><use href="#down-arrow" class="bg-white"/></svg></td><td></td>
+</tr>
+<tr class="show-10">
+<td colspan="3" class="boxed bg-white">Totally geodesic symmetric space (of rank one)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="show-20">
+<p style="margin-bottom: -1ex;">Canonical extension</p>
+<div class="two-boxes">
+<div class="boxed bg-green">
+<p>$G$ acts on $M_\Phi\cdot o$<br> polarly</p>
+</div>
+<svg><use class="bg-green" href="#implies"/></svg>
+<div class="boxed bg-green">
+<p>$G\, A_\Phi M_\Phi$ acts on $M$<br> polarly</p>
+</div>
+</div>
+</div>
+</section>
+</article>
+
+<!--------------------- Slide -------------------------->
+<article>
+<header></header>
+
+<section>
+<div>
+<div class="theorem">
+<p></p>
+<p>Every codimension two polar nonhyperpolar homogeneous foliation on a symmetric space is orbit equivalent to the canonical extension of a codimension two polar homogeneous foliation on a boundary component of rank one.</p>
+</div>
+<p>(Joint work with J. M. Lorenzo Naveiro)</p>
+</div>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+
+<article id="contents-back">
+<header>
+<h1>Contents</h1>
+</header>
+
+<section>
+<h1><a href="#main-result">Main result</a></h1>
+<h1><a href="#riemannian-manifold">Riemannian manifolds</a> and <a href="#isometric-action">isometric actions</a></h1>
+<h1><a href="#polar-action">Polar actions</a></h1>
+<h1><a href="#symmetric-space">Symmetric spaces</a></h1>
+<h2><a href="#rank-one">Rank one symmetric spaces of noncompact type</a></h2>
+<h1><a href="#canonical-extension">Canonical extension</a></h1>
+</section>
+</article>
+
+
+<!--------------------- Slide -------------------------->
+<!-- <article>
+<header>
+<h1>title</h1>
+</header>
+
+<section>
+</section>
+</article>
+-->
+
+</main>
+
+<svg id="svg-code" xmlns="http://www.w3.org/2000/svg" xml:lang="en">
+  <title>Arrows and shadows</title>
+  <defs>
+   <filter id="shadow" x="-0.1" y="-0.1" width="125%" height="130%">
+    <feOffset result="offOut" in="SourceAlpha" dx="1" dy="0.5"/>
+    <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.6"/>
+    <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
+   </filter>
+   <use id="implies" href="#right-arrow">
+    <title>Implies</title>
+   </use>
+   <use id="iff" href="#left-right-arrow">
+    <title>If and only if</title>
+   </use>
+  </defs>
+  <linearGradient id="gradient-fill" x1="50%" y1="0%" x2="50%" y2="100%">
+   <stop stop-color="hsl(120, 73%, 95%)" offset="0"/>
+   <stop stop-color="hsl(120, 73%, 75%)" offset="0.3"/>
+   <stop stop-color="hsl(120, 73%, 95%)" offset="1"/>
+  </linearGradient>
+  <symbol id="right-arrow" viewBox="0,0 40,22">
+   <title>Right arrow</title>
+   <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 Q29,21 29,20 V16 H1 V11 z"/>
+  </symbol>
+  <symbol id="down-arrow" viewBox="0,0 22,40" >
+   <title>Down arrow</title>
+   <path d="M11,1 H6 V29 H2 Q1,29 1.70,29.71 L11,39 20.30,29.71 Q21,29 20,29 H16 V1 H11 z"/>
+  </symbol>
+  <symbol id="left-right-arrow" viewBox="0,0 40,22">
+   <title>Left and right arrow</title>
+   <path d="M11,6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 Q29,21 29,20
+    V16 H11 V20 Q11,21 10.29,20.30 L1,11 10.29,1.70 Q11,1 11,2 z"/>
+  </symbol>
+  <symbol viewBox="0,0 40,22" id="back-arrow">
+   <title>Back arrow</title>
+   <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 L14,2 z"/>
+  </symbol>
+  <symbol id="equals" viewBox="0,0 40,22">
+    <title>Equals sign</title>
+    <path d="M2,2 L38,2 38,8 2,8 z M2,20 L38,20 38,14 2,14 z"/>
+  </symbol>
+ </svg>
+ 
+</body>
+</html>
