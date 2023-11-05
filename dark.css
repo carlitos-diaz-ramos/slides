@@ -78,9 +78,9 @@ header h1 {
 }
 
 .proof {
-    --color-start: hsl(120, 76%, 15%);
-    --color-end: hsl(120, 76%, 20%);
-    --color-solid: hsl(120, 73%, 15%);
+    --color-start: hsl(120, 76%, 7%);
+    --color-end: hsl(120, 76%, 12%);
+    --color-solid: hsl(120, 73%, 7%);
 }
 
 blockquote {

@@ -34,6 +34,22 @@
         elements.map(deanimate);
     }
 
+    function erase(element) {
+        element.classList.add("erased");
+    }
+
+    function erase_all(elements) {
+        elements.map(erase);
+    }
+
+    function unerase(element) {
+        element.classList.remove("erased");
+    }
+
+    function unerase_all(elements) {
+        elements.map(unerase);
+    }
+
     function insert_after(node, target) {
         target.parentNode.insertBefore(node, target.nextSibling);
     }
@@ -66,7 +82,7 @@
         }
 
         get_steps() {
-            const merged = this._merge_class(['show', 'animate']);
+            const merged = this._merge_class(['show', 'animate', 'erase']);
             return merged.map(item => item[1]);
         }
         
@@ -136,6 +152,9 @@
                 animate_all(_get_default(
                     this._steps[this._current], 'animate'
                 ));
+                erase_all(_get_default(
+                    this._steps[this._current], 'erase'
+                ));
                 this._current++;
             } else {
                 throw new StopAnimation();
@@ -151,6 +170,9 @@
                 deanimate_all(_get_default(
                     this._steps[this._current], 'animate'
                 ));
+                unerase_all(_get_default(
+                    this._steps[this._current], 'erase'
+                ));
             } else {
                 throw new StopAnimation();
             }
@@ -158,16 +180,20 @@
 
         show_all() {
             for (let step of this._steps) {
-                show_all(_get_default(step, 'show'));
-                animate_all(_get_default(step, 'animate'));
+                if(step.hasOwnProperty('show'))
+                    show_all(_get_default(step, 'show'));
+                if(step.hasOwnProperty('animate'))
+                    animate_all(_get_default(step, 'animate'));
             }
             this._current = this._steps.length;
         }
 
         hide_all() {
             for (let step of this._steps) {
-                hide_all(_get_default(step, 'show'));
-                deanimate_all(_get_default(step, 'animate'));
+                if(step.hasOwnProperty('show'))
+                    hide_all(_get_default(step, 'show'));
+                if(step.hasOwnProperty('animate'))
+                    deanimate_all(_get_default(step, 'animate'));
             }
             this._current = 0;
         }
@@ -382,12 +408,12 @@
             for (let j = 0; j < steps.length - index; j++) {
                 show_all(_get_default(steps[j], 'show'));
                 animate_all(_get_default(steps[j], 'animate'));
+                erase_all(_get_default(steps[j], 'erase'));
             }
             insert_after(copy, slide);
         }
     }
-    
-    
+        
     function on_load() {
         let slide_show = new SlideShow(document);
         slide_show.start();

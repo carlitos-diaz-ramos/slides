@@ -934,7 +934,120 @@ Ademais tam&eacute;n &eacute; posible ir facendo aparecer paulatinamente os elem
 }
 </pre>
 
-<p class="boxed bg-white">Esta característica non está moi desenvolta.</p>
+<p class="boxed bg-white">Esta característica aínda é experimental.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animacións 4</h1>
+</header>
+
+<section class="display-block">
+<p>Tamén se poden facer desaparecer elementos dunha diapositiva mediante a clase <code>erase-<em>número</em></code>.
+Por defecto, está programada a clase <code>.erased</code> que ten como estilo <code>visibility: hidden</code>. 
+Por tanto, aínda que o elemento desapareza, o seu espacio segue sendo ocupado.</p>
+
+<p>Como exemplo, no fondo desta diapositiva faise desaparecer un debuxo.
+Nesta diapositiva o elemento foi colocado con <code>position: absolute</code> para que non inflúa no fluxo da diapositiva.
+Por esa razón, esta diapositiva tamén ten se coloca con <code>display: block</code>.</p>
+
+<p class="boxed bg-white">Esta característica aínda é experimental.</p>
+
+<div class="row-pictures erase-10">
+<figure class="pictures-tiny">
+<img src="pics/horosphere.png" alt="Horosfera de proba.">
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animacións 5</h1>
+</header>
+
+<section class="display-block">
+<p>A continuación preséntase un exemplo no que unha figura se <span class="animation-example animate-10">intercambia</span> por outra (faise desaparecer unha e aparece-la outra ó mesmo tempo).
+A parte relevante do código é:</p>
+
+<code>
+&lt;div class="row-pictures erased-example show-10"&gt;
+...
+&lt;/div&gt;
+
+&lt;div class="row-pictures erased-example show-10"&gt;
+...
+&lt;/div&gt;
+</code>
+
+<p>Con <code>css</code>:</p>
+<pre>
+.erased-example {
+    position: absolute;
+    bottom: 5em;
+    right: 2em;
+}
+[class*="show-"].erased-example {
+    opacity: 0;
+}
+.shown.erased-example {
+    opacity: 1;
+}
+</pre>
+
+<div class="row-pictures erased-example show-10">
+<figure class="pictures-small">
+<img src="pics/spheres.png" alt="Esferas de proba.">
+</figure>
+</div>
+<div class="row-pictures erased-example erase-10">
+<figure class="pictures-small">
+<img src="pics/horosphere.png" alt="Horosfera de proba.">
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animacións 6</h1>
+</header>
+
+<section>
+<p>Outro exemplo de animación.</p>
+<code>
+&lt;figure class="animate-10 move-example"&gt;<br>
+&lt;img src="pics/horosphere.png" alt="Horosfera movéndose."&gt;<br>
+&lt;/figure&gt;
+</code>
+
+<p>Con <code>css</code>:</p>
+<pre>
+.move-example {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    width: 20%;
+    transition: left 1s, width 1s;
+}
+.move-example img { width: 100%; }
+.move-example.animated {
+    left: 60%;
+    width: 40%;
+}
+
+</pre>
+
+<figure class="animate-10 move-example">
+<img src="pics/horosphere.png" alt="Horosfera movéndose.">
+</figure>
 </section>
 </article>
 
@@ -1092,7 +1205,7 @@ article {
 </header>
 
 <section>
-<p>Para determina-las cores das caixas basta con da-las cores incial e final dun gradiente e a cor s&oacute;lida que se necesitar&iacute;a se non houbese gradiente (por exemplo necesario para as frechas).
+<p>Para determina-las cores das caixas basta con da-las cores inicial e final dun gradiente e a cor s&oacute;lida que se necesitar&iacute;a se non houbese gradiente (por exemplo necesario para as frechas).
 Por exemplo, as caixas azuis ou os problemas empregan esta combinaci&oacute;n.</p>
 <pre>
 .problem, .bg-blue {

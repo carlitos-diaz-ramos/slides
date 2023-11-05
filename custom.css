@@ -33,8 +33,20 @@ figure img {
     width: 100%;
 }
 
-#imaxes {
+#imaxes{
     --section-display: block;
+}
+
+.erased-example {
+    position: absolute;
+    bottom: 5em;
+    right: 2em;
+}
+[class*="show-"].erased-example {
+    opacity: 0;
+}
+.shown.erased-example {
+    opacity: 1;
 }
 
 figure.picture-side {
@@ -44,4 +56,19 @@ figure.picture-side {
 
 .animation-example.animated {
     color: red;
+}
+
+.move-example {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    width: 20%;
+    transition: left 1s, width 1s;
+}
+.move-example img {
+    width: 100%;
+}
+.move-example.animated {
+    left: 60%;
+    width: 40%;
 }

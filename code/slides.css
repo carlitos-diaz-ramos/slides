@@ -93,6 +93,7 @@ article.current {
 }
 
 section {
+    position: relative;
     height: calc(100vh - var(--header-height) - 3 * var(--sec-margin-top));
     margin: var(--sec-margin-top) var(--side-margin);
     display: var(--section-display); 
@@ -126,6 +127,11 @@ header {
 	opacity: 1;
 	filter: blur(0) saturate(100%);
 	pointer-events: auto;
+}
+
+.erased {
+    visibility: hidden;
+	pointer-events: none;
 }
 
 #svg-code {
@@ -332,6 +338,10 @@ a:hover {
 
 .space-before {
 	margin-top: calc(5*var(--par-sep)) !important;
+}
+
+.display-block {
+    display: block;
 }
 
 
