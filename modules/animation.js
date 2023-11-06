@@ -1,3 +1,16 @@
+import {
+    hide_all, show_all, animate_all, deanimate_all, erase_all, unerase_all
+} from './util.js';
+
+
+export class StopAnimation extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "StopAnimation";
+    }
+}
+
+
 export class Animation {
     constructor(slide) {
         this._slide = slide;
@@ -106,6 +119,8 @@ export class Animation {
         }
     }
 
+    // CHECK: This 2 seems wrong: why is _get_default needed??
+    // why not erase_all??
     show_all() {
         for (let step of this._steps) {
             if(step.hasOwnProperty('show'))
@@ -134,6 +149,15 @@ export class Animation {
                 canvas.force_render();
             } catch(error) {}
         }
+    }
+}
+
+
+function _get_default(mapping, key) {
+    if (mapping.hasOwnProperty(key)) {
+        return mapping[key];
+    } else {
+        return [];
     }
 }
 
