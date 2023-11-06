@@ -46,7 +46,3 @@ export function unerase_all(elements) {
     elements.map(unerase);
 }
 
-export function insert_after(node, target) {
-    target.parentNode.insertBefore(node, target.nextSibling);
-}
-
