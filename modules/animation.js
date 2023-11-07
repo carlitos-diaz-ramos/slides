@@ -12,6 +12,8 @@ export class StopAnimation extends Error {
 
 
 export class Animation {
+    static _ANIMATION_TYPES = ['show', 'animate', 'erase'];
+
     constructor(slide) {
         this._slide = slide;
         this._steps = this.get_steps();
@@ -23,7 +25,7 @@ export class Animation {
     }
 
     get_steps() {
-        const merged = this._merge_class(['show', 'animate', 'erase']);
+        const merged = this._merge_class(this.constructor._ANIMATION_TYPES);
         return merged.map(item => item[1]);
     }
     
@@ -68,34 +70,30 @@ export class Animation {
         if (merged.length > 0) {
             const last = merged.pop();
             if (last[0] == n) {
-                merged.push([n, this._add_to_class(last[1], element, cls)]);
+                last[1][cls].push(element);
+                merged.push([n, last[1]]);
             } else {
                 merged.push(last);
-                merged.push([n, {[cls]: [element]}]);
+                merged.push([n, this._start_step(element, cls)]);
             }
         } else {
-            merged.push([n, {[cls]: [element]}]);
+            merged.push([n, this._start_step(element, cls)]);
         }
     }
 
-    _add_to_class(mapping, element, cls) {
-        if (!mapping.hasOwnProperty(cls))
-            mapping[cls] = [];
-        mapping[cls] = mapping[cls].concat([element]);
-        return mapping;
+    _start_step(element, cls) {
+        let initial = {};
+        for (let type of this.constructor._ANIMATION_TYPES) 
+            initial[type] = [];
+        initial[cls].push(element);        
+        return initial;
     }
 
     move_forward() {
         if (this._current + 1 <= this._steps.length) {
-            show_all(_get_default(
-                this._steps[this._current], 'show'
-            ));
-            animate_all(_get_default(
-                this._steps[this._current], 'animate'
-            ));
-            erase_all(_get_default(
-                this._steps[this._current], 'erase'
-            ));
+            show_all(this._steps[this._current]['show']);
+            animate_all(this._steps[this._current]['animate']);
+            erase_all(this._steps[this._current]['erase']);
             this._current++;
         } else {
             throw new StopAnimation();
@@ -105,38 +103,27 @@ export class Animation {
     move_backwards() {
         if (this._current > 0) {
             --this._current;
-            hide_all(_get_default(
-                this._steps[this._current], 'show'
-            ));
-            deanimate_all(_get_default(
-                this._steps[this._current], 'animate'
-            ));
-            unerase_all(_get_default(
-                this._steps[this._current], 'erase'
-            ));
+            hide_all(this._steps[this._current]['show']);
+            deanimate_all(this._steps[this._current]['animate']);
+            unerase_all(this._steps[this._current]['erase']);
         } else {
             throw new StopAnimation();
         }
     }
 
-    // CHECK: This 2 seems wrong: why is _get_default needed??
-    // why not erase_all??
+    // CHECK: why not erase_all??
     show_all() {
         for (let step of this._steps) {
-            if(step.hasOwnProperty('show'))
-                show_all(_get_default(step, 'show'));
-            if(step.hasOwnProperty('animate'))
-                animate_all(_get_default(step, 'animate'));
+            show_all(step['show']);
+            animate_all(step['animate']);
         }
         this._current = this._steps.length;
     }
 
     hide_all() {
         for (let step of this._steps) {
-            if(step.hasOwnProperty('show'))
-                hide_all(_get_default(step, 'show'));
-            if(step.hasOwnProperty('animate'))
-                deanimate_all(_get_default(step, 'animate'));
+            hide_all(step['show']);
+            deanimate_all(step['animate']);
         }
         this._current = 0;
     }
@@ -151,13 +138,3 @@ export class Animation {
         }
     }
 }
-
-
-function _get_default(mapping, key) {
-    if (mapping.hasOwnProperty(key)) {
-        return mapping[key];
-    } else {
-        return [];
-    }
-}
-
