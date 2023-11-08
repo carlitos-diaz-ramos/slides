@@ -111,11 +111,11 @@ export class Animation {
         }
     }
 
-    // CHECK: why not erase_all??
     show_all() {
         for (let step of this._steps) {
             show_all(step['show']);
             animate_all(step['animate']);
+            erase_all(step['erase']);
         }
         this._current = this._steps.length;
     }
@@ -124,6 +124,7 @@ export class Animation {
         for (let step of this._steps) {
             hide_all(step['show']);
             deanimate_all(step['animate']);
+            unerase_all(step['erase']);
         }
         this._current = 0;
     }
