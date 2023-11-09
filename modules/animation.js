@@ -17,6 +17,7 @@ export class Animation {
     constructor(slide) {
         this._slide = slide;
         this._steps = this.get_steps();
+        this._current = null;
         this.hide_all();
     }
 

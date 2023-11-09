@@ -1,4 +1,4 @@
-import {Animation} from './animation.js';
+import {Animation, StopAnimation} from './animation.js';
 
 
 export class SlideShow {
@@ -8,7 +8,7 @@ export class SlideShow {
 
     constructor(document) {
         this._document = document;
-        const articles = document.getElementsByTagName("article")
+        const articles = this._document.getElementsByTagName("article")
         this._slides = Array.from(articles);
     }
 
@@ -16,8 +16,8 @@ export class SlideShow {
         this._insert_title_next_button();
         this._create_navigation_buttons();
         this._link_click_events();
-        document.addEventListener("keydown", this._on_key_down);
-        document.addEventListener("wheel", this._wheel_handler);
+        this._document.addEventListener("keydown", this._on_key_down);
+        this._document.addEventListener("wheel", this._wheel_handler);
         this._index = null;
         this._current = null;
         const saved = Number(localStorage.getItem("last"))
@@ -36,7 +36,7 @@ export class SlideShow {
         for (let slide of this._slides) {
             const headers = slide.getElementsByTagName("header");
             if (headers.length > 0) {
-                const header_nav = document.createElement("nav");
+                const header_nav = this._document.createElement("nav");
                 const back = this.constructor._BACK_BUTTON;
                 const next = this.constructor._NEXT_BUTTON;
                 const contents = this.constructor._CONTENTS_BUTTON;
@@ -180,6 +180,10 @@ export class SlideShow {
         this._current.show_all();
     }
 
+    move_first() {
+        this.change_slide(0);
+    }
+
     move_end() {
         this.change_slide(this._slides.length-1);
         this._current.show_all();
@@ -193,10 +197,6 @@ export class SlideShow {
     previous_slide() {
         this.change_slide(this._index-1);
         this._current.show_all();
-    }
-
-    move_first() {
-        this.change_slide(0);
     }
 
     print_mode() {
