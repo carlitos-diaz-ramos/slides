@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es-gl" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Test for slides">
+<meta name="author" content="J. Carlos Diaz Ramos">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/x-icon" href="../pics/favicon.ico" />
+
+<title>Test for slides in html</title>
+
+<link rel="stylesheet" href="../code/html5-reset.css">
+<link rel="stylesheet" href="../code/slides.css">
+<!-- Include the following stylesheet for printing: -->
+<!-- <link rel="stylesheet" href="code/print.css"> -->
+<!-- <link rel="stylesheet" media="all" href="code/notransitions.css"> -->
+<link rel="stylesheet" href="../custom.css">
+
+<script type="module">
+import '../modules/slides.js';
+</script>
+</head>
+
+<body>
+<main>
+<!--************************ Slide **************************-->
+<article id="title">
+<section>
+    <h1>Title of presentation</h1>
+    <h2>Subtitle</h2>
+    <footer>
+    <ul>
+    <li>Author Name</li>
+    <li><time datetime="2023-11-08">8 November 2023</time></li>
+    </ul>
+    </footer>
+</section>
+</article>
+<!--********************** Slide ****************************-->
+<article id="contents">
+<header>
+    <h1>Contents</h1>
+</header>
+<section>
+    <h1><a href="#first">First slide</a></h1>
+    <h1><a href="#second">Second slide</a></h1>
+</section>
+</article>
+<!--************************ Slide **************************-->
+<article id="first">
+<header></header>
+<section>
+    <p class="show-30 erase-40">Third</p>
+    <p>Static <span class="animation-example animate-10">animated</span></p>
+    <p class="mystyle show-10 erase-20">
+    First <span class="animation-example animate-30">animated</span></p>
+    <p class="animation-example animate-40">Fourth</p>
+    <p class="show-20">
+    Second <span class="animation-example animate-30 erase-40">animated 2</span></p>
+    <p class="show-30">Also third</p>
+</section>
+</article>
+<!--************************ Slide **************************-->
+<article id="second">
+<header></header>
+<section>
+    <p>Text</p>
+    <p class="show-30">First</p>
+</section>
+</article>
+</main>
+</body>

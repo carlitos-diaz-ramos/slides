@@ -7,8 +7,8 @@ describe('SlideShow', function() {
             <!--************************ Slide **************************-->
             <article id="title">
              <section>
-              <h1>Presentaci&oacute;ns en <code>html</code></h1>
-              <h2>Emprego deste paquete</h2>
+              <h1>Title of presentation</h1>
+              <h2>Subtitle</h2>
               <footer>
                <ul>
                 <li>Author Name</li>
@@ -23,26 +23,26 @@ describe('SlideShow', function() {
               <h1>Contents</h1>
              </header>
              <section>
-              <h1><a href="#diapositivas">Plantillas para diapositivas</a></h1>
-              <h1><a href="#comandos">Comandos definidos por defecto</a></h1>
+              <h1><a href="#first">First slide</a></h1>
+              <h1><a href="#second">Second slide</a></h1>
              </section>
             </article>
             <!--************************ Slide **************************-->
-            <article>
+            <article id="first">
              <header></header>
              <section>
               <p class="show-30 erase-40">Third</p>
-              <p>Static <span class="animate-10">animated</span></p>
+              <p>Static <span class="animation-example animate-10">animated</span></p>
               <p class="mystyle show-10 erase-20">
-               First <span class="animate-30">animated</span></p>
-              <p class="animate-40">Fourth</p>
+               First <span class="animation-example animate-30">animated</span></p>
+              <p class="animation-example animate-40">Fourth</p>
               <p class="show-20">
-               Second <span class="animate-30 erase-40">animated 2</span></p>
+               Second <span class="animation-example animate-30 erase-40">animated 2</span></p>
               <p class="show-30">Also third</p>
              </section>
             </article>
             <!--************************ Slide **************************-->
-            <article>
+            <article id="second">
              <header></header>
              <section>
               <p>Text</p>
@@ -58,7 +58,7 @@ describe('SlideShow', function() {
 
     function move_slideshow({forward = 0, backwards = 0}) {
         const slideshow = create_slideshow();
-        slideshow.start();
+        slideshow.start(0);
         for (let i=0; i<forward; i++) 
             slideshow.move_forward();
         for (let i=0; i<backwards; i++) 
@@ -79,15 +79,15 @@ describe('SlideShow', function() {
     }
     
     describe('Test slideshow from example code', function() {
-        it('Starts at first slide by default', function() {
+        it('Start at first slide', function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             assert.equal(slideshow.index, 0);
         })
 
         it('Only next button created in title', function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             const found = slideshow.current.slide.querySelectorAll('button');
             const buttons = Array.from(found);
             assert.equal(buttons.length, 1);
@@ -112,7 +112,7 @@ describe('SlideShow', function() {
 
         it('No animations in title', function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             const title = slideshow.current;
             assert.equal(title.get_steps().length, 0);
         })
@@ -389,7 +389,7 @@ describe('SlideShow', function() {
         it(
             'Advance slide 2 times, back 1: show 4, animate 3, erase 1', function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             slideshow.next_slide();
             slideshow.next_slide();
             slideshow.move_backwards();
@@ -410,7 +410,7 @@ describe('SlideShow', function() {
             `Advance slide 3 times, back slide 1, back 1: 
             show 4, animate 3, erase 1`, function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             slideshow.next_slide();
             slideshow.next_slide();
             slideshow.next_slide();
@@ -431,7 +431,7 @@ describe('SlideShow', function() {
 
         it('Advance slide 5 times: end', function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             slideshow.next_slide();
             slideshow.next_slide();
             slideshow.next_slide();
@@ -444,7 +444,7 @@ describe('SlideShow', function() {
 
         it('Back slide 2 times: start', function() {
             const slideshow = create_slideshow();
-            slideshow.start();
+            slideshow.start(0);
             slideshow.previous_slide();
             slideshow.previous_slide();
             assert.equal(slideshow.index, 0);
