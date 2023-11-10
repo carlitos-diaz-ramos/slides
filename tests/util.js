@@ -1,7 +1,8 @@
 import {
     show, show_all, hide, hide_all, 
     animate, animate_all, deanimate, deanimate_all,
-    erase, unerase, erase_all, unerase_all
+    erase, unerase, erase_all, unerase_all,
+    insert_after
 } from '../modules/util.js';
 
 
@@ -262,3 +263,39 @@ describe('Functions that animate elements', function() {
     })
 })
 
+describe('insert_after', function() {
+    function create_div() {
+        const div = document.createElement('div');
+        const code = '<p>First</p><p>Second</p><p>Third</p>';
+        div.innerHTML = code;
+        return div;
+    }
+
+    function create_p(text) {
+        const newp = document.createElement('p');
+        newp.innerText = text;
+        return newp;
+    }
+
+    it('A node is created after second', function() {
+        const div = create_div();
+        const text = 'Another'
+        const newp = create_p(text);
+        const ps = Array.from(div.getElementsByTagName('p'));
+        insert_after(newp,ps[1]);
+        const newps = Array.from(div.getElementsByTagName('p'));
+        assert.equal(newps.length, 4);
+        assert.equal(newps[2].innerText.trim(), text);
+    })
+
+    it('A node is created at the end', function() {
+        const div = create_div();
+        const text = 'Another'
+        const newp = create_p(text);
+        const ps = Array.from(div.getElementsByTagName('p'));
+        insert_after(newp,ps[2]);
+        const newps = Array.from(div.getElementsByTagName('p'));
+        assert.equal(newps.length, 4);
+        assert.equal(newps[3].innerText.trim(), text);
+    })
+})
