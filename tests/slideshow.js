@@ -386,8 +386,7 @@ describe('SlideShow', function() {
             assert.equal(slideshow.index, 3);
         })
 
-        it(
-            'Advance slide 2 times, back 1: show 4, animate 3, erase 1', function() {
+        it('Next slide 2, back 1: show 4, animate 3, erase 1', function() {
             const slideshow = create_slideshow();
             slideshow.start(0);
             slideshow.next_slide();
@@ -407,7 +406,7 @@ describe('SlideShow', function() {
         })
 
         it(
-            `Advance slide 3 times, back slide 1, back 1: 
+            `Next slide 3, previous slide 1, back 1: 
             show 4, animate 3, erase 1`, function() {
             const slideshow = create_slideshow();
             slideshow.start(0);
@@ -429,7 +428,7 @@ describe('SlideShow', function() {
             assert.equal(erased.length, 1);
         })
 
-        it('Advance slide 5 times: end', function() {
+        it('Next slide 5: end', function() {
             const slideshow = create_slideshow();
             slideshow.start(0);
             slideshow.next_slide();
@@ -442,7 +441,7 @@ describe('SlideShow', function() {
             assert.equal(get_text(shown[0]), 'First');
         })
 
-        it('Back slide 2 times: start', function() {
+        it('Previous slide 2: start', function() {
             const slideshow = create_slideshow();
             slideshow.start(0);
             slideshow.previous_slide();
