@@ -21,7 +21,7 @@ Table of contents:
 /* Main blocks
 *****************************************************/
 :root {
-    --screen-width: 133vh; /* 4:3 -> 133, 16:9 -> 177 16:10 -> 160 */
+    --screen-width: 160vh; /* 4:3 -> 133, 16:9 -> 177 16:10 -> 160 */
     --bg-color: white;
     --text-color: black;
     --text-size: 4vh; /* Proportional to screen size */
@@ -29,7 +29,7 @@ Table of contents:
     --math-color: purple;
     --code-color: indigo;
     --sec-margin-top: 1rem;
-    --side-margin: 1em; /* 4:3 -> 1em, 16:10 -> 2em */
+    --side-margin: 2em; /* 4:3 -> 1em, 16:10 -> 2em */
     --par-sep: 0.3em;
     --section-display: flex; /* problems: no collapsing margins, no floats */
     --vertical-justify: flex-start;

@@ -408,9 +408,9 @@
             let animation = new Animation(copy);
             let steps = animation.get_steps();
             for (let j = 0; j < steps.length - index; j++) {
-                show_all(_get_default(steps[j], 'show'));
-                animate_all(_get_default(steps[j], 'animate'));
-                erase_all(_get_default(steps[j], 'erase'));
+                show_all(steps[j]['show']);
+                animate_all(steps[j]['animate']);
+                erase_all(steps[j]['erase']);
             }
             insert_after(copy, slide);
         }
