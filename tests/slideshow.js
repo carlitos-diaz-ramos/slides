@@ -1,5 +1,6 @@
 import {SlideShow} from '../modules/slideshow.js';
 
+
 describe('SlideShow', function() {
     function create_slideshow() {
         const slideshow = document.implementation.createHTMLDocument('Test');
@@ -56,16 +57,6 @@ describe('SlideShow', function() {
         return new SlideShow(slideshow);
     }
 
-    function move_slideshow({forward = 0, backwards = 0}) {
-        const slideshow = create_slideshow();
-        slideshow.start(0);
-        for (let i=0; i<forward; i++) 
-            slideshow.move_forward();
-        for (let i=0; i<backwards; i++) 
-            slideshow.move_backwards();
-        return slideshow;
-    }
-
     function get_class(slide, cls) {
         return Array.from(slide.slide.querySelectorAll(cls))
     }
@@ -78,6 +69,16 @@ describe('SlideShow', function() {
         return element.innerText.trim();
     }
     
+    function move_slideshow({forward = 0, backwards = 0}) {
+        const slideshow = create_slideshow();
+        slideshow.start(0);
+        for (let i=0; i<forward; i++) 
+            slideshow.move_forward();
+        for (let i=0; i<backwards; i++) 
+            slideshow.move_backwards();
+        return slideshow;
+    }
+
     describe('Test slideshow from example code', function() {
         it('Start at first slide', function() {
             const slideshow = create_slideshow();
@@ -448,7 +449,76 @@ describe('SlideShow', function() {
             slideshow.previous_slide();
             assert.equal(slideshow.index, 0);
         })
+    })
 
+    describe('Print mode', function() {
+        function get_animations() {
+            const slideshow = create_slideshow();
+            slideshow.print_mode();
+            const slides = slideshow._document.getElementsByTagName('article')
+            return Array.from(slides);
+        }
 
+        function get_class(slide, cls) {
+            return Array.from(slide.querySelectorAll(cls))
+        }
+        
+        const get_shown = (slide) => get_class(slide, '.shown');
+        const get_animated = (slide) => get_class(slide, '.animated');
+        const get_erased = (slide) => get_class(slide, '.erased');
+        
+        function get_text(element) {
+            return element.innerText.trim();
+        }
+        
+        it('9 slides are produced', function() {
+            const slides = get_animations();
+            assert.equal(slides.length, 9);
+        })
+
+        it('Article 5: slide 3, show 2, animate 1, erase 1', function() {
+            const slides = get_animations();
+            const slide = slides[4];
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 2);
+            assert.equal(get_text(shown[1]), 'Second animated 2');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 1);
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+            assert.equal(get_text(erased[0]), 'First animated');
+        })
+
+        it('Article 7: slide 3, show 4, animate 4, erase 3', function() {
+            const slides = get_animations();
+            const slide = slides[6];
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 4);
+            assert.equal(get_text(animated[2]), 'Fourth');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 3);
+            assert.equal(get_text(erased[0]), 'Third');
+            assert.equal(get_text(erased[2]), 'animated 2');
+        })
+
+        it('No transitions: there are 4 slides', function() {
+            const slideshow = create_slideshow();
+            let slides = slideshow._document.getElementsByTagName('article')
+            assert.equal(Array.from(slides).length, 4);
+        })
+
+        it('No transitions, slide 3: show 4, animate 4, erase 3', function() {
+            const slideshow = create_slideshow();
+            const slides = slideshow._document.getElementsByTagName('article')
+            const slide = Array.from(slides)[2];
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 0);
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 0);
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 0);
+        })
     })
 })

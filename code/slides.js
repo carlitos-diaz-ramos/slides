@@ -50,6 +50,11 @@
     }
 
 
+    function insert_after(node, target) {
+        target.parentNode.insertBefore(node, target.nextSibling);
+    }
+
+
     class StopAnimation extends Error {
         constructor(message) {
             super(message);

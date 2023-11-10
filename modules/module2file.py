@@ -32,7 +32,7 @@ def generate_js() -> None:
         js_file.write('(function() {\n')
         _insert_file(js_file, _UTIL_FILE)
         _insert_file(js_file, _ANIMATION_FILE, skip=4)
-        _insert_file(js_file, _SLIDESHOW_FILE, skip=2)
+        _insert_file(js_file, _SLIDESHOW_FILE, skip=3)
         _insert_file(js_file, _SLIDES_FILE, skip=2)
         js_file.write('\n})();\n')
 
