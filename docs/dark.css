@@ -1,0 +1,115 @@
+:root {
+    --bg-color: hsl(0, 0%, 7%);
+    --text-color: hsl(200, 6%, 80%);
+    --math-color: aliceblue;
+    --code-color: lightblue;
+    --strong-color: hsl(0, 100%, 85%);
+
+    --title-color: pink;
+
+    --header-color: hsl(0, 0%, 15%);
+    --header-text-color: hsl(200, 6%, 90%);
+
+    --shadow: none;
+}
+
+article {
+    background: none;
+}
+
+#title h1 {
+    text-shadow: none;
+}
+
+header {
+    box-shadow: none;
+}
+
+header h1 {
+    text-shadow: none;
+}
+
+#title h2 {
+    border-top: 1px solid white;
+}
+
+#title footer li:first-child {
+    color: white;
+}
+
+[id^="contents"] section h1 a:link, [id^="contents"] section h1 a:visited {
+    color: white;
+}
+[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
+    color: hsl(0, 0%, 80%);
+}
+
+.bg-pink {
+    --color-start: hsl(350, 100%, 15%);
+    --color-end: hsl(350, 100%, 20%);
+    --color-solid: hsl(350, 100%, 15%);
+}
+
+.definition, .bg-yellow {
+    --color-start: hsl(60, 100%, 15%);
+    --color-end: hsl(60, 100%, 20%);
+    --color-solid: hsl(60, 100%, 15%);
+}
+
+.lemma, .theorem, .proposition, .corollary, .bg-green {
+    --color-start: hsl(120, 73%, 15%);
+    --color-end: hsl(120, 73%, 20%);
+    --color-solid: hsl(120, 73%, 15%);
+}
+
+.problem, .bg-blue {
+    --color-start: hsl(180, 100%, 15%);
+    --color-end: hsl(195, 53%, 20%);
+    --color-solid: hsl(180, 100%, 15%);
+}
+
+.solution {
+    --color-start: hsl(180, 100%, 15%);
+    --color-end: hsl(180, 100%, 20%);
+    --color-solid: hsl(180, 100%, 15%);
+}
+
+.example, .remark, .exercise, .bg-white {
+    --color-start: hsl(0, 0%, 15%);
+    --color-end: hsl(0, 0%, 20%);
+    --color-solid: hsl(0, 0%, 15%);
+}
+
+.proof {
+    --color-start: hsl(120, 76%, 7%);
+    --color-end: hsl(120, 76%, 12%);
+    --color-solid: hsl(120, 73%, 10%);
+}
+
+.lemma > p:first-of-type::before,
+.theorem > p:first-of-type::before,
+.proposition > p:first-of-type::before,
+.corollary > p:first-of-type::before,
+.example > p:first-of-type::before,
+.remark > p:first-of-type::before,
+.proof > p:first-of-type::before, 
+.problem > p:first-of-type::before {
+    color: white;
+}
+
+blockquote {
+    color: hsl(220, 100%, 75%);
+}
+
+svg [class*="bg-"] {
+    filter: none;
+}
+
+.arrow-shadow {
+    filter: none;
+}
+
+.darker, .darker .MathJax {
+    color: gray;
+}
+

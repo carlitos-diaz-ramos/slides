@@ -183,7 +183,7 @@ header {
 }
 
 #title footer li:first-child {
-    color: var(--header-color);
+    color: darkslateblue;
 }
 
 #title footer :not(:first-child) {

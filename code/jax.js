@@ -36,7 +36,8 @@
 
     function load_mathjax(mode) {
         const online = "https://cdn.jsdelivr.net/npm/mathjax@3";              
-        const local = "code/mathjax";
+        const folder = document.currentScript.src.split('/jax.js')[0];
+        const local = `${folder}/mathjax`;
         let run = mode === "online" ? online : local;
         let script = document.createElement('script');
         script.src = `${run}/es5/tex-chtml.js`

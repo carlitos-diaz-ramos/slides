@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="es-gl" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Slides in html">
+<meta name="author" content="J. Carlos Diaz Ramos">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/x-icon" href="pics/favicon.ico">
+
+<title>Trasparencias en html</title>
+
+<link rel="stylesheet" href="../code/html5-reset.css">
+<link rel="stylesheet" href="../code/slides.css">
+<!-- Include the following stylesheet for printing: -->
+<!-- <link rel="stylesheet" href="../code/print.css"> -->
+<!-- <link rel="stylesheet" media="all" href="../code/notransitions.css"> -->
+<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="dark.css">
+
+<script src="../code/jax.js" async></script>
+<script src="../code/slides.js" async></script>
+</head>
+
+<body>
+<main>
+<!--************************* Slide ****************************-->
+<article id="title">
+<section>
+<h1>Presentaci&oacute;ns en <code>html</code></h1>
+
+<h2>Emprego deste paquete</h2>
+
+<footer>
+<ul>
+<li>Jos&eacute; Carlos D&iacute;az Ramos</li>
+<li><time datetime="2023-10-11">11 de novembro de 2023</time></li>
+</ul>
+</footer>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="contents">
+<header>
+<h1>Contido</h1>
+</header>
+
+<section>
+<h1><a href="#elemento-head">O elemento <code>&lt;head&gt;</code></a></h1>
+<h1><a href="#diapositivas">Plantillas para diapositivas</a></h1>
+<h1><a href="#comandos">Comandos definidos por defecto</a></h1>
+<h2><a href="#entornos">Entornos tipo teorema</a></h2>
+<h2><a href="#fondos">Fondos con cores e caixas</a></h2>
+<h1><a href="#elementos-svg">Elementos <code>svg</code></a></h1>
+<h2><a href="#frechas">Caixas e frechas</a></h2>
+<h1><a href="#imaxes">Imaxes</a></h1>
+<h1><a href="#animacions">Animaci&oacute;ns</a></h1>
+<h1><a href="#estilos">Estilos</a></h1>
+<h2><a href="#relacion-aspecto">Relaci&oacute;n de aspecto da diapositiva</a></h2>
+<h2><a href="#maquetado">Maquetado da p&aacute;xina</a></h2>
+<h2><a href="#variables">Variables</a></h2>
+<h1><a href="#imprimir">Imprimir diapositivas</a></h1>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Introducci&oacute;n</h1>
+</header>
+
+<section>
+<p>Este documento recolle os aspectos fundamentais para preparar unha presentaci&oacute;n en <code>html</code>.</p>
+
+<p>Est&aacute; concevido como manual de instrucci&oacute;ns simplificado, ten exemplos de c&oacute;digo, e deber&iacute;a de verse o propio ficheiro como un exemplo de como xerar unha presentaci&oacute;n.</p>
+
+<p>Non obstante, o documento en si mesmo non pretende ser un exemplo de como debe organizarse unha presentaci&oacute;n.  O tipo de letra elexido &eacute; posiblemente un pouco pequeno, as&iacute; como o espaciado.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="elemento-head">
+<header>
+<h1>O elemento <code>&lt;head&gt;</code></h1>
+</header>
+
+<section>
+<p>O c&oacute;digo m&iacute;nimo que debe ir no pre&aacute;mbulo do documento &eacute;:</p>
+<code class="space-after smaller">
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt;<br>
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;<br>
+<br>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;code/html5-reset.css&quot;&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;code/slides.css&quot;&gt;<br>
+&lt;!-- Include the following stylesheet for printing: --&gt;<br>
+&lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;code/print.css&quot;&gt; --&gt;<br>
+&lt;!-- Or this one for avoiding transitions: --&gt;<br>
+&lt;!-- &lt;link rel="stylesheet" media="all" href="code/notransitions.css"&gt; --&gt;<br>
+&lt;script src=&quot;code/slides.js&quot; async&gt;&lt;/script&gt;<br>
+&lt;/head&gt;<br>
+</code>
+
+<p>O arquivo <code>slides.css</code> &eacute; responsable do estilo b&aacute;sico da presentaci&oacute;n. P&oacute;dense engadir outros arquivos de estilo a maiores.</p>
+
+<p>O arquivo <code>slides.js</code> ten o c&oacute;digo para facer as transici&oacute;ns.</p>
+
+<p>En caso de querer imprimir, cambia-lo arquivo <code>slide.css</code> por <code>print.css</code>. Para imprimir sen transici&oacute;ns empregar en cambio <code>notransitions.css</code></p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="diapositivas">
+<header>
+<h1>Diapositivas</h1>
+</header>
+
+<section>
+<p>O documento estar&aacute; comprendido nunha etiqueta <code>&lt;main&gt;</code>, e cada diapositiva ser&aacute; representada por un <code>&lt;article&gt;</code>.</p>
+
+<p>Nas trasparencias seguintes pres&eacute;ntanse as plantillas habituais para facer diapositivas.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Plantilla</h1>
+</header>
+
+<section>
+<p>En xeral, salvo en casos como a diapositiva do t&iacute;tulo, a plantilla para unha diapositiva &eacute; como segure:</p>
+
+<code class="space-after">
+&lt;article&gt;<br>
+&lt;header&gt;<br>
+&lt;h1&gt;T&iacute;tulo&lt;/h1&gt;<br>
+&lt;/header&gt;<br>
+<br>
+&lt;section&gt;<br>
+&lt;!-- Aqu&iacute; vai o contido --&gt;<br>
+&lt;/section&gt;<br>
+&lt;/article&gt;    <br>
+</code>
+
+<p>Cada <code>&lt;article&gt;</code> representa unha diapositiva.
+No <code>&lt;h1&gt;</code> situado en <code>&lt;header&gt;</code> vai o seu t&iacute;tulo, que por defecto se ve como unha cinta.
+O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
+
+<p>Na barra de t&iacute;tulo ins&eacute;rtanse automaticamente tres bot&oacute;ns para ir adiante, atr&aacute;s, e &oacute;s contidos.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Diapositiva de t&iacute;tulo</h1>
+</header>
+
+<section>
+<p>Plantilla para a diapositiva do t&iacute;tulo:</p>
+
+<code>
+&lt;article id=&quot;title&quot;&gt;<br>
+&lt;section&gt;<br>
+&lt;h1&gt;T&iacute;tulo da presentaci&oacute;n&lt;/h1&gt;<br>
+&lt;h2&gt;Subt&iacute;tulo&lt;/h2&gt;<br>
+&lt;h3&gt;Subsubt&iacute;tulo&lt;/h3&gt;<br>
+<br>
+&lt;footer&gt;<br>
+&lt;img src=&quot;pics/logo.jpg&quot; alt=&quot;un logo&quot;&gt;<br>
+&lt;button type=&quot;button&quot; class=&quot;button-next&quot;&gt;&amp;#10095;&lt;/button&gt;<br>
+&lt;ul&gt;<br>
+&lt;li&gt;Autor do traballo&lt;/li&gt;<br>
+&lt;li&gt;Afiliaci&oacute;n&lt;/li&gt;<br>
+&lt;li&gt;&lt;time datetime=&quot;2019-10-31&quot;&gt;Data que sexa&lt;/time&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/article&gt;<br>
+</code>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Diapositiva de contidos</h1>
+</header>
+
+<section>
+<p>Plantilla para t&aacute;boa de contidos:</p>
+
+<code class="space-after">
+&lt;article id=&quot;contents&quot;&gt;<br>
+&lt;header&gt;<br>
+&lt;h1&gt;Contidos&lt;/h1&gt;<br>
+&lt;/header&gt;<br>
+<br>
+&lt;section&gt;<br>
+&lt;h1&gt;&lt;a href=&quot;#link-seccion-1&quot;&gt;Secci&oacute;n 1&lt;/a&gt;&lt;/h1&gt;<br>
+&lt;h2&gt;&lt;a href=&quot;#link-subseccion-1-1&quot;&gt;Subsecci&oacute;n 1.1&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;h2&gt;&lt;a href=&quot;#link-subseccion-1-2&quot;&gt;Subsecci&oacute;n 1.2&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;h1&gt;&lt;a href=&quot;#link-seccion-2&quot;&gt;Secci&oacute;n 2&lt;/a&gt;&lt;/h1&gt;<br>
+&lt;h2&gt;&lt;a href=&quot;#link-subseccion-2-1&quot;&gt;Subsecci&oacute;n 2.1&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;h2&gt;&lt;a href=&quot;#etc&quot;&gt;Etc.&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;/section&gt;<br>
+&lt;/article&gt;<br>
+</code>
+
+<p>As diapositivas que se queiran enlazar te&ntilde;en que ter un <code>id</code> que &eacute; o que se pon en cada <code>href</code>.</p>
+</section>
+</article>
+    
+<!--************************* Slide ****************************-->
+<article id="comandos">
+<header>
+<h1>Comandos definidos por defecto</h1>
+</header>
+
+<section>
+<p>A continuaci&oacute;n presentaremos alg&uacute;ns entornos que poden ser empregados sen necesidade de definir ning&uacute;n estilo nun arquivo <code>css</code> adicional.</p>
+
+<p>Recordemos que este paquete xa carga <code>Mathjax</code>, co que podemos po&ntilde;er f&oacute;rmulas en li&ntilde;a coma esta $ax^2+b+x+c=0$, ou en display:
+\[
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="entornos">
+<header>
+<h1>Entornos 1</h1>
+</header>
+
+<section>
+<p>Alg&uacute;ns entornos definidos por defecto xunto co c&oacute;digo que haber&iacute;a que empregar:</p>
+
+<div class="theorem">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;theorem&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="lemma">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;lemma&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="proposition">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;proposition&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Entornos 2</h1>
+</header>
+
+<section>
+<div class="corollary">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;corollary&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="proof">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;proof&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="definition">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;definition&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Entornos 3</h1>
+</header>
+
+<section>
+<div class="exercise">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;exercise&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="problem">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;problem&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="solution">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;solution&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Entornos 4</h1>
+</header>
+
+<section>
+<div class="example">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;example&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="remark">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;remark&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="fondos">
+<header>
+<h1>Fondos de cores</h1>
+</header>
+
+<section>
+<p>Ademais dos entornos predefinidos tam&eacute;n se poden empregar caixas de distintas cores:</p>
+
+<div class="bg-yellow space-before">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;bg-yellow&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="bg-blue space-before">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;bg-blue&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="bg-white space-before">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;bg-white&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Fondos de cores</h1>
+</header>
+
+<section>
+<div class="bg-green space-before">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+<div class="bg-pink space-before">
+<p>Texto de proba</p>
+</div>  
+
+<code class="space-after">
+&lt;div class=&quot;bg-pink&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Caixas</h1>
+</header>
+
+<section>
+<p>Os fondos poden ser combinados coa clase <code>boxed</code>, que engadir&aacute; borde e sombra.</p>
+
+<div class="bg-pink boxed space-before">
+<p>Texto de proba</p>
+</div>  
+
+<code>
+&lt;div class=&quot;bg-pink boxed&quot;&gt;<br>
+&lt;p&gt;Texto de proba&lt;/p&gt;<br>
+&lt;/div&gt;
+</code>  
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="elementos-svg">
+<header>
+<h1>SVG</h1>
+</header>
+
+<section>
+<p>Neste arquivo <code>html</code> incl&uacute;ese &oacute; final un <code>&lt;svg&gt;</code> invisible onde se definen frechas que poden ser empregadas para presentaci&oacute;ns.</p>
+
+<figure class="row-pictures pictures-tiny">
+<svg><use href="#right-arrow"/></svg>
+<svg><use href="#left-right-arrow" class="bg-yellow"/></svg>
+<svg><use href="#down-arrow" class="bg-green"/></svg>
+<svg><use href="#implies" class="bg-white"/></svg>
+<svg><use href="#iff"/></svg>
+</figure>
+
+<code>
+&lt;figure class=&quot;row-pictures&quot;&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#right-arrow&quot;/&gt;&lt;/svg&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#left-right-arrow&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#down-arrow&quot; class=&quot;bg-green&quot;/&gt;&lt;/svg&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#implies&quot; class=&quot;bg-white&quot;/&gt;&lt;/svg&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#iff&quot;/&gt;&lt;/svg&gt;<br>
+&lt;/figure&gt;<br>
+</code>
+
+<p>Como se ve no c&oacute;digo anterior, algunhas das frechas foron combinadas con algunha cor de fondo.</p>
+
+<p class="smaller">Rec&oacute;rdese que incorporar debuxos feitos en <code>svg</code> dende arquivos externos presenta dificultades se queremos cambia-la s&uacute;a apariencia mediante <code>css</code>, xa que nese caso haber&iacute;a que executa-lo ficheiro a trav&eacute;s dun servidor. Resulta por tanto m&aacute;is c&oacute;modo definir eses gr&aacute;ficos &oacute; final do arquivo <code>html</code> f&oacute;ra da etiqueta <code>&lt;main&gt;</code></p>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="frechas">
+<header>
+<h1>Caixas e frechas 1</h1>
+</header>
+
+<section>
+<p>A continuaci&oacute;n pres&eacute;ntanse varias posibilidades para presentar resultados en caixas:</p>
+
+<p>Pode empregarse a clase <code>two-boxes</code> para definici&oacute;ns:</p>
+
+<div class="two-boxes">
+<div class="bg-yellow">
+<p>$M$ <strong>homogeneous</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow">
+<p>$M=G\cdot o$, with</p>
+<p>$o\in M$, $G\subset I(\bar{M})$</p>
+</div>
+</div>
+
+<code>
+&lt;div class=&quot;two-boxes&quot;&gt;<br>
+ &lt;div class=&quot;bg-yellow&quot;&gt;<br>
+  &lt;p&gt;$M$ &lt;strong&gt;homogeneous&lt;/strong&gt;&lt;/p&gt;<br>
+ &lt;/div&gt;<br>
+ &lt;svg&gt;&lt;use href=&quot;#iff&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
+ &lt;div class=&quot;bg-yellow&quot;&gt;<br>
+  &lt;p&gt;$M=G\cdot o$, with&lt;/p&gt;<br>
+  &lt;p&gt;$o\in M$, $G\subset I(\bar{M})$&lt;/p&gt;<br>
+ &lt;/div&gt;<br>
+&lt;/div&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Caixas e frechas 2</h1>
+</header>
+
+<section>
+<p>Outro exemplo para representar unha implicaci&oacute;n:</p>
+
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#implies" class="bg-green"/></svg>
+<div class="bg-green">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
+</div>
+</div>
+
+<code>
+&lt;div class=&quot;two-boxes&quot;&gt;<br>
+&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;p&gt;$M$ homogeneous hypersurface&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#implies&quot; class=&quot;bg-green&quot;/&gt;&lt;/svg&gt;<br>
+&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;ul&gt;<br>
+&lt;li&gt;constant principal curvatures&lt;/li&gt;<br>
+&lt;li&gt;isoparametric&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+&lt;/div&gt;<br>
+&lt;/div&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Caixas e frechas 3</h1>
+</header>
+
+<section>
+<p>Se unha caixa ten considerablemente m&aacute;is contida c&aacute; outra pode empregarse a clase <code>distribute</code> para compensar:</p>
+
+<div class="two-boxes distribute">
+<div class="bg-yellow">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric</strong></p>
+</div>
+<svg><use href="#iff" class="bg-yellow"/></svg>
+<div class="bg-yellow smaller">
+<ul>
+<li>normal bundle is flat</li>
+<li>parallel submanifolds have constant mean curvature in radial directions</li>
+<li>for any $p\in M$ there exists a <em>section</em> $\Sigma_p$ through $p$<br>
+(totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
+</ul>
+</div>
+</div>
+
+<code>
+&lt;div class=&quot;two-boxes distribute&quot;&gt;<br>
+&lt;div class=&quot;bg-yellow&quot;&gt;&lt;<br>
+p&gt;$M\subset\bar{M}$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;isoparametric&lt;/strong&gt;&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#iff&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
+&lt;div class=&quot;bg-yellow smaller&quot;&gt;<br>
+&lt;ul&gt;
+&lt;li&gt;normal bundle is flat&lt;/li&gt; ... 
+&lt;/ul&gt;<br>
+&lt;/div&gt;<br>
+&lt;/div&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Caixas e frechas 4</h1>
+</header>
+
+<section>
+<p>Ademais de crear frechas empregando <code>svg</code> tam&eacute;n se pode facer directamente con <code>css</code>. Por exemplo:</p>
+
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<div class="arrow-shadow"><div class="implies bg-green"></div></div>
+<div class="bg-green">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
+</div>
+</div>
+
+<div class="two-boxes distribute">
+<div class="bg-yellow">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric</strong></p>
+</div>
+<div class="arrow-shadow"><div class="iff bg-yellow"></div></div>
+<div class="bg-yellow smaller">
+<ul>
+<li>normal bundle is flat</li>
+<li>parallel submanifolds have constant mean curvature in radial directions</li>
+<li>for any $p\in M$ there exists a <em>section</em> $\Sigma_p$ through $p$<br>
+(totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
+</ul>
+</div>
+</div>
+
+<p>O c&oacute;digo relevante para consegui-las frechas &eacute; substitu&iacute;-lo c&oacute;digo <code>svg</code> polas li&ntilde;as:</p>
+
+<code>
+&lt;div class=&quot;arrow-shadow&quot;&gt;&lt;div class=&quot;implies bg-green&quot;&gt;&lt;/div&gt;&lt;/div&gt;<br>
+</code>
+
+<code>
+&lt;div class=&quot;arrow-shadow&quot;&gt;&lt;div class=&quot;iff bg-yellow&quot;&gt;&lt;/div&gt;&lt;/div&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="imaxes">
+<header>
+<h1>Imaxes</h1>
+</header>
+
+<section>
+<p>Nas diapositivas que seguen pres&eacute;ntanse alg&uacute;ns entornos predefinidos que permiten colocar imaxes nunha presentaci&oacute;n.</p>
+
+<figure class="picture-side">
+<img src="pics/horosphere.png" alt="horosferas">
+</figure>
+
+<div class="remark">
+<p>A variable <code>--section-display</code> ten como valor por defecto <code>flex</code>, o cal significa que non se colapsan marxes, e no caso das figuras, estas non poden ser flotadas.</p>
+
+<p>Como exemplo, nesta diapositiva escribiuse <code>&lt;article id="imaxes"&gt;</code> e <code>&lt;figure class="picture-side"&gt;</code>xunto co c&oacute;digo <code>css</code>:</p>
+<pre>
+#imaxes {
+    --section-display: block;
+}
+figure.picture-side {
+    float: right;
+    width: 30%;
+}
+</pre>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 1</h1>
+</header>
+
+<section>
+<p>Exemplo de como po&ntilde;er imaxes nunha fila empregando a clase <code>row-pictures</code>:</p>
+<div class="row-pictures">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures&quot;&gt;<br>
+&lt;figure&gt;&lt;img src=&quot;pics/spheres.png&quot; alt=&quot;esferas&quot;&gt;&lt;/figure&gt;<br>
+&lt;figure&gt;&lt;img src=&quot;pics/tubes.png&quot; alt=&quot;tubos&quot;&gt;&lt;/figure&gt;<br>
+&lt;figure&gt;&lt;img src=&quot;pics/solvable.png&quot; alt=&quot;foliaci&oacute;n resoluble&quot;&gt;&lt;/figure&gt;<br>
+&lt;figure&gt;&lt;img src=&quot;pics/horosphere.png&quot; alt=&quot;horosferas&quot;&gt;&lt;/figure&gt;<br>
+&lt;/div&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 2</h1>
+</header>
+
+<section>
+<p>Pode resultar m&aacute;is convinte po&ntilde;er tama&ntilde;os un pouco m&aacute;is pequenos:</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures pictures-small&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
+
+<div class="row-pictures pictures-tiny">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures pictures-tiny&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
+
+<p>Tam&eacute;n existe <code>pictures-big</code> e <code>pictures-medium</code>.</p>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 3</h1>
+</header>
+
+<section>
+<p>Este &eacute; un exemplo po&ntilde;endo texto &oacute; lado das imaxes.</p>
+
+<div class="picture-text">
+<div class="column1">
+<img src="pics/klein.jpg" alt="Felix Klein">
+</div>
+<div class="column2">
+<p>Felix Klein</p>
+<blockquote>Geometry is the study of the symmetries of a space</blockquote>
+</div>
+
+<div class="column1">
+<img src="pics/noether.jpg" alt="Emmy Noether">
+</div>
+<div class="column2">
+<p>Emmy Noether</p>
+<blockquote>The symmetries of a physical system correspond to conservation laws</blockquote>
+</div>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 4</h1>
+</header>
+
+<section>
+<p>Este &eacute; o c&oacute;digo da diapositiva anterior eliminando a parte non interesante:</p>
+<code>
+&lt;div class=&quot;picture-text&quot;&gt;<br>
+&lt;div class=&quot;column1&quot;&gt;<br>
+&lt;img src=&quot;pics/klein.jpg&quot; alt=&quot;Felix Klein&quot;&gt;<br>
+&lt;/div&gt;<br>
+&lt;div class=&quot;column2&quot;&gt;<br>
+&lt;p&gt;Felix Klein&lt;/p&gt;<br>
+&lt;blockquote&gt;Geometry is the study of the symmetries of a space&lt;/blockquote&gt;<br>
+&lt;/div&gt;<br>
+&lt;div class=&quot;column1&quot;&gt;<br>
+&lt;img src=&quot;pics/noether.jpg&quot; alt=&quot;Emmy Noether&quot;&gt;<br>
+&lt;/div&gt;<br>
+&lt;div class=&quot;column2&quot;&gt;<br>
+...<br>
+&lt;/div&gt;<br>
+&lt;/div&gt;<br>
+</code></section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="animacions">
+<header>
+<h1>Animaci&oacute;ns</h1>
+</header>
+
+<section>
+<p>Pod&eacute;monos mover cara adiante coa frecha dereita, retorno, ou barra espaciadora, e cara atr&aacute;s coa frecha esquerda.
+Ademais tam&eacute;n &eacute; posible ir facendo aparecer paulatinamente os elementos dunha diapositiva. Esta diapositiva presenta un exemplo de tal cousa xunto co c&oacute;digo necesario.</p>
+
+<div class="bg-blue show-20">
+<p>Este aparece segundo</p>
+</div>
+<code class="show-20">
+&lt;div class=&quot;bg-blue show-20&quot;&gt;<br>
+&lt;p&gt;Este aparece segundo&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+</code>
+
+<div class="bg-green show-10">
+<p>Este aparece primeiro</p>
+</div>
+<code class="show-10">
+&lt;div class=&quot;bg-green show-10&quot;&gt;<br>
+&lt;p&gt;Este aparece primeiro&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+</code>
+
+<p>O efecto de aparecer cons&iacute;guese engadindo &aacute; clase do elemento correspondente <code>show-<em>n&uacute;mero</em></code>, onde o n&uacute;mero indica a orde de aparici&oacute;n.
+&Eacute; boa idea po&ntilde;e-los n&uacute;meros de dez en dez (como en <code>BASIC</code>) por se m&aacute;is tarde decidimos intercalar alg&uacute;n.</p>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animaci&oacute;ns 2</h1>
+</header>
+
+<section>
+<p>Por defecto, os elementos que ir&aacute;n aparecendo vense difuminados. Se por exemplo queremos que estean ocultos e aparezan inmediatamente simplemente se por&iacute;a:</p>
+<pre>
+[class*="show-"] {
+    visibility: hidden;
+}
+.shown {
+    visibility: visible;
+}
+</pre>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animaci&oacute;ns 3</h1>
+</header>
+
+<section>
+<p>Ademais de aparecer, tam&eacute;n se poden facer outras animaci&oacute;ns con <code class="animation-example animate-20">animate-<em>n&uacute;mero</em></code>. Para que isto funcione hai que especifica-lo estilo explicitamente en <code>css</code>.</p>
+
+<p class="animation-example show-10 animate-20">Por exemplo, este par&aacute;grafo primeiro aparece e despois ponse en vermello xunto con outro elemento do par&aacute;grafo anterior.</p>
+
+<p>Para conseguir ese efecto, no par&aacute;grafo anterior ponse o c&oacute;digo:
+<code>&lt;p class="animation-example show-10 animate-20"&gt;</code>, xunto co <code>css</code>:</p>
+
+<pre>
+.animation-example.animated {
+    color: red;
+}
+</pre>
+
+<p class="boxed bg-white">Esta caracter&iacute;stica a&iacute;nda &eacute; experimental.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animaci&oacute;ns 4</h1>
+</header>
+
+<section class="display-block">
+<p>Tam&eacute;n se poden facer desaparecer elementos dunha diapositiva mediante a clase <code>erase-<em>n&uacute;mero</em></code>.
+Por defecto, est&aacute; programada a clase <code>.erased</code> que ten como estilo <code>visibility: hidden</code>. 
+Por tanto, a&iacute;nda que o elemento desapareza, o seu espacio segue sendo ocupado.</p>
+
+<p>Como exemplo, no fondo desta diapositiva faise desaparecer un debuxo.
+Nesta diapositiva o elemento foi colocado con <code>position: absolute</code> para que non infl&uacute;a no fluxo da diapositiva.
+Por esa raz&oacute;n, esta diapositiva tam&eacute;n ten se coloca con <code>display: block</code>.</p>
+
+<p class="boxed bg-white">Esta caracter&iacute;stica a&iacute;nda &eacute; experimental.</p>
+
+<div class="row-pictures erase-10">
+<figure class="pictures-tiny">
+<img src="pics/horosphere.png" alt="Horosfera de proba.">
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animaci&oacute;ns 5</h1>
+</header>
+
+<section class="display-block">
+<p>A continuaci&oacute;n pres&eacute;ntase un exemplo no que unha figura se <span class="animation-example animate-10">intercambia</span> por outra (faise desaparecer unha e aparece-la outra &oacute; mesmo tempo).
+A parte relevante do c&oacute;digo &eacute;:</p>
+
+<code>
+&lt;div class="row-pictures erased-example show-10"&gt;
+...
+&lt;/div&gt;
+
+&lt;div class="row-pictures erased-example show-10"&gt;
+...
+&lt;/div&gt;
+</code>
+
+<p>Con <code>css</code>:</p>
+<pre>
+.erased-example {
+    position: absolute;
+    bottom: 5em;
+    right: 2em;
+}
+[class*="show-"].erased-example {
+    opacity: 0;
+}
+.shown.erased-example {
+    opacity: 1;
+}
+</pre>
+
+<div class="row-pictures erased-example show-10">
+<figure class="pictures-small">
+<img src="pics/spheres.png" alt="Esferas de proba.">
+</figure>
+</div>
+<div class="row-pictures erased-example erase-10">
+<figure class="pictures-small">
+<img src="pics/horosphere.png" alt="Horosfera de proba.">
+</figure>
+</div>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Animaci&oacute;ns 6</h1>
+</header>
+
+<section>
+<p>Outro exemplo de animaci&oacute;n.</p>
+<code>
+&lt;figure class="animate-10 move-example"&gt;<br>
+&lt;img src="pics/horosphere.png" alt="Horosfera mov&eacute;ndose."&gt;<br>
+&lt;/figure&gt;
+</code>
+
+<p>Con <code>css</code>:</p>
+<pre>
+.move-example {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    width: 20%;
+    transition: left 1s, width 1s;
+}
+.move-example img { width: 100%; }
+.move-example.animated {
+    left: 60%;
+    width: 40%;
+}
+
+</pre>
+
+<figure class="animate-10 move-example">
+<img src="pics/horosphere.png" alt="Horosfera mov&eacute;ndose.">
+</figure>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="estilos">
+<header>
+<h1>Cambia-los estilos 1</h1>
+</header>
+
+<section>
+<p>Os estilos definidos en <code>slides.css</code> poden ser modificados cargando unha folla de estilo.  Por exemplo, nesta presentaci&oacute;n c&aacute;rgase o arquivo <code>custom.css</code> que, entre outras cousas, inserta a imaxe de fondo.</p>
+
+<pre class="smaller">
+article {
+    background-image: url("pics/berndt-difuse.png");
+    background-position: 10vh 12vh;
+    background-repeat: no-repeat;
+    background-size: 75vh auto;
+}
+</pre>
+
+<p>Non obstante, parte dos estilos est&aacute;n controlados simplemente por variables que s&oacute; haber&iacute;a que modificar. Como exemplo, a cor de letra desta presentaci&oacute;n non &eacute; a cor <code>black</code> por defecto sen&oacute;n:</p>
+
+<pre>
+:root {
+    --text-color: hsl(0, 0%, 20%);
+}
+</pre>
+<p>Outro exemplo de cambio de estilos pode verse en <code>dark.css</code> que implementa o modo escuro.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="relacion-aspecto">
+<header>
+<h1>Relaci&oacute;n de aspecto</h1>
+</header>
+
+<section>
+<p>O par&aacute;metro m&aacute;is importante que pode ser necesario cambiar &eacute; a relaci&oacute;n de aspecto <code>--screen-width</code>. Os valores t&iacute;picos a tomar son:</p>
+<ul>
+<li>relaci&oacute;n de aspecto 4:3: <code>--screen-width: 133vh</code>.</li>
+<li>relaci&oacute;n de aspecto 16:9: <code>--screen-width: 177vh</code>.</li>
+<li>relaci&oacute;n de aspecto 16:10: <code>--screen-width: 160vh</code>.</li>
+</ul>
+
+<p>Conv&eacute;n tam&eacute;n cambiar <code>--side-margin</code> se a relaci&oacute;n non &eacute; 4:3 para evitar li&ntilde;as moi longas.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="maquetado">
+<header>
+<h1>Maquetado da p&aacute;xina</h1>
+</header>
+
+<section>
+<p>Como xa vimos anteriormente &oacute; falar de imaxes, o maquetado da p&aacute;xina faise mediante as d&uacute;as variables:</p>
+<pre>
+    --section-display: flex;
+    --vertical-justify: flex-start;
+</pre>
+<p>Os valores por defecto amosados te&ntilde;en certos problemas.</p> 
+
+<p>En primeiro lugar non se colapsan as marxes nin se permite flotar elementos. Para permitir isto haber&iacute;a que empregar <code>--section-display: block</code>.  &Eacute; posible que ent&oacute;n tam&eacute;n haxa que cambia-lo valor de separaci&oacute;n entre par&aacute;grafos <code>--par-sep</code> para axusta-lo espaciado.</p>
+
+<p>Por outro lado, o valor por defecto alinea verticalmente os elementos &aacute; parte superior. Poder&iacute;a empregarse en <code>--vertical-justify</code> os valores <code>space-around</code>, <code>space-between</code> ou <code>space-evenly</code>.</p>
+
+<p>N&oacute;tese en todo caso que non &eacute; necesario cambiar este valor globalmente, sen&oacute;n que poder&iacute;a facerse s&oacute; para unha diapositiva ou un grupo delas mediante un <code>id</code>, <code>class</code>, ou un selector axeitado.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="variables">
+<header>
+<h1>Variables <code>css</code> 1</h1>
+</header>
+
+<section>
+<p>A continuaci&oacute;n presentamos unha lista de variables que poden ser modificadas, xunto co seu valor por defecto &aacute; hora de escribir este documento:</p>
+<ul>
+<li>Color de fondo das diapositivas: <code>--bg-color: white</code></li>
+<li>Color do texto: <code>--text-color: black</code></li>
+<li>Tama&ntilde;o da fonte principal: <code>--text-size: 4vh</code></li>
+<li>Cor do texto enfatizado fortemente: <code>--strong-color: red</code></li>
+<li>Cor das f&oacute;rmulas matem&aacute;ticas: <code>--math-color: purple</code></li>
+<li>Cor do c&oacute;digo inform&aacute;tico: <code>--code-color: indigo</code></li>
+<li>Marxe superior do contido principal: <code>--sec-margin-top: 1rem</code></li>
+<li>Marxe lateral do contido principal: <code>--side-margin: 2em</code></li>
+<li>Separaci&oacute;n entre p&aacute;rrafos: <code>--par-sep: 0.3em</code></li>
+<li>Modo de maquetaci&oacute;n: <code>--section-display: flex</code></li>
+<li>Xustificaci&oacute;n vertical: <code>--vertical-justify: flex-start</code></li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Variables <code>css</code> 2</h1>
+</header>
+
+<section>
+<p>Continuaci&oacute;n:</p>
+<ul>
+<li>Cor dos links: <code>--a-link: brown;</code></li>
+<li>Cor dos links visitados: <code>--a-visited: purple;</code></li>
+<li>Cor dos links &oacute; pasar porriba: <code>--a-hover: chocolate;</code></li>
+<li>Cor do t&iacute;tulo: <code>--title-color: maroon;</code></li>
+<li>Cor da cinta da cabeceira: <code>--header-color: linear-gradient(to bottom right, black, blue);</code></li>
+<li>Cor do texto da cabeceira: <code>--header-text-color: white;</code></li>
+<li>Altura da cinta da cabeceira: <code>--header-height: 2.2em;</code></li>
+<li>Marxe lateral dos entornos e caixas: <code>--box-side-margin: -0.3em;</code></li>
+<li>Sombra do borde (para entornos e caixas): <code>--shadow: 0 0.15rem 0.3rem 0 lightgrey, 0 0.2rem 0.7rem 0 lightgrey;</code></li>
+<li>Radio dos bordes: <code>--border: 0.3rem;</code></li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Variables <code>css</code> 3</h1>
+</header>
+
+<section>
+<p>Variables que controlan o texto que se escribe nos entornos:</p>
+<ul>
+<li><code>--content-lemma: "Lemma. ";</code></li>
+<li><code>--content-theorem: "Theorem. ";</code></li>
+<li><code>--content-proposition: "Proposition. ";</code></li>
+<li><code>--content-corollary: "Corollary. ";</code></li>
+<li><code>--content-proof: "Proof. ";</code></li>
+<li><code>--content-definition: "";</code></li>
+<li><code>--content-problem: "Problem. ";</code></li>
+<li><code>--content-solution: "Solution. ";</code></li>
+<li><code>--content-example: "Example. ";</code></li>
+<li><code>--content-remark: "Remark. ";</code></li>
+<li><code>--content-exercise: "Exercise. ";</code></li>
+</ul>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Variables <code>css</code> 4</h1>
+</header>
+
+<section>
+<p>Para determina-las cores das caixas basta con da-las cores inicial e final dun gradiente e a cor s&oacute;lida que se necesitar&iacute;a se non houbese gradiente (por exemplo necesario para as frechas).
+Por exemplo, as caixas azuis ou os problemas empregan esta combinaci&oacute;n.</p>
+<pre>
+.problem, .bg-blue {
+    --color-start: hsl(180, 100%, 97%);
+    --color-end: hsl(195, 53%, 79%);
+    --color-solid: lightblue;
+}
+</pre>
+<p>Para modificar unha caixa simplemente se cambiar&iacute;a o c&oacute;digo an&aacute;logo &oacute; de arriba. En caso de querer definir un novo tipo, ademais dese c&oacute;digo, haber&iacute;a que po&ntilde;er por exemplo:</p>
+<pre>
+.nova-caixa {
+    background: linear-gradient(
+        to bottom, var(--color-start), var(--color-end));
+}
+</pre>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="imprimir">
+<header>
+<h1>Imprimir diapositivas</h1>
+</header>
+
+<section>
+<p>Para imprimir a <code>pdf</code>:</p>
+<ul>
+<li>Seleccionar (descomentar na plantilla) o arquivo <code>css</code> <code>code/print.css</code>.</li>
+<li>Seleccionar "Imprimir co cadro de di&aacute;logo de sistema" e en "Adobe" ir a "Preferencias".  En "Adobe PDF Page Size" darlle a "Add..." e crear un tama&ntilde;o da proporci&oacute;n necesaria (p. ex. 320mm x 200mm para 16:10).  Salvar.</li>
+<li>A seguinte vez que se imprima aparecer&aacute; ese tama&ntilde;o, e imprimir normal.</li>
+</ul>
+<p>En vez de <code>code/print.css</code> p&oacute;dese coller <code>code/notransitions.css</code>. Con este m&eacute;todo non se conservan as animaci&oacute;ns, o cal &eacute; bo para distribu&iacute;-la presentaci&oacute;n.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="contents-back">
+<header>
+<h1>Contido</h1>
+</header>
+
+<section>
+<h1><a href="#elemento-head">O elemento <code>&lt;head&gt;</code></a></h1>
+<h1><a href="#diapositivas">Plantillas para diapositivas</a></h1>
+<h1><a href="#comandos">Comandos definidos por defecto</a></h1>
+<h2><a href="#entornos">Entornos tipo teorema</a></h2>
+<h2><a href="#fondos">Fondos con cores e caixas</a></h2>
+<h1><a href="#elementos-svg">Elementos <code>svg</code></a></h1>
+<h2><a href="#frechas">Caixas e frechas</a></h2>
+<h1><a href="#imaxes">Imaxes</a></h1>
+<h1><a href="#animacions">Animaci&oacute;ns</a></h1>
+<h1><a href="#estilos">Estilos</a></h1>
+<h2><a href="#relacion-aspecto">Relaci&oacute;n de aspecto da diapositiva</a></h2>
+<h2><a href="#maquetado">Maquetado da p&aacute;xina</a></h2>
+<h2><a href="#variables">Variables</a></h2>
+<h1><a href="#imprimir">Imprimir diapositivas</a></h1>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<!-- <article>
+<header>
+<h1>title</h1>
+</header>
+
+<section>
+</section>
+</article> -->
+
+</main>
+
+<!-- The svg code that will be used is placed here.
+To import it from a file, one has to run a server.
+See example-server.html -->
+<svg id="svg-code" xmlns="http://www.w3.org/2000/svg" xml:lang="en">
+ <title>Arrows and shadows</title>
+ <defs>
+  <filter id="shadow" x="-0.1" y="-0.1" width="125%" height="130%">
+   <feOffset result="offOut" in="SourceAlpha" dx="1" dy="0.5"/>
+   <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.6"/>
+   <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
+  </filter>
+  <use id="implies" href="#right-arrow">
+   <title>Implies</title>
+  </use>
+  <use id="iff" href="#left-right-arrow">
+   <title>If and only if</title>
+  </use>
+ </defs>
+ <linearGradient id="gradient-fill" x1="50%" y1="0%" x2="50%" y2="100%">
+  <stop stop-color="hsl(120, 73%, 95%)" offset="0"/>
+  <stop stop-color="hsl(120, 73%, 75%)" offset="0.3"/>
+  <stop stop-color="hsl(120, 73%, 95%)" offset="1"/>
+ </linearGradient>
+ <symbol id="right-arrow" viewBox="0,0 40,22">
+  <title>Right arrow</title>
+  <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 Q29,21 29,20 V16 H1 V11 z"/>
+ </symbol>
+ <symbol id="down-arrow" viewBox="0,0 22,40" >
+  <title>Down arrow</title>
+  <path d="M11,1 H6 V29 H2 Q1,29 1.70,29.71 L11,39 20.30,29.71 Q21,29 20,29 H16 V1 H11 z"/>
+ </symbol>
+ <symbol id="left-right-arrow" viewBox="0,0 40,22">
+  <title>Left and right arrow</title>
+  <path d="M11,6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 Q29,21 29,20
+   V16 H11 V20 Q11,21 10.29,20.30 L1,11 10.29,1.70 Q11,1 11,2 z"/>
+ </symbol>
+ <symbol viewBox="0,0 40,22" id="back-arrow">
+  <title>Back arrow</title>
+  <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 L14,2 z"/>
+ </symbol>
+</svg>
+
+</body>

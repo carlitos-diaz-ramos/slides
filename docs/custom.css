@@ -1,0 +1,74 @@
+/*****************************************
+* Style sheet for custom styles
+*
+*****************************************/
+:root {
+    --text-color: hsl(0, 0%, 20%);
+
+    --content-lemma: "Lema. ";
+    --content-theorem: "Teorema. ";
+    --content-proposition: "Proposición. ";
+    --content-corollary: "Corolario. ";
+    --content-proof: "Demostración. ";
+    --content-definition: "Definición. ";
+    --content-problem: "Problema. ";
+    --content-solution: "Solución. ";
+    --content-example: "Exemplo. ";
+    --content-remark: "Observación. ";
+    --content-exercise: "Exercicio. ";
+}
+
+article {
+    background-image: url("pics/berndt-difuse.png");
+    background-position: 10vh 12vh;
+    background-repeat: no-repeat;
+    background-size: 75vh auto;
+}
+
+[id^="contents"] section {
+    font-size: 70%;
+}
+
+figure img {
+    width: 100%;
+}
+
+#imaxes{
+    --section-display: block;
+}
+
+.erased-example {
+    position: absolute;
+    bottom: 5em;
+    right: 2em;
+}
+[class*="show-"].erased-example {
+    opacity: 0;
+}
+.shown.erased-example {
+    opacity: 1;
+}
+
+figure.picture-side {
+    float: right;
+    width: 30%;
+}
+
+.animation-example.animated {
+    color: red;
+}
+
+.move-example {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    width: 20%;
+    transition: left 1s, width 1s;
+}
+.move-example img {
+    width: 100%;
+}
+.move-example.animated {
+    left: 60%;
+    width: 40%;
+}
