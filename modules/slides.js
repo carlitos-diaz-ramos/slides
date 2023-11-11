@@ -13,12 +13,12 @@ export function start_page() {
 
 
 function on_load() {
-    let slide_show = new SlideShow(document);
+    const slide_show = new SlideShow(document);
     slide_show.start();
 }
 
 function on_print_load() {
-    let slide_show = new SlideShow(document);
+    const slide_show = new SlideShow(document);
     slide_show.print_mode();
     const canvases = document.querySelectorAll('canvas');
     for (let i = 0; i < canvases.length; i++) {

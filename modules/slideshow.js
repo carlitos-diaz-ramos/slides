@@ -34,13 +34,13 @@ export class SlideShow {
     }
 
     _create_navigation_buttons() {
+        const back = this.constructor._BACK_BUTTON;
+        const next = this.constructor._NEXT_BUTTON;
+        const contents = this.constructor._CONTENTS_BUTTON;
         for (let slide of this._slides) {
             const headers = slide.getElementsByTagName("header");
             if (headers.length > 0) {
                 const header_nav = this._document.createElement("nav");
-                const back = this.constructor._BACK_BUTTON;
-                const next = this.constructor._NEXT_BUTTON;
-                const contents = this.constructor._CONTENTS_BUTTON;
                 const buttons = [
                     this._create_button('back', back),
                     this._create_button('next', next),
@@ -79,10 +79,10 @@ export class SlideShow {
     _on_link_click = (event) => {
         /* https://stackoverflow.com/questions/2136461/
         use-javascript-to-intercept-all-document-link-clicks */
-        let anchor = 
+        const anchor = 
             event.target || event.srcElement || event.originalTarget;
         // Only works for links in the document
-        let target = this._document.getElementById(anchor.hash.slice(1));
+        const target = this._document.getElementById(anchor.hash.slice(1));
         this.change_slide(this._slides.indexOf(target.closest("article")));
     }
 
@@ -206,16 +206,16 @@ export class SlideShow {
     }
 
     _process_slide(slide) {
-        let animation = new Animation(slide);
-        let steps = animation.get_steps();
+        const animation = new Animation(slide);
+        const steps = animation.get_steps();
         for (let i = 0; i < steps.length; i++) 
             this._create_animation(slide, i);
     }
 
     _create_animation(slide, index) {
-        let copy = slide.cloneNode(true);
-        let animation = new Animation(copy);
-        let steps = animation.get_steps();
+        const copy = slide.cloneNode(true);
+        const animation = new Animation(copy);
+        const steps = animation.get_steps();
         for (let j = 0; j < steps.length - index; j++) {
             show_all(steps[j]['show']);
             animate_all(steps[j]['animate']);
