@@ -97,6 +97,24 @@ describe('SlideShow', function() {
             assert.equal(parent, 'footer');
         })
 
+        it('There may be no title slide', function() {
+            const doc = document.implementation.createHTMLDocument('Test');
+            const code = `
+                <article>
+                 <section>
+                  <p>Text</p>
+                 </section>
+                </article>
+            `;
+            const main = doc.createElement('main');
+            main.innerHTML = code;
+            doc.body.appendChild(main)
+            const slideshow = new SlideShow(doc);
+            slideshow.start(0);
+            const slide = slideshow.current.slide; 
+            assert.equal(slide.nodeName.toLowerCase(), 'article');
+        })
+
         it('Three buttons created in second slide', function() {
             const slideshow = create_slideshow();
             slideshow.start(1);

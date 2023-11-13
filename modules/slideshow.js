@@ -28,9 +28,11 @@ export class SlideShow {
 
     _insert_title_next_button() {
         const footer = this._document.querySelector('#title footer');
-        const next = this.constructor._NEXT_BUTTON;
-        const button = this._create_button("next", next);
-        footer.insertBefore(button, footer.firstChild);
+        if (footer !== null) {
+            const next = this.constructor._NEXT_BUTTON;
+            const button = this._create_button("next", next);
+            footer.insertBefore(button, footer.firstChild);
+        }
     }
 
     _create_navigation_buttons() {
