@@ -51,7 +51,7 @@ describe('SlideShow', function() {
              </section>
             </article>
         `;
-        const main = slideshow.createElement('main')
+        const main = slideshow.createElement('main');
         main.innerHTML = code;
         slideshow.body.appendChild(main)
         return new SlideShow(slideshow);
@@ -95,6 +95,24 @@ describe('SlideShow', function() {
             assert.equal(buttons[0].id, 'button-next');
             const parent = buttons[0].parentNode.nodeName.toLowerCase();
             assert.equal(parent, 'footer');
+        })
+
+        it('There may be no title slide', function() {
+            const doc = document.implementation.createHTMLDocument('Test');
+            const code = `
+                <article>
+                 <section>
+                  <p>Text</p>
+                 </section>
+                </article>
+            `;
+            const main = doc.createElement('main');
+            main.innerHTML = code;
+            doc.body.appendChild(main)
+            const slideshow = new SlideShow(doc);
+            slideshow.start(0);
+            const slide = slideshow.current.slide; 
+            assert.equal(slide.nodeName.toLowerCase(), 'article');
         })
 
         it('Three buttons created in second slide', function() {
