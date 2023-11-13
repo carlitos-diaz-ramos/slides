@@ -22,7 +22,9 @@ export class SlideShow {
         this._index = null;
         this._current = null;
         const saved = Number(localStorage.getItem("last"))
-        const start = index !== undefined ? index : saved;
+        let start = index !== undefined ? index : saved;
+        if (isNaN(start)) 
+            start = 0;
         this.change_slide(start); 
     }
 
