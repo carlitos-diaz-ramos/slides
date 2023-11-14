@@ -213,25 +213,29 @@
             this._index = null;
             this._current = null;
             const saved = Number(localStorage.getItem("last"))
-            const start = index !== undefined ? index : saved;
+            let start = index !== undefined ? index : saved;
+            if (isNaN(start)) 
+                start = 0;
             this.change_slide(start); 
         }
 
         _insert_title_next_button() {
             const footer = this._document.querySelector('#title footer');
-            const next = this.constructor._NEXT_BUTTON;
-            const button = this._create_button("next", next);
-            footer.insertBefore(button, footer.firstChild);
+            if (footer !== null) {
+                const next = this.constructor._NEXT_BUTTON;
+                const button = this._create_button("next", next);
+                footer.insertBefore(button, footer.firstChild);
+            }
         }
 
         _create_navigation_buttons() {
+            const back = this.constructor._BACK_BUTTON;
+            const next = this.constructor._NEXT_BUTTON;
+            const contents = this.constructor._CONTENTS_BUTTON;
             for (let slide of this._slides) {
                 const headers = slide.getElementsByTagName("header");
                 if (headers.length > 0) {
                     const header_nav = this._document.createElement("nav");
-                    const back = this.constructor._BACK_BUTTON;
-                    const next = this.constructor._NEXT_BUTTON;
-                    const contents = this.constructor._CONTENTS_BUTTON;
                     const buttons = [
                         this._create_button('back', back),
                         this._create_button('next', next),
@@ -270,10 +274,10 @@
         _on_link_click = (event) => {
             /* https://stackoverflow.com/questions/2136461/
             use-javascript-to-intercept-all-document-link-clicks */
-            let anchor = 
+            const anchor = 
                 event.target || event.srcElement || event.originalTarget;
             // Only works for links in the document
-            let target = this._document.getElementById(anchor.hash.slice(1));
+            const target = this._document.getElementById(anchor.hash.slice(1));
             this.change_slide(this._slides.indexOf(target.closest("article")));
         }
 
@@ -397,16 +401,16 @@
         }
 
         _process_slide(slide) {
-            let animation = new Animation(slide);
-            let steps = animation.get_steps();
+            const animation = new Animation(slide);
+            const steps = animation.get_steps();
             for (let i = 0; i < steps.length; i++) 
                 this._create_animation(slide, i);
         }
 
         _create_animation(slide, index) {
-            let copy = slide.cloneNode(true);
-            let animation = new Animation(copy);
-            let steps = animation.get_steps();
+            const copy = slide.cloneNode(true);
+            const animation = new Animation(copy);
+            const steps = animation.get_steps();
             for (let j = 0; j < steps.length - index; j++) {
                 show_all(steps[j]['show']);
                 animate_all(steps[j]['animate']);
@@ -416,6 +420,94 @@
         }
     }
     
+    class TwoBoxes extends HTMLElement {
+        connectedCallback() {
+            this.attachShadow({mode: 'open'});
+            const template = this.constructor.template(this.dataset.bg);
+            this.shadowRoot.append(template.content.cloneNode(true));
+        }
+
+        static template(color) {
+            const tmpl = document.createElement('template');
+            tmpl.innerHTML = this.prototype.constructor._CODE;
+            this._set_color(tmpl, color);
+            return tmpl;
+        }
+
+        static _set_color(tmpl, color) {
+            const bg = `bg-${color}`;
+            const divs = tmpl.content.querySelectorAll('.two-boxes div');
+            for (let div of divs) 
+                div.classList.add(bg);
+            const path = tmpl.content.querySelector('.two-boxes svg path');
+            path.classList.add(bg);
+        }
+    }
+
+    class SlideIff extends TwoBoxes {
+        static _CODE = `
+            <link rel="stylesheet" href="../code/slides.css">
+            <div class="two-boxes">
+             <div>
+              <slot name="left"></slot>
+             </div>
+             <svg viewBox="0,0 40,22">
+              <title>If and only if</title>
+              <path d="M11,6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 
+               Q29,21 29,20 V16 H11 V20 Q11,21 10.29,20.30 L1,11 10.29,1.70 
+               Q11,1 11,2 z"/>
+             </svg>
+             <div>
+              <slot name="right"></slot>
+             </div>
+            </div>
+        `;
+    }
+
+    class SlideImplies extends TwoBoxes {
+        static _CODE = `
+            <link rel="stylesheet" href="../code/slides.css">
+            <div class="two-boxes">
+             <div>
+              <slot name="left"></slot>
+             </div>
+             <svg viewBox="0,0 40,22">
+              <title>If and only if</title>
+              <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 
+               Q29,21 29,20 V16 H1 V11 z"/>
+             </svg>
+             <div>
+              <slot name="right"></slot>
+             </div>
+            </div>
+        `;
+    }
+
+    class SlideImplied extends TwoBoxes {
+        static _CODE = `
+            <link rel="stylesheet" href="../code/slides.css">
+            <div class="two-boxes">
+             <div>
+              <slot name="left"></slot>
+             </div>
+             <svg viewBox="0,0 40,22">
+              <title>If and only if</title>
+              <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 
+               L14,2 z"/>
+             </svg>
+             <div>
+              <slot name="right"></slot>
+             </div>
+            </div>
+        `;
+    }
+
+    function define_elements() {
+        customElements.define('slide-iff', SlideIff);
+        customElements.define('slide-implies', SlideImplies);
+        customElements.define('slide-implied', SlideImplied);
+    }
+
 
     function start_page() {
         const mode = get_mode();
@@ -429,12 +521,12 @@
 
 
     function on_load() {
-        let slide_show = new SlideShow(document);
+        const slide_show = new SlideShow(document);
         slide_show.start();
     }
 
     function on_print_load() {
-        let slide_show = new SlideShow(document);
+        const slide_show = new SlideShow(document);
         slide_show.print_mode();
         const canvases = document.querySelectorAll('canvas');
         for (let i = 0; i < canvases.length; i++) {
@@ -463,6 +555,7 @@
         return mode;
     }
 
+    define_elements();
     start_page();
 
 })();

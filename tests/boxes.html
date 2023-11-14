@@ -15,11 +15,10 @@
 <link rel="stylesheet" href="../code/html5-reset.css">
 <link rel="stylesheet" href="../code/slides.css">
 
-<script type="module">
-import {define_elements} from '../modules/boxes.js';
-define_elements();
+<!-- <script type="module">
 import '../modules/slides.js';
-</script>
+</script> -->
+<script src="../code/slides.js" async></script>
 </head>
 
 <body>
@@ -27,18 +26,18 @@ import '../modules/slides.js';
 <article>
 <section>
 <slide-iff data-bg="pink">
-<div slot="left">Left side</div>
-<div slot="right">Right side</div>
+<div slot="left"><p>Left side</p></div>
+<div slot="right"><p>Right side</p><p>Second line</p></div>
 </slide-iff>
 
 <slide-implies data-bg="green">
-<div slot="left">Left side</div>
-<div slot="right">Right side</div>
+<div slot="left"><p>Left side</p></div>
+<div slot="right"><p>Right side</p><p>Second line</p></div>
 </slide-implies>
 
 <slide-implied data-bg="blue">
-<div slot="left">Left side</div>
-<div slot="right">Right side</div>
+<div slot="left"><p>Left side</p></div>
+<div slot="right"><p>Right side</p><p>Second line</p></div>
 </slide-implied>
 </section>
 </article>

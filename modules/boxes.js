@@ -1,11 +1,11 @@
 class TwoBoxes extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: 'open'});
-        const template = this.constructor.template(this.dataset.bg);
-        this.shadowRoot.append(template.content.cloneNode(true));
+        const tmpl = this.constructor.template({color: this.dataset.bg});
+        this.shadowRoot.append(tmpl.content.cloneNode(true));
     }
 
-    static template(color) {
+    static template({color = 'white'}) {
         const tmpl = document.createElement('template');
         tmpl.innerHTML = this.prototype.constructor._CODE;
         this._set_color(tmpl, color);

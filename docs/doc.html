@@ -18,7 +18,7 @@
 <!-- <link rel="stylesheet" href="../code/print.css"> -->
 <!-- <link rel="stylesheet" media="all" href="../code/notransitions.css"> -->
 <link rel="stylesheet" href="custom.css">
-<link rel="stylesheet" href="dark.css">
+<!-- <link rel="stylesheet" href="dark.css"> -->
 
 <script src="../code/jax.js" async></script>
 <script src="../code/slides.js" async></script>
@@ -546,32 +546,31 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 </header>
 
 <section>
-<p>A continuaci&oacute;n pres&eacute;ntanse varias posibilidades para presentar resultados en caixas:</p>
+<p>A continuaci&oacute;n pres&eacute;ntanse outras posibilidades para presentar resultados en caixas:</p>
 
-<p>Pode empregarse a clase <code>two-boxes</code> para definici&oacute;ns:</p>
+<p>Pode empregarse o elementp <code>slide-iff</code> para definici&oacute;ns.
+Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fondo vistas anteriormente:</p>
 
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p>$M$ <strong>homogeneous</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$M=G\cdot o$, with</p>
 <p>$o\in M$, $G\subset I(\bar{M})$</p>
 </div>
-</div>
+</slide-iff>
 
 <code>
-&lt;div class=&quot;two-boxes&quot;&gt;<br>
- &lt;div class=&quot;bg-yellow&quot;&gt;<br>
+&lt;slide-iff data-bg=&quot;yellow&quot;&gt;<br>
+ &lt;div slot=&quot;left&quot;&gt;<br>
   &lt;p&gt;$M$ &lt;strong&gt;homogeneous&lt;/strong&gt;&lt;/p&gt;<br>
  &lt;/div&gt;<br>
- &lt;svg&gt;&lt;use href=&quot;#iff&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
- &lt;div class=&quot;bg-yellow&quot;&gt;<br>
+ &lt;div slot=&quot;right&quot;&gt;<br>
   &lt;p&gt;$M=G\cdot o$, with&lt;/p&gt;<br>
   &lt;p&gt;$o\in M$, $G\subset I(\bar{M})$&lt;/p&gt;<br>
  &lt;/div&gt;<br>
-&lt;/div&gt;<br>
+&lt;/slide-iff&gt;<br>
 </code>
 
 </section>
@@ -587,26 +586,24 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <section>
 <p>Outro exemplo para representar unha implicaci&oacute;n:</p>
 
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies data-bg="green">
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>constant principal curvatures</li>
 <li>isoparametric</li>
 </ul>
 </div>
-</div>
+</slide-implies>
 
 <code>
-&lt;div class=&quot;two-boxes&quot;&gt;<br>
-&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;slide-implies data-bg=&quot;green&quot;&gt;<br>
+&lt;div slot=&quot;left&quot;&gt;<br>
 &lt;p&gt;$M$ homogeneous hypersurface&lt;/p&gt;<br>
 &lt;/div&gt;<br>
-&lt;svg&gt;&lt;use href=&quot;#implies&quot; class=&quot;bg-green&quot;/&gt;&lt;/svg&gt;<br>
-&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;div slot=&quot;right&quot;&gt;<br>
 &lt;ul&gt;<br>
 &lt;li&gt;constant principal curvatures&lt;/li&gt;<br>
 &lt;li&gt;isoparametric&lt;/li&gt;<br>
@@ -626,15 +623,14 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 </header>
 
 <section>
-<p>Se unha caixa ten considerablemente m&aacute;is contida c&aacute; outra pode empregarse a clase <code>distribute</code> para compensar:</p>
+<p>Se unha caixa ten considerablemente m&aacute;is contido ca outra pode empregarse a clase <code>distribute</code> para compensar:</p>
 
-<div class="two-boxes distribute">
-<div class="bg-yellow">
+<slide-iff class="distribute" data-bg="yellow">
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow smaller">
+<div slot="right" class="smaller">
 <ul>
 <li>normal bundle is flat</li>
 <li>parallel submanifolds have constant mean curvature in radial directions</li>
