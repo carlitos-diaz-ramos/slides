@@ -1,15 +1,37 @@
 class TwoBoxes extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: 'open'});
-        const tmpl = this.constructor.template({color: this.dataset.bg});
+        const tmpl = this.constructor.template({
+            color: this.dataset.bg,
+            cls: this.classList,
+            styles: TwoBoxes._get_stylesheets()
+        });
         this.shadowRoot.append(tmpl.content.cloneNode(true));
     }
 
-    static template({color = 'white'}) {
+    static template({styles = [], cls = [], color = 'white'}) {
         const tmpl = document.createElement('template');
         tmpl.innerHTML = this.prototype.constructor._CODE;
+        this._set_styles(tmpl, styles);
+        this._set_class(tmpl, cls);
         this._set_color(tmpl, color);
         return tmpl;
+    }
+
+    static _set_styles(tmpl, styles) {
+        const div = tmpl.content.querySelector('div.two-boxes');
+        for (let style of styles) {
+            const link = document.createElement('link');
+            link.href = style;
+            link.rel = 'stylesheet';
+            tmpl.content.insertBefore(link, div);
+        }
+    }
+
+    static _set_class(tmpl, cls) {
+        const div = tmpl.content.querySelector('div.two-boxes');
+        for (let item of cls) 
+            div.classList.add(item);
     }
 
     static _set_color(tmpl, color) {
@@ -20,11 +42,18 @@ class TwoBoxes extends HTMLElement {
         const path = tmpl.content.querySelector('.two-boxes svg path');
         path.classList.add(bg);
     }
+
+    static _get_stylesheets() {
+        const stylesheets = Array.from(document.styleSheets);
+        const with_href = stylesheets.filter(
+            (item) => {return item.href !== null}
+        );
+        return with_href.map((item) => {return item.href});
+    }
 }
 
 export class SlideIff extends TwoBoxes {
     static _CODE = `
-        <link rel="stylesheet" href="../code/slides.css">
         <div class="two-boxes">
          <div>
           <slot name="left"></slot>
@@ -44,7 +73,6 @@ export class SlideIff extends TwoBoxes {
 
 export class SlideImplies extends TwoBoxes {
     static _CODE = `
-        <link rel="stylesheet" href="../code/slides.css">
         <div class="two-boxes">
          <div>
           <slot name="left"></slot>
@@ -63,7 +91,6 @@ export class SlideImplies extends TwoBoxes {
 
 export class SlideImplied extends TwoBoxes {
     static _CODE = `
-        <link rel="stylesheet" href="../code/slides.css">
         <div class="two-boxes">
          <div>
           <slot name="left"></slot>

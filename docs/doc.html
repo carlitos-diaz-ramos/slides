@@ -18,10 +18,10 @@
 <!-- <link rel="stylesheet" href="../code/print.css"> -->
 <!-- <link rel="stylesheet" media="all" href="../code/notransitions.css"> -->
 <link rel="stylesheet" href="custom.css">
-<!-- <link rel="stylesheet" href="dark.css"> -->
+<link rel="stylesheet" href="dark.css">
 
 <script src="../code/jax.js" async></script>
-<script src="../code/slides.js" async></script>
+<script src="../code/slides.js"></script>
 </head>
 
 <body>
@@ -103,7 +103,7 @@
 &lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;code/print.css&quot;&gt; --&gt;<br>
 &lt;!-- Or this one for avoiding transitions: --&gt;<br>
 &lt;!-- &lt;link rel="stylesheet" media="all" href="code/notransitions.css"&gt; --&gt;<br>
-&lt;script src=&quot;code/slides.js&quot; async&gt;&lt;/script&gt;<br>
+&lt;script src=&quot;code/slides.js&quot;&gt;&lt;/script&gt;<br>
 &lt;/head&gt;<br>
 </code>
 
@@ -638,21 +638,20 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 (totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
 <code>
-&lt;div class=&quot;two-boxes distribute&quot;&gt;<br>
-&lt;div class=&quot;bg-yellow&quot;&gt;&lt;<br>
-p&gt;$M\subset\bar{M}$&lt;/p&gt;
+&lt;slide-iff class=&quot;distribute&quot; data-bg=&quot;yellow&quot;&gt;<br>
+&lt;div slot=&quot;left&quot;&gt;<br>
+&lt;p&gt;$M\subset\bar{M}$&lt;/p&gt;<br>
 &lt;p&gt;&lt;strong&gt;isoparametric&lt;/strong&gt;&lt;/p&gt;<br>
 &lt;/div&gt;<br>
-&lt;svg&gt;&lt;use href=&quot;#iff&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
-&lt;div class=&quot;bg-yellow smaller&quot;&gt;<br>
+&lt;div slot=&quot;right&quot; class=&quot;smaller&quot;&gt;<br>
 &lt;ul&gt;
 &lt;li&gt;normal bundle is flat&lt;/li&gt; ... 
 &lt;/ul&gt;<br>
 &lt;/div&gt;<br>
-&lt;/div&gt;<br>
+&lt;/slide-iff&gt;<br>
 </code>
 
 </section>
@@ -662,7 +661,48 @@ p&gt;$M\subset\bar{M}$&lt;/p&gt;
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Caixas e frechas 4</h1>
+<h1>Caixas e frechas 4 (antiga versión)</h1>
+</header>
+
+<section>
+<p>En anteriores versións do paquete tamén se podían crear frechas empregando o código <code>svg</code> que se atopa ó final da plantilla de <code>html</code>.</p>
+
+<div class="two-boxes">
+<div class="bg-green">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<svg><use href="#right-arrow" class="bg-green"/></svg>
+<div class="bg-green">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
+</div>
+</div>
+
+<code>
+&lt;div class="two-boxes"&gt;<br>
+&lt;div class="bg-green"&gt;<br>
+&lt;p&gt;$M$ homogeneous hypersurface&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#right-arrow&quot; class=&quot;bg-green&quot;/&gt;&lt;/svg&gt;<br>
+&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;ul&gt;<br>
+&lt;li&gt;constant principal curvatures&lt;/li&gt;<br>
+&lt;li&gt;isoparametric&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+&lt;/div&gt;<br>
+&lt;/div&gt;
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Caixas e frechas 5 (antiga versión)</h1>
 </header>
 
 <section>

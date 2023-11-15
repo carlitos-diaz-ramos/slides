@@ -29,15 +29,15 @@ describe('Boxes with arrows', function() {
         })
 
         it('A link is created', function() {
-            const template = SlideIff.template({});
+            const template = SlideIff.template({styles: ['slides.css']});
             const link = template.content.querySelector('link');
             assert.notEqual(link, null);
         })
 
         it('link refers to slides.css', function() {
-            const template = SlideIff.template({});
+            const template = SlideIff.template({styles: ['slides.css']});
             const link = template.content.querySelector('link');
-            assert.equal(link.href.slice(-16), '/code/slides.css');
+            assert.equal(link.href.slice(-10), 'slides.css');
         })
 
         it('There is a svg between the divs', function() {
@@ -96,15 +96,15 @@ describe('Boxes with arrows', function() {
         })
 
         it('A link is created', function() {
-            const template = SlideImplies.template({});
+            const template = SlideImplies.template({styles: ['slides.css']});
             const link = template.content.querySelector('link');
             assert.notEqual(link, null);
         })
 
         it('link refers to slides.css', function() {
-            const template = SlideImplies.template({});
+            const template = SlideImplies.template({styles: ['slides.css']});
             const link = template.content.querySelector('link');
-            assert.equal(link.href.slice(-16), '/code/slides.css');
+            assert.equal(link.href.slice(-10), 'slides.css');
         })
 
         it('There is a svg between the divs', function() {
@@ -143,10 +143,14 @@ describe('Boxes with arrows', function() {
         })
 
         it('Additional stylesheets inserted as links', function() {
-            const template = SlideIff.template({styles: ['custom.css']});
+            const template = SlideIff.template(
+                {styles: ['slides.css', 'custom.css']}
+            );
             const links = template.content.querySelectorAll('link');
-            const srcs = links.map((link) => link.src);
-            assert.isTrue(srcs.includes('custom.css'));
+            const srcs = Array.from(links).map((link) => link.href.slice(-10));
+            assert.equal(srcs.length, 2);
+            assert.equal(srcs[0], 'slides.css');
+            assert.equal(srcs[1], 'custom.css');
         })
 
         it('There is a svg between the divs', function() {
