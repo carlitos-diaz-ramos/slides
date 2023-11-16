@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="dark.css">
 
 <script src="../code/jax.js" async></script>
-<script src="../code/slides.js" async></script>
+<script src="../code/slides.js"></script>
 
 </head>
 
@@ -86,15 +86,14 @@
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p><strong>topological manifold</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p><em>locally Euclidean</em> second-countable Haussdorff topological space</p>
 </div>
-</div>
+</slide-iff>
 
 <div class="row-pictures">
 <figure class="pictures-medium">
@@ -110,15 +109,14 @@
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p><strong>smooth manifold</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>topological manifold with an atlas whose change of coordinates are smooth</p>
 </div>
-</div>
+</slide-iff>
 
 <div class="row-pictures">
 <figure class="pictures-medium">
@@ -134,15 +132,14 @@
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p><strong>Riemannian manifold</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>manifold with a smooth inner product in each tangent space</p>
 </div>
-</div>
+</slide-iff>
 
 <div>
 <p class="show-10">In a Riemannian manifold we can measure:</p>
@@ -167,15 +164,14 @@ d(p,q)=\inf\{L(\gamma):\text{$\gamma$ joins $p$ with $q$}\}
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p><strong>isometry</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>diffeomorphism that preserves <em>inner product</em></p>
 </div>
-</div>
+</slide-iff>
 <div class="two-boxes" style="margin-top: -2em">
 <div style="box-shadow: none;"></div>
 <svg><use class="bg-yellow" href="#iff"/></svg>
@@ -201,31 +197,29 @@ d(p,q)=\inf\{L(\gamma):\text{$\gamma$ joins $p$ with $q$}\}
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p>Lie group <strong>action</strong><br>
 $G\times M\to M$</p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <ul>
 <li>$e\cdot p=p$</li>
 <li>$g\cdot(h\cdot p)=(gh)\cdot p$</li>
 <li>smooth</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow" class="show-10">
+<div slot="left">
 <p><strong>isometric action</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$p\mapsto g\cdot p$ <em>isometry</em><br>
 $\forall g\in G$</p>
 </div>
-</div>
+</slide-iff>
 
 <div>
 <p class="show-20">$G$ connected closed subgroup of $I(M)$</p>

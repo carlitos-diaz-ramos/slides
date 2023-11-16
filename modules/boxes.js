@@ -3,17 +3,15 @@ class TwoBoxes extends HTMLElement {
         this.attachShadow({mode: 'open'});
         const tmpl = this.constructor.template({
             color: this.dataset.bg,
-            cls: this.classList,
-            styles: TwoBoxes._get_stylesheets()
+            styles: this.constructor._get_stylesheets()
         });
         this.shadowRoot.append(tmpl.content.cloneNode(true));
     }
 
-    static template({styles = [], cls = [], color = 'white'}) {
+    static template({styles = [], color = 'white'}) {
         const tmpl = document.createElement('template');
         tmpl.innerHTML = this.prototype.constructor._CODE;
         this._set_styles(tmpl, styles);
-        this._set_class(tmpl, cls);
         this._set_color(tmpl, color);
         return tmpl;
     }
@@ -26,12 +24,6 @@ class TwoBoxes extends HTMLElement {
             link.rel = 'stylesheet';
             tmpl.content.insertBefore(link, div);
         }
-    }
-
-    static _set_class(tmpl, cls) {
-        const div = tmpl.content.querySelector('div.two-boxes');
-        for (let item of cls) 
-            div.classList.add(item);
     }
 
     static _set_color(tmpl, color) {

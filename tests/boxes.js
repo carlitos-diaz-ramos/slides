@@ -136,12 +136,6 @@ describe('Boxes with arrows', function() {
     })
 
     describe('SlideImplied', function() {
-        it('A div.two-boxes is created with the same class', function() {
-            const template = SlideIff.template({cls: ['distribute']});
-            const boxes = template.content.querySelector('div.two-boxes');
-            assert.isTrue(Array.from(boxes.classList).includes('distribute'));
-        })
-
         it('Additional stylesheets inserted as links', function() {
             const template = SlideIff.template(
                 {styles: ['slides.css', 'custom.css']}

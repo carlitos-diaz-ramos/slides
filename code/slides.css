@@ -431,7 +431,9 @@ h1 + .two-boxes {
 }
 
 .distribute.two-boxes div:first-of-type, 
-.distribute.two-boxes div:last-of-type {
+.distribute.two-boxes div:last-of-type,
+:host(.distribute) .two-boxes div:first-of-type,
+:host(.distribute) .two-boxes div:last-of-type {
     flex: auto;
 }
 
