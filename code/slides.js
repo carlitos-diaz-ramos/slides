@@ -483,6 +483,10 @@
              </div>
             </div>
         `;
+
+        static template({styles = [], color = 'yellow'}) {
+            return super.template({styles: styles, color: color});
+        }
     }
 
     class SlideImplies extends TwoBoxes {
@@ -501,6 +505,10 @@
              </div>
             </div>
         `;
+
+        static template({styles = [], color = 'green'}) {
+            return super.template({styles: styles, color: color});
+        }
     }
 
     class SlideImplied extends TwoBoxes {

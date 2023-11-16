@@ -15,7 +15,7 @@
 <link rel="stylesheet" media="all" href="../code/html5-reset.css">
 <link rel="stylesheet" media="all" href="../code/slides.css">
 <!-- Include the following stylesheet for printing: -->
-<!-- <link rel="stylesheet" media="all" href="../code/print.css"> -->
+<link rel="stylesheet" media="all" href="../code/print.css">
 <!-- <link rel="stylesheet" media="all" href="../code/notransitions.css"> -->
 <link rel="stylesheet" media="all" href="custom2.css">
 
@@ -115,7 +115,7 @@
 <p>$\bar{M}$ Riemannian manifold, $\bar{\nabla}$ Levi-Civita connection</p>
 <p>$M\subset\bar{M}$ hypersurface, $\xi$ unit normal, $\nabla$ Levi-Civita connection</p>
 
-<slide-iff data-bg="yellow">
+<slide-iff>
 <div slot="left">
 <p>$M$ <strong>homogeneous</strong></p>
 </div>
@@ -428,16 +428,15 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <section>
 <h1>Non-Hopf examples</h1>
 
-<div class="two-boxes">
-<div class="bg-yellow center">
+<slide-iff>
+<div slot="left">
 <p>$V\subset\,\C^n$ has</p>
 <p><strong>constant K&auml;hler angle $\varphi$</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$\angle(Jv,V)=\varphi$, $\forall v\in V\setminus\{0\}$</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="show-10">$\g{w}\subset\,\g{g}_\alpha$ such that $\g{w}^\perp$ is of constant K&auml;hler angle $\varphi$, &nbsp; $k=\dim\,\g{w}^\perp$</p>
 <p class="show-10">$\g{s}_\g{w}=\g{a}\oplus\g{w}\oplus\g{g}_{2\alpha}$ subalgebra of $\g{a}\oplus\g{n}$</p>
@@ -463,18 +462,17 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>constant principal curvatures</li>
 <li>isoparametric</li>
 </ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 </section>
@@ -526,15 +524,17 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>constant principal curvatures</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -574,15 +574,17 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>constant principal curvatures</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -621,15 +623,17 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>constant principal curvatures</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -662,53 +666,52 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>isoparametric</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow center">
+<slide-iff>
+<div slot="left">
 <p>$f\colon\bar{M}\to\R$</p>
 <p><strong>isoparametric function</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow center">
+<div slot="right">
 <p>$\lVert\nabla f\rVert^2$ and $\Delta f$ constant</p>
 <p>along the level sets of $f$</p>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow center">
+<slide-iff>
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric hypersurface</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow center">
+<div slot="right">
 <p>level set of codimension $1$</p>
 <p>of isoparametric function</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="show-20">[Cartan]</p>
-<div class="two-boxes show-20">
-<div class="bg-green center">
+<slide-iff class="show-20" data-bg="green">
+<div slot="left" class="center">
 <p>$M$ isoparametric hypersurface</p>
 </div>
-<svg><use href="#iff" class="bg-green"/></svg>
-<div class="bg-green center">
+<div slot="right" class="center">
 <p>nearby parallel hypersurfaces</p>
 <p>of constant mean curvature</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="smaller show-30">In real space forms: isoparametric $\Leftrightarrow$ constant principal curvatures</p>
 </section>
@@ -722,15 +725,14 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <p>isoparametric</p>
 </div>
-</div>
+</slide-implies>
 
 <h1>Inhomogeneous examples</h1>
 
@@ -784,18 +786,17 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>constant principal curvatures</li>
 <li>isoparametric</li>
 </ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -822,15 +823,14 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$G$ acts <strong>polarly</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>there is a <em>section</em></p>
 </div>
-</div>
+</slide-iff>
 <p><strong>Section</strong>: submanifold that intersects <em>all</em> orbits of $G$ <em>orthogonally</em></p>
 
 <div class="row-pictures pictures-small space-before space-after">
@@ -858,15 +858,14 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$G$ acts <strong>polarly</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>there is a <em>section</em></p>
 </div>
-</div>
+</slide-iff>
 <p><strong>Section</strong>: submanifold that intersects <em>all</em> orbits of $G$ <em>orthogonally</em></p>
 
 <div class="row-pictures pictures-small space-before space-after">
@@ -962,13 +961,12 @@ $Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
 
 <section>
 <p>[Heintze, Liu, Olmos]</p>
-<div class="two-boxes distribute">
-<div class="bg-yellow">
+<slide-iff class="distribute">
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow smaller">
+<div slot="right" class="smaller">
 <ul>
 <li>normal bundle is flat</li>
 <li>parallel submanifolds have constant mean curvature in radial directions</li>
@@ -976,47 +974,44 @@ $Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
 (totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-10">
-<div class="bg-green">
+<slide-iff class="show-10" data-bg="green">
+<div slot="left">
 <p>Isoparametric in $\C H^2$</p>
 </div>
-<svg><use href="#iff" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <p>principal orbit of polar action</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="show-20">[Terng]</p>
-<div class="two-boxes distribute show-20">
-<div class="bg-yellow">
+<slide-iff class="distribute show-20">
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow smaller" style="width: 67%;">
+<div slot="right" class="smaller" style="width: 67%;">
 <ul>
 <li>normal bundle is flat</li>
 <li>eigenvalues of the shape operator with respect to any parallel normal vector field are constant</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-30">
-<div class="bg-green center">
+<slide-iff class="show-30">
+<div slot="left" class="center">
 <p>Terng-isoparametric</p>
 <p>in $\C H^2$</p>
 </div>
-<svg><use href="#iff" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>principal orbit of polar action</li>
 <li>Chen's surface</li>
 <li>circles</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 </section>
 </article>
 

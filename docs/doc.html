@@ -244,10 +244,10 @@ O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 <p>A continuaci&oacute;n presentaremos alg&uacute;ns entornos que poden ser empregados sen necesidade de definir ning&uacute;n estilo nun arquivo <code>css</code> adicional.</p>
 
 <p>Recordemos que este paquete non carga <code>Mathjax</code>, 
-pero podemos incluílo facilmente mediante
+pero podemos inclu&iacute;lo facilmente mediante
 <code>&lt;script src=&quot;code/jax.js&quot; async&gt;&lt;/script&gt;</code></p>
 
-<p>Así, podemos po&ntilde;er f&oacute;rmulas en li&ntilde;a coma esta $ax^2+b+x+c=0$, ou en display:
+<p>As&iacute;, podemos po&ntilde;er f&oacute;rmulas en li&ntilde;a coma esta $ax^2+b+x+c=0$, ou en display:
 \[
 x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 \]</p>
@@ -553,9 +553,10 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <p>A continuaci&oacute;n pres&eacute;ntanse outras posibilidades para presentar resultados en caixas:</p>
 
 <p>Pode empregarse o elementp <code>slide-iff</code> para definici&oacute;ns.
-Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fondo vistas anteriormente:</p>
+Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fondo vistas anteriormente.
+Por defecto a equivalencia &eacute; amarela e a implicaci&oacute;n, verde:</p>
 
-<slide-iff data-bg="yellow">
+<slide-iff>
 <div slot="left">
 <p>$M$ <strong>homogeneous</strong></p>
 </div>
@@ -566,7 +567,7 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 </slide-iff>
 
 <code>
-&lt;slide-iff data-bg=&quot;yellow&quot;&gt;<br>
+&lt;slide-iff&gt;<br>
  &lt;div slot=&quot;left&quot;&gt;<br>
   &lt;p&gt;$M$ &lt;strong&gt;homogeneous&lt;/strong&gt;&lt;/p&gt;<br>
  &lt;/div&gt;<br>
@@ -588,7 +589,7 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 </header>
 
 <section>
-<p>Outro exemplo para representar unha implicaci&oacute;n:</p>
+<p>Outro exemplo para representar unha implicaci&oacute;n (con cor expl&iacute;cita):</p>
 
 <slide-implies data-bg="green">
 <div slot="left">
@@ -613,7 +614,7 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 &lt;li&gt;isoparametric&lt;/li&gt;<br>
 &lt;/ul&gt;<br>
 &lt;/div&gt;<br>
-&lt;/div&gt;<br>
+&lt;/slide-implies&gt;<br>
 </code>
 
 </section>
@@ -629,7 +630,7 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 <section>
 <p>Se unha caixa ten considerablemente m&aacute;is contido ca outra pode empregarse a clase <code>distribute</code> para compensar:</p>
 
-<slide-iff class="distribute" data-bg="yellow">
+<slide-iff class="distribute">
 <div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric</strong></p>
@@ -665,11 +666,11 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Caixas e frechas 4 (antiga versión)</h1>
+<h1>Caixas e frechas 4 (antiga versi&oacute;n)</h1>
 </header>
 
 <section>
-<p>En anteriores versións do paquete tamén se podían crear frechas empregando o código <code>svg</code> que se atopa ó final da plantilla de <code>html</code>.</p>
+<p>En anteriores versi&oacute;ns do paquete tam&eacute;n se pod&iacute;an crear frechas empregando o c&oacute;digo <code>svg</code> que se atopa &oacute; final da plantilla de <code>html</code>.</p>
 
 <div class="two-boxes">
 <div class="bg-green">
@@ -706,7 +707,7 @@ Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fond
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Caixas e frechas 5 (antiga versión)</h1>
+<h1>Caixas e frechas 5 (antiga versi&oacute;n)</h1>
 </header>
 
 <section>
