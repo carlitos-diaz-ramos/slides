@@ -50,21 +50,30 @@ describe('Boxes with arrows', function() {
             assert.equal(next.nodeName.toLowerCase(), 'div');
         })
 
-        it('If color is yellow, divs have class yellow', function() {
-            const template = SlideIff.template({color: 'yellow'});
+        it('If color is green, divs have class green', function() {
+            const template = SlideIff.template({color: 'green'});
+            const divs = template.content.querySelectorAll('.two-boxes div');
+            for (let div of divs) {
+                const cls = Array.from(div.classList);
+                assert.isTrue(cls.includes('bg-green'));
+            }
+        })
+
+        it('If color is green, path has class green', function() {
+            const template = SlideIff.template({color: 'green'});
+            const selector = '.two-boxes svg path';
+            const path = template.content.querySelector(selector);
+            const cls = Array.from(path.classList);
+            assert.isTrue(cls.includes('bg-green'));
+        })
+
+        it('Default color is yellow', function() {
+            const template = SlideIff.template({});
             const divs = template.content.querySelectorAll('.two-boxes div');
             for (let div of divs) {
                 const cls = Array.from(div.classList);
                 assert.isTrue(cls.includes('bg-yellow'));
             }
-        })
-
-        it('If color is yellow, path has class yellow', function() {
-            const template = SlideIff.template({color: 'yellow'});
-            const selector = '.two-boxes svg path';
-            const path = template.content.querySelector(selector);
-            const cls = Array.from(path.classList);
-            assert.isTrue(cls.includes('bg-yellow'));
         })
     })
 
@@ -117,21 +126,30 @@ describe('Boxes with arrows', function() {
             assert.equal(next.nodeName.toLowerCase(), 'div');
         })
 
-        it('If color is green, divs have class yellow', function() {
-            const template = SlideImplies.template({color: 'green'});
+        it('If color is yellow, divs have class yellow', function() {
+            const template = SlideImplies.template({color: 'yellow'});
+            const divs = template.content.querySelectorAll('.two-boxes div');
+            for (let div of divs) {
+                const cls = Array.from(div.classList);
+                assert.isTrue(cls.includes('bg-yellow'));
+            }
+        })
+
+        it('If color is yellow, path has class yellow', function() {
+            const template = SlideImplies.template({color: 'yellow'});
+            const selector = '.two-boxes svg path';
+            const path = template.content.querySelector(selector);
+            const cls = Array.from(path.classList);
+            assert.isTrue(cls.includes('bg-yellow'));
+        })
+
+        it('Default color is green', function() {
+            const template = SlideImplies.template({});
             const divs = template.content.querySelectorAll('.two-boxes div');
             for (let div of divs) {
                 const cls = Array.from(div.classList);
                 assert.isTrue(cls.includes('bg-green'));
             }
-        })
-
-        it('If color is green, path has class yellow', function() {
-            const template = SlideImplies.template({color: 'green'});
-            const selector = '.two-boxes svg path';
-            const path = template.content.querySelector(selector);
-            const cls = Array.from(path.classList);
-            assert.isTrue(cls.includes('bg-green'));
         })
     })
 
@@ -158,7 +176,7 @@ describe('Boxes with arrows', function() {
         })
 
         it('If no color is given, path has class white', function() {
-            const template = SlideImplies.template({});
+            const template = SlideImplied.template({});
             const selector = '.two-boxes svg path';
             const path = template.content.querySelector(selector);
             const cls = Array.from(path.classList);
