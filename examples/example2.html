@@ -20,7 +20,7 @@
 <link rel="stylesheet" media="all" href="custom2.css">
 
 <script src="../code/jax.js" async></script>
-<script src="../code/slides.js" async></script>
+<script src="../code/slides.js"></script>
 
 </head>
 
@@ -115,16 +115,15 @@
 <p>$\bar{M}$ Riemannian manifold, $\bar{\nabla}$ Levi-Civita connection</p>
 <p>$M\subset\bar{M}$ hypersurface, $\xi$ unit normal, $\nabla$ Levi-Civita connection</p>
 
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff data-bg="yellow">
+<div slot="left">
 <p>$M$ <strong>homogeneous</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow center">
+<div slot="right" class="center">
 <p>$M=G\cdot o$, with</p>
 <p>$o\in M$, $G\subset I(\bar{M})$</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="space-after">$G$ is said to act with <strong>cohomogeneity one</strong></p>
 
