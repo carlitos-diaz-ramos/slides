@@ -21,8 +21,8 @@ article {
 
 @media print {
     @page { 
-        margin: 0; 
-        /* size: 400px 300px landscape; */
+        margin-block: 0;
+        margin-inline: 0;
     }
 
     :root {

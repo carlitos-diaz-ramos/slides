@@ -15,10 +15,10 @@
 <link rel="stylesheet" href="../code/html5-reset.css">
 <link rel="stylesheet" href="../code/slides.css">
 <!-- Include the following stylesheet for printing: -->
-<!-- <link rel="stylesheet" href="../code/print.css"> -->
+<link rel="stylesheet" href="../code/print.css">
 <!-- <link rel="stylesheet" media="all" href="../code/notransitions.css"> -->
 <link rel="stylesheet" href="custom.css">
-<link rel="stylesheet" href="dark.css">
+<!-- <link rel="stylesheet" href="dark.css"> -->
 
 <script src="../code/jax.js" async></script>
 <script src="../code/slides.js"></script>
@@ -1113,7 +1113,7 @@ A parte relevante do c&oacute;digo &eacute;:</p>
 </header>
 
 <section>
-<p>Os estilos definidos en <code>slides.css</code> poden ser modificados cargando unha folla de estilo.  Por exemplo, nesta presentaci&oacute;n c&aacute;rgase o arquivo <code>custom.css</code> que, entre outras cousas, inserta a imaxe de fondo.</p>
+<p>Os estilos definidos en <code>slides.css</code> poden ser modificados cargando unha folla de estilo.  Por exemplo, nesta presentaci&oacute;n c&aacute;rgase o arquivo <code>custom.css</code> que, entre outras cousas, inserta a imaxe de fondo. (Se se carga <code>dark.css</code> elim&iacute;nase o fondo.)</p>
 
 <pre class="smaller">
 article {
@@ -1143,11 +1143,11 @@ article {
 </header>
 
 <section>
-<p>O par&aacute;metro m&aacute;is importante que pode ser necesario cambiar &eacute; a relaci&oacute;n de aspecto <code>--screen-width</code>. Os valores t&iacute;picos a tomar son:</p>
+<p>O par&aacute;metro m&aacute;is importante que pode ser necesario cambiar &eacute; a relaci&oacute;n de aspecto <code>--slide-ratio</code>. Os valores t&iacute;picos a tomar son:</p>
 <ul>
-<li>relaci&oacute;n de aspecto 4:3: <code>--screen-width: 133vh</code>.</li>
-<li>relaci&oacute;n de aspecto 16:9: <code>--screen-width: 177vh</code>.</li>
-<li>relaci&oacute;n de aspecto 16:10: <code>--screen-width: 160vh</code>.</li>
+<li>relaci&oacute;n de aspecto 4:3: <code>--slide-ratio: calc(4 / 3);</code>.</li>
+<li>relaci&oacute;n de aspecto 16:9: <code>--slide-ratio: calc(16 / 9);</code>.</li>
+<li>relaci&oacute;n de aspecto 16:10: <code>--slide-ratio: calc(16 / 10);</code>.</li>
 </ul>
 
 <p>Conv&eacute;n tam&eacute;n cambiar <code>--side-margin</code> se a relaci&oacute;n non &eacute; 4:3 para evitar li&ntilde;as moi longas.</p>
@@ -1189,7 +1189,7 @@ article {
 <ul>
 <li>Color de fondo das diapositivas: <code>--bg-color: white</code></li>
 <li>Color do texto: <code>--text-color: black</code></li>
-<li>Tama&ntilde;o da fonte principal: <code>--text-size: 4vh</code></li>
+<li>% de tama&ntilde;o da fonte con respecto á diapositiva: <code>--text-size: 4</code></li>
 <li>Cor do texto enfatizado fortemente: <code>--strong-color: red</code></li>
 <li>Cor das f&oacute;rmulas matem&aacute;ticas: <code>--math-color: purple</code></li>
 <li>Cor do c&oacute;digo inform&aacute;tico: <code>--code-color: indigo</code></li>

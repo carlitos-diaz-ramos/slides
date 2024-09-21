@@ -554,6 +554,8 @@ svg [class*="bg-"] {
 /* Lists
 *****************************************************/
 ul {
+    margin-block: 0;
+    margin-inline: calc(0.5*var(--side-margin, 1ex)) 0;
     list-style-type: square;
 }
 
