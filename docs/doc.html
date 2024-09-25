@@ -800,6 +800,9 @@ figure.picture-side {
 <figure><img src="pics/tubes.png" alt="tubos"></figure>
 <figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
 <figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
 </div>
 
 <code>
@@ -822,21 +825,32 @@ figure.picture-side {
 </header>
 
 <section>
-<p>Pode resultar m&aacute;is convinte po&ntilde;er tama&ntilde;os 
-un pouco m&aacute;is pequenos:</p>
-<div class="row-pictures pictures-small">
+<p>Un bo xeito de controla-lo espaciado e o tama&ntilde;o das figuras &eacute; mediante a propiedade <code>gap</code>:</p>
+<div class="row-pictures big-gap">
 <figure><img src="pics/spheres.png" alt="esferas"></figure>
 <figure><img src="pics/tubes.png" alt="tubos"></figure>
 <figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
 <figure><img src="pics/horosphere.png" alt="horosferas"></figure>
 </div>
 
+<p>O c&oacute;digo anterior foi obtido engadindo</p>
 <code>
-&lt;div class=&quot;row-pictures pictures-small&quot;&gt;<br>
-... o resto &eacute; como antes ...<br>
-&lt;/div&gt;<br>
+    gap: 5em<br>
+    margin-inline: 2em
 </code>
 
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 3</h1>
+</header>
+
+<section>
+<p>Tam&eacute;n est&aacute;n predefinidos alg&uacute;ns tama&ntilde;os para a altura dos debuxos, pero a propiedade <code>gap</code> parece m&aacute;is flexible.</p>
 <div class="row-pictures pictures-tiny">
 <figure><img src="pics/spheres.png" alt="esferas"></figure>
 <figure><img src="pics/tubes.png" alt="tubos"></figure>
@@ -850,8 +864,18 @@ un pouco m&aacute;is pequenos:</p>
 &lt;/div&gt;<br>
 </code>
 
-<p>Tam&eacute;n existe <code>pictures-big</code> e <code>pictures-medium</code>.</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
 
+<code>
+&lt;div class=&quot;row-pictures pictures-small&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
 </section>
 </article>
 
@@ -859,7 +883,55 @@ un pouco m&aacute;is pequenos:</p>
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Imaxes 3</h1>
+<h1>Imaxes 4</h1>
+</header>
+
+<section>
+<div class="row-pictures pictures-medium">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures pictures-medium&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 5</h1>
+</header>
+
+<section>
+<div class="row-pictures pictures-big">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures pictures-big&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
+
+<p>&Eacute; probable que isto se elimine e se empregue s&oacute; <code>gap</code>.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h1>Imaxes 6</h1>
 </header>
 
 <section>
@@ -889,7 +961,7 @@ un pouco m&aacute;is pequenos:</p>
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Imaxes 4</h1>
+<h1>Imaxes 7</h1>
 </header>
 
 <section>
@@ -1190,7 +1262,7 @@ article {
 <ul>
 <li>Color de fondo das diapositivas: <code>--bg-color: white</code></li>
 <li>Color do texto: <code>--text-color: black</code></li>
-<li>% de tama&ntilde;o da fonte con respecto á diapositiva: <code>--text-size: 4</code></li>
+<li>% de tama&ntilde;o da fonte con respecto &aacute; diapositiva: <code>--text-size: 4</code></li>
 <li>Cor do texto enfatizado fortemente: <code>--strong-color: red</code></li>
 <li>Cor das f&oacute;rmulas matem&aacute;ticas: <code>--math-color: purple</code></li>
 <li>Cor do c&oacute;digo inform&aacute;tico: <code>--code-color: indigo</code></li>
