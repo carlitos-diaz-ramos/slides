@@ -1,14 +1,12 @@
 :root {
-    --screen-width: 160vh; /* 4:3 -> 133, 16:9 -> 177 16:10 -> 160 */
-    --vertical-justify: flex-start;
-    --text-size: 5vh;
+    --slide-ratio: calc(16 / 10);
+    --text-size: 5;
     --sec-margin-top: 1em;
     --vertical-justify: space-around;
 }
 
 #title section {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-block: 0;
 }
 
 #title footer .funding {
@@ -28,12 +26,13 @@
 }
 
 section {
-    height: calc(100vh - 2*var(--sec-margin-top));
+    height: calc(var(--slide-height) - 2*var(--sec-margin-top));
 }
 
 header {
     position: absolute;
     bottom: 0;
+    right: 0;
     width: var(--screen-width);
     background: none;
     box-shadow: none;
@@ -44,19 +43,19 @@ header {
     background: var(--header-color);
 }
 [id^=contents] section {
-    height: calc(100vh - var(--header-height) - 3 * var(--sec-margin-top));
+    height: calc(var(--slide-height) - var(--header-height) - 3 * var(--sec-margin-top));
     margin: var(--sec-margin-top) var(--side-margin);
 }
 
-.pictures-medium img, .pictures-medium svg {
-    max-height: 45vh;
+.extra-gap {
+    gap: 5em;
 }
 
 table {
     font-size: 100%;
     width: 100%;
     border-radius: 3px;
-    margin-bottom: 1ex;
+    margin-block-end: 1ex;
 }
 
 li {
@@ -74,7 +73,7 @@ figure.picture-side {
 
 .picture-side ul {
     list-style: none;
-    margin-left: 0;
+    margin-inline-start: 0;
 }
 
 .right-top {
@@ -83,15 +82,15 @@ figure.picture-side {
     right: 0;
     width: 9em;
     font-size: 60%;
-    margin-top: -1ex;
-    margin-right: -4ex;
+    margin-block-start: -1ex;
+    margin-inline-end: -4ex;
 }
 .right-top .MathJax {
     color: hsl(0, 0%, 30%);
 }
 
 .row-pictures figure.polar-rh2 {
-    margin-left: -1em;
+    margin-inline-start: -1em;
 }
 
 .symmetric-picture {
@@ -116,7 +115,7 @@ figure.picture-side {
     top: 3em;
     right: 0;
     width: 5.5em;
-    margin-right: -2ex;
+    margin-inline-end: -2ex;
 }
 .rh2 img {
     width: 100%;
@@ -167,7 +166,7 @@ table#de-rham, table#duals {
 }
 
 .iwasawa td:nth-child(3) {
-    padding-left: 0.3em;
+    padding-inline-start: 0.3em;
     width: 2.3em;
     text-align: center;
 }
@@ -177,25 +176,28 @@ table#de-rham, table#duals {
 }
 
 .iwasawa td:nth-child(4) svg {
-    margin-top: 0.3em;
+    margin-block-start: 0.3em;
 }
 
 .iwasawa td:nth-child(5) {
     width: 10.8em;
-    padding-left: 0.3em;
+    padding-inline-start: 0.3em;
 }
 
 .iwasawa td:nth-child(6) {
-    padding-left: 0.3em;
+    padding-inline-start: 0.3em;
 }
 
 .iwasawa .boxed {
-    margin: 0;
-    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
 }
 
 .iwasawa p {
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
 }
 
 .iwasawa tr:nth-child(2) td:nth-child(2) svg, 
@@ -208,16 +210,17 @@ table#de-rham, table#duals {
 .iwasawa tr:nth-child(3) td:first-child {
     text-align: right;
     vertical-align: top;
-    padding-top: 0.5ex;
+    padding-block-start: 0.5ex;
 }
 
 .iwasawa tr:nth-child(3) td:nth-child(2) .boxed {
-    margin-left: 1em;
-    padding: 1ex;
+    margin-inline-start: 1em;
+    padding-block: 1ex;
+    padding-inline: 1ex;
 }
 
 .iwasawa tr:nth-child(3) td:nth-child(2) p {
-    padding-bottom: 1ex;
+    padding-block-end: 1ex;
 }
 
 .parabolic {
