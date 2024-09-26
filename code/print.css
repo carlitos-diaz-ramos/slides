@@ -8,10 +8,6 @@ da proporción necesaria (p. ex. 320mm x 200mm para 16:10).  Salvar.
 
 /* Main blocks
 *****************************************************/
-body {
-    font-size: calc(var(--text-size) - 0.1vh); 
-}
-
 article {
     display: block;
 }
