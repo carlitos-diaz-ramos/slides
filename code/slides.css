@@ -49,7 +49,7 @@ Table of contents:
     --header-font-size: 90%;
 
     --box-side-margin: -0.3em;
-    --shadow: 0 0.15rem 0.3rem 0 lightgrey, 0 0.2rem 0.7rem 0 lightgrey;
+    --shadow: 0.2ex 0.3ex 0.2ex 0 lightgrey, 0 -0.2ex 0.7ex 0 lightgrey;
     --border: 0.3rem;
 
     --content-lemma: "Lemma. ";
@@ -127,7 +127,7 @@ header {
 }
 
 [class*="show-"] {
-	opacity: 0.3;
+	opacity: 0.1;
 	filter: blur(0.1rem) saturate(20%);
 	pointer-events: none;
 	transition: opacity 0.5s, filter 0.5s;
@@ -452,7 +452,7 @@ h1 + .two-boxes {
     width: 10%;
     height: 2em;
     margin-block: 0;
-    margin-inline: 1%;
+    margin-inline: 1.5%;
     align-self: center;
     overflow: visible;
 }
@@ -545,7 +545,7 @@ p.boxed {
 }
 
 svg [class*="bg-"] {
-    filter: drop-shadow(0.1rem 0.2rem 0.2rem gray); 
+    filter: drop-shadow(0.05ex 0.05ex 0.07ex gray); 
 }
 
 
@@ -623,19 +623,27 @@ figcaption {
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	align-items: center;
+    gap: 1ex;
 }
 
 .row-pictures figure {
-	flex: 0 1 auto;
+	flex: 1 1 0;
     margin-block: 0;
     margin-inline: auto;
     box-sizing: border-box;
 	width: auto;
     height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 }
 
 .pictures-tiny :is(img, svg) {
     max-height: 3em;
+}
+
+.row-pictures:is(.pictures-tiny, .pictures-small, .pictures-medium, .pictures-big) figure {
+    flex: 0 1 auto;
 }
 
 .pictures-small :is(img, svg) {

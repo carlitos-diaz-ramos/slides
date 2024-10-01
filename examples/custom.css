@@ -48,7 +48,7 @@ header {
 }
 
 .extra-gap {
-    gap: 5em;
+    gap: 4em;
 }
 
 table {
@@ -119,6 +119,12 @@ figure.picture-side {
 }
 .rh2 img {
     width: 100%;
+}
+
+.row-pictures .row-column {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1ex;
 }
 
 table#de-rham, table#duals {
