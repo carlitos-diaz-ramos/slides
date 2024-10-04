@@ -35,9 +35,9 @@ export class Canvas {
     }
 
     _add_listeners() {
-        this._svg.addEventListener('mousedown', this._on_mouse_down);
-        this._svg.addEventListener('mousemove', this._on_mouse_move);
-        this._svg.addEventListener('mouseup', this._on_mouse_up);
+        this._svg.addEventListener('pointerdown', this._on_mouse_down);
+        this._svg.addEventListener('pointermove', this._on_mouse_move);
+        this._svg.addEventListener('pointerup', this._on_mouse_up);
         this._document.addEventListener('keydown', this._on_key_down);
     }
 

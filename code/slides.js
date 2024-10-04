@@ -220,17 +220,14 @@
             svg.setAttribute('width', '100%');
             svg.setAttribute('height', '100%');
             svg.setAttribute('viewBox', `0,0 ${this._width},${this._height}`);
-            svg.setAttribute('stroke', 'black');
-            svg.setAttribute('stroke-width', '3');
-            svg.setAttribute('fill', 'none');
             this._add_listeners();
             this._section.append(svg);
         }
 
         _add_listeners() {
-            this._svg.addEventListener('mousedown', this._on_mouse_down);
-            this._svg.addEventListener('mousemove', this._on_mouse_move);
-            this._svg.addEventListener('mouseup', this._on_mouse_up);
+            this._svg.addEventListener('pointerdown', this._on_mouse_down);
+            this._svg.addEventListener('pointermove', this._on_mouse_move);
+            this._svg.addEventListener('pointerup', this._on_mouse_up);
             this._document.addEventListener('keydown', this._on_key_down);
         }
 
@@ -289,7 +286,6 @@
                 polyline.remove();
         }
     }
-
 
 
     class SlideShow {
