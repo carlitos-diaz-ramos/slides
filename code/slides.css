@@ -11,6 +11,8 @@ Table of contents:
 9. Display boxes
 10. Lists
 11. Figures
+12. CSS arrows
+13. Scribbling
 *****************************************************/
 
 @import url(
@@ -21,14 +23,16 @@ Table of contents:
 /* Main blocks
 *****************************************************/
 :root {
-    --screen-width: 160vh; /* 4:3 -> 133, 16:9 -> 177 16:10 -> 160 */
+    --slide-ratio: calc(16 / 10); /* Usual values: 16:10, 16:9, 4:3 */
+    --slide-width: min(100vw, var(--slide-ratio) * 100vh);
+    --slide-height: calc(var(--slide-width) / var(--slide-ratio));
     --bg-color: white;
     --text-color: black;
-    --text-size: 4vh; /* Proportional to screen size */
+    --text-size: 4; /* Percentage of slide size */
     --strong-color: red;
     --math-color: purple;
     --code-color: indigo;
-    --sec-margin-top: 1rem;
+    --sec-margin-top: 1em;
     --side-margin: 2em; /* 4:3 -> 1em, 16:10 -> 2em */
     --par-sep: 0.3em;
     --section-display: flex; /* problems: no collapsing margins, no floats */
@@ -46,7 +50,7 @@ Table of contents:
     --header-font-size: 90%;
 
     --box-side-margin: -0.3em;
-    --shadow: 0 0.15rem 0.3rem 0 lightgrey, 0 0.2rem 0.7rem 0 lightgrey;
+    --shadow: 0.2ex 0.3ex 0.2ex 0 lightgrey, 0 -0.2ex 0.7ex 0 lightgrey;
     --border: 0.3rem;
 
     --content-lemma: "Lemma. ";
@@ -57,34 +61,40 @@ Table of contents:
     --content-definition: "";
     --content-problem: "Problem. ";
     --content-solution: "Solution. ";
-    --content-example: "Ejemplo. ";
+    --content-example: "Example. ";
     --content-remark: "Remark. ";
     --content-exercise: "Exercise. ";
+
+    box-sizing: border-box;
 }
 
 body {
-    width: var(--screen-width, 133vh);
-    box-sizing: border-box;
-    font-size: var(--text-size, 4vh);
     font-family: 'Open Sans', sans-serif;
-    text-align: left;
+    text-align: start;
     color: var(--text-color, black);
     line-height: 1.3;
     background-color: black;
-    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 main {
-    width: 100%;
+    font-size: calc(var(--text-size) * var(--slide-height) / 100);
     background-color: var(--bg-color, white);
 }
 
 article {
-    width: 100%;
-    height: 100vh;
+    width: var(--slide-width);
+    height: var(--slide-height);
+    position: relative;
     overflow: hidden;
-    margin: 0;
-    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
     display: none;
 }
 
@@ -94,20 +104,22 @@ article.current {
 
 section {
     position: relative;
-    height: calc(100vh - var(--header-height) - 3 * var(--sec-margin-top));
-    margin: var(--sec-margin-top) var(--side-margin);
+    margin-block: var(--sec-margin-top);
+    margin-inline: var(--side-margin);
     display: var(--section-display); 
     flex-flow: column nowrap;
     justify-content: var(--vertical-justify, flex-start);
+    block-size: calc(100% - var(--header-height) - 2 * var(--sec-margin-top));
 }
 
 section > *:first-child {
-    margin-top: 0;
+    margin-block-start: 0;
 }
 
 header {
     height: var(--header-height);
-    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
     background: var(--header-color);
     box-shadow: 0 0.2rem 0.3rem grey;
     display: flex;
@@ -117,7 +129,7 @@ header {
 }
 
 [class*="show-"] {
-	opacity: 0.3;
+	opacity: 0.1;
 	filter: blur(0.1rem) saturate(20%);
 	pointer-events: none;
 	transition: opacity 0.5s, filter 0.5s;
@@ -152,20 +164,20 @@ header {
 
 #title h1 {
     font-size: 275%;
-    margin: calc(4*var(--par-sep)) 0 calc(2*var(--par-sep));
+    margin-block: calc(4*var(--par-sep)) calc(2*var(--par-sep));
+    margin-inline: 0;
     color: var(--title-color);
     text-shadow: 0 0 0.3rem grey;
 }
 
 #title h2 {
     font-size: 135%;
-    border-top: 1px solid black;
-    padding-top: calc(4*var(--par-sep));
+    padding-block-start: calc(4*var(--par-sep));
+    border-block-start: 1px solid black;
 }
 
 #title footer {
-    margin-top: auto;
-    margin-bottom: calc(4*var(--par-sep));
+    margin-block: auto calc(4*var(--par-sep));
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -173,13 +185,14 @@ header {
 
 #title footer img {
     width: 15%;
-    margin-bottom: auto;
-    margin-right: calc(0.5*var(--side-margin));
+    margin-block-end: auto;
+    margin-inline-end: calc(0.5*var(--side-margin));
 }
 
 #title footer ul {
     list-style-type: none;
-    margin: 0 0 0 auto;
+    margin-block: 0;
+    margin-inline: auto 0;
 }
 
 #title footer li:first-child {
@@ -194,19 +207,19 @@ header {
 
 /* Header
 *****************************************************/
-header h1 {
+header h2 {
     text-shadow: 0 0 0.3rem var(--text-color, black);
-    margin-left: calc(0.3*var(--side-margin));
+    margin-inline-start: calc(0.3*var(--side-margin));
     font-size: var(--header-font-size);
 }
 
-header h1, header .MathJax, header code {
+header h2, header .MathJax, header code {
     color: var(--header-text-color);
 }
 
 header nav {
-    margin-top: calc(0.5*var(--par-sep));
-    margin-left: auto;
+    margin-block-start: calc(0.5*var(--par-sep));
+    margin-inline-start: auto;
     align-self: flex-start;
 }
 
@@ -219,8 +232,9 @@ header button:hover {
 	color: var(--a-link, brown);
 	border: none;
     font-size: var(--header-font-size);
-	margin-right: 0.5em;
-	padding: 0;
+	margin-inline-end: 0.5em;
+    padding-block: 0;
+    padding-inline: 0;
 }
 
 
@@ -234,52 +248,58 @@ header button:hover {
     font-size: 85%;
 }
 
-[id^="contents"] section h1 {
-    margin-top: var(--par-sep);
+[id^="contents"] section.smaller {
+    font-size: 60%;
 }
 
 [id^="contents"] section h2 {
-    margin-left: calc(2 * var(--par-sep));
+    margin-block-start: var(--par-sep);
 }
 
-[id^="contents"] section h1 a:link, [id^="contents"] section h1 a:visited {
-    color: black;
+[id^="contents"] section h3 {
+    margin-inline-start: calc(2 * var(--par-sep));
 }
 
 [id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
+    color: black;
+}
+
+[id^="contents"] section h3 a:link, [id^="contents"] section h3 a:visited {
     color: DimGrey;
 }
 
-[id^="contents"] section h1 a:hover, [id^="contents"] section h2 a:hover {
+[id^="contents"] section h2 a:hover, [id^="contents"] section h3 a:hover {
     color: darkgrey;
 }
 
-[id^="contents"] h2 .MathJax{
+[id^="contents"] h3 .MathJax{
     --math-color: DimGrey;
 }
 
 
 /* Text
 *****************************************************/
-h1, h2, h3 {
-    margin: var(--par-sep, 0.3em) 0 var(--par-sep, 0.3em) 0;
-    text-align: left;
-}
-
-h1 {
-    font-size: 125%;
+h2, h3, h4 {
+    margin-block: var(--par-sep, 0.3em);
+    margin-inline: 0;
+    text-align: start;
 }
 
 h2 {
-    font-size: 115%;
+    font-size: 125%;
 }
 
 h3 {
+    font-size: 115%;
+}
+
+h4 {
     font-size: 105%;
 }
 
 p {
-    padding: 0 0 var(--par-sep, 0.3em);
+    padding-block: 0 var(--par-sep, 0.3em);
+    padding-inline: 0;
 }
 
 strong {
@@ -333,11 +353,11 @@ a:hover {
 }
 
 .space-after {
-	margin-bottom: calc(2*var(--par-sep));
+    margin-block-end: calc(2*var(--par-sep));
 }
 
 .space-before {
-	margin-top: calc(5*var(--par-sep)) !important;
+	margin-block-start: calc(5*var(--par-sep)) !important;
 }
 
 .display-block {
@@ -348,7 +368,7 @@ a:hover {
 /* Colors
 *****************************************************/
 .MathJax {
-    color: var(--math-color);
+    color: var(--math-color, black);
 }
 
 .bg-pink {
@@ -397,48 +417,48 @@ a:hover {
 /* Display boxes
 *****************************************************/
 [class^="bg-"] {
-    margin-left: var(--box-side-margin, -0.3em);
-    margin-right: var(--box-side-margin, -0.3em);
-    padding-left: calc(-1*var(--box-side-margin));
-    padding-right: calc(-1*var(--box-side-margin));
+    margin-inline: var(--box-side-margin, -0.3em);
+    padding-inline: calc(-1*var(--box-side-margin));
 }
 
 .two-boxes {
     width: 100%;
-    margin-top: var(--par-sep, 0.3em);
-    margin-bottom: var(--par-sep, 0.3em);
+    margin-block: var(--par-sep, 0.3em);
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
 }
 
-h1 + .two-boxes {
-    margin-top: 0;
+h2 + .two-boxes {
+    margin-block-start: 0;
 }
 
 .two-boxes:first-child {
-    margin-top: 0;
+    margin-block-start: 0;
 }
 
 .two-boxes div:first-of-type, .two-boxes div:last-of-type {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     flex: 1 1 0;
     border-radius: var(--border, 0);
     box-shadow: var(--shadow);
 }
 
 .distribute.two-boxes div:first-of-type, 
-.distribute.two-boxes div:last-of-type {
+.distribute.two-boxes div:last-of-type,
+:host(.distribute) .two-boxes div:first-of-type,
+:host(.distribute) .two-boxes div:last-of-type {
     flex: auto;
 }
 
 .two-boxes svg, .two-boxes .arrow-shadow {
     width: 10%;
     height: 2em;
-    margin: 0 1%;
+    margin-block: 0;
+    margin-inline: 1.5%;
     align-self: center;
     overflow: visible;
 }
@@ -449,18 +469,19 @@ h1 + .two-boxes {
 
 .definition, .lemma, .theorem, .proposition, .corollary, .proof,
 .example, .exercise, .remark, .problem, .solution, .boxed {
-    margin: var(--par-sep) var(--box-side-margin);
-    padding: var(--par-sep) calc(-1*var(--box-side-margin));
+    margin-block: var(--par-sep);
+    margin-inline: var(--box-side-margin);
+    padding-block: var(--par-sep);
+    padding-inline: calc(-1*var(--box-side-margin));
     border-radius: var(--border, 0);
     box-shadow: var(--shadow);
     background: linear-gradient(
         to bottom, var(--color-start), var(--color-end));
 }
 
-h1 + .two-boxes, h1 + .definition, h1 + .lemma, h1 + .theorem, 
-h1 + .proposition, h1 + .corollary, h1 + .proof, h1 + .example, h1 + .exercise, 
-h1 + .remark, h1 + .problem, h1 + .solution, h1 + .boxed {
-    margin-top: 0;
+h2 + :is(.definition, .lemma, .theorem, .proposition, .corollary, .proof,
+.example, .exercise, .remark, .problem, .solution, .boxed, .two-boxes) {
+    margin-block-start: 0;
 }
 
 .lemma > p:first-of-type::before {
@@ -519,7 +540,7 @@ h1 + .remark, h1 + .problem, h1 + .solution, h1 + .boxed {
 }
 
 p.boxed {
-    padding-top: 0;
+    padding-block-start: 0;
 }
 
 [class*="bg-"] {
@@ -530,29 +551,38 @@ p.boxed {
 }
 
 svg [class*="bg-"] {
-    filter: drop-shadow(0.1rem 0.2rem 0.2rem gray); 
+    filter: drop-shadow(0.05ex 0.05ex 0.07ex gray); 
+    stroke: grey;
+    stroke-width: 0.1;
 }
 
 
 /* Lists
 *****************************************************/
 ul {
-    margin: 0 0 0 calc(0.8*var(--side-margin));
+    margin-block: 0;
+    margin-inline: calc(0.5*var(--side-margin, 1ex)) 0;
     list-style-type: square;
 }
 
-ul li, ol li {
-    margin-bottom: var(--par-sep, 0.3em);
+ol {
+    padding-block: 0;
+    padding-inline: 0;
+    counter-reset: section;
+    list-style-type: none;
+}
+
+p + ul, .boxed + ul {
+    margin-block: 0;
+    margin-inline: calc(0.8*var(--side-margin)) 0;
+}
+
+:is(ul, ol) li {
+    margin-block-end: var(--par-sep, 0.3em);
 }
 
 ul li ul {
-    margin-top: var(--par-sep, 0.3em);
-}
-
-ol {
-    padding: 0;
-    counter-reset: section;
-    list-style-type: none;
+    margin-block-start: var(--par-sep, 0.3em);
 }
 
 ol li::before {
@@ -563,7 +593,7 @@ ol li::before {
 ol li ol {
     counter-reset: li;
     list-style-type: none;
-    margin-left: calc(0.5*var(--side-margin));
+    margin-inline-start: calc(0.5*var(--side-margin));
 }
 
 ol li li::before {
@@ -572,14 +602,17 @@ ol li li::before {
 }
 
 ol li ol li {
-    margin: 0 0 0 var(--side-margin);
+    margin-block: 0;
+    margin-inline: var(--side-margin) 0;
     text-indent: calc(-1*var(--side-margin));
 }
 
 ul.no-bullet {
  	list-style-type: none;
-    padding: 0;
-    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
 }
 
 
@@ -589,20 +622,8 @@ figure img {
     width: 100%;
 }
 
-.pictures-small img, .pictures-small svg {
-    max-height: 25vh;
-}
-
-.pictures-tiny img, .pictures-tiny svg {
-    max-height: 15vh;
-}
-
-.pictures-medium img, .pictures-medium svg {
-    max-height: 50vh;
-}
-
-.pictures-big img, .pictures-big svg {
-    min-height: 70vh;
+figcaption {
+    text-align: center;
 }
 
 .row-pictures {
@@ -610,47 +631,72 @@ figure img {
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	align-items: center;
+    gap: 1ex;
 }
 
 .row-pictures figure {
-	flex: 0 1 auto;
-	margin: 0 auto;
+	flex: 1 1 0;
+    margin-block: 0;
+    margin-inline: auto;
     box-sizing: border-box;
 	width: auto;
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.pictures-tiny :is(img, svg) {
+    max-height: 3em;
+}
+
+.row-pictures:is(.pictures-tiny, .pictures-small, .pictures-medium, .pictures-big) figure {
+    flex: 0 1 auto;
+}
+
+.pictures-small :is(img, svg) {
+    max-height: 5em;
+}
+
+.pictures-medium :is(img, svg) {
+    max-height: 7em;
+}
+
+.pictures-big :is(img, svg) {
+    max-height: 9em;
 }
 
 .picture-text {
     display: grid;
     grid-template-columns: 0.14fr 0.05fr 0.81fr;
-    margin: 0 auto 0;
-    text-align: left;    
+    margin-block: 0;
+    margin-inline: auto;
+    text-align: start;    
 }
 
 .picture-text-picture-text {
     display: grid;
     grid-template-columns: 0.18fr 0.02fr 0.28fr 0.04fr 0.18fr 0.02fr 0.28fr;
     font-size: 80%;
-    margin-top: 5%;
+    margin-block-start: 5%;
 }
 
-[class*="picture"] img {
+[class*="picture"] :is(img, svg) {
     border-radius: var(--border, 0);
     transition: transform 0.5s;
 }
 
-[class*="picture"] img:hover {
+[class*="picture"] :is(img, svg):hover {
     box-shadow: var(--shadow);
-    transform: scale(1.5);
+    transform: scale(1.2);
     background: var(--bg-color, white);
 }
 
-.picture-side img:hover {
-    transform: scale(1.5) translateX(-1em);
-}
-
-.column1, .column2, .column3, .column4 {
-    margin: 0 0 calc(2*var(--par-sep));
-    padding: 0 0 5% 0;
+[class^="column"] {
+    margin-block: 0 calc(2*var(--par-sep));
+    margin-inline: 0;
+    padding-block: 0 5%;
+    padding-inline: 0;
 }
 
 .column1 {
@@ -673,15 +719,20 @@ figure img {
     grid-column: 7;
 }
 
-.picture-text-picture-text .column2, .picture-text-picture-text .column4 {
-    padding-top: 20%;
+.picture-text-picture-text :is(.column2, .column4) {
+    padding-block-start: 20%;
 }
 
+main + svg {
+    display: none;
+}
 
-/* CSS arrows */
+/* CSS arrows 
+******************************************************/
 .arrow-shadow {
     filter: drop-shadow(0 0.15rem 0.3rem hsl(0, 0%, 40%));
-    margin: 0 1%;
+    margin-block: 0;
+    margin-inline: 1%;
 }
 
 .implies, .right-arrow {
@@ -698,6 +749,21 @@ figure img {
     width: 100%;
 }
 
-figcaption {
-    text-align: center;
+
+/* Scribbling
+******************************************************/
+.scribble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+    block-size: 100%;
+    inline-size: 100%;
+    z-index: 100;
+    stroke: black;
+    stroke-width: 3;
+    fill: none;
 }

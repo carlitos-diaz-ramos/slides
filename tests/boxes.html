@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Test for boxes">
+<meta name="author" content="J. Carlos Diaz Ramos">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/x-icon" href="../pics/favicon.ico" />
+
+<title>Test for boxes</title>
+
+<link rel="stylesheet" href="../code/html5-reset.css">
+<link rel="stylesheet" href="../code/slides.css">
+
+<script type="module">
+import '../modules/slides.js';
+</script>
+<!-- <script src="../code/slides.js" async></script> -->
+</head>
+
+<body>
+<main>
+<article>
+<section>
+<slide-iff data-bg="pink">
+<div slot="left"><p>Left side</p></div>
+<div slot="right"><p>Right side</p><p>Second line</p></div>
+</slide-iff>
+
+<slide-implies data-bg="green">
+<div slot="left"><p>Left side</p></div>
+<div slot="right"><p>Right side</p><p>Second line</p></div>
+</slide-implies>
+
+<slide-implied data-bg="blue" class="show-10">
+<div slot="left"><p>Left side</p></div>
+<div slot="right"><p>Right side</p><p>Second line</p></div>
+</slide-implied>
+
+<slide-iff class="distribute" data-bg="yellow">
+<div slot="left">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric</strong></p>
+</div>
+<div slot="right" class="smaller">
+<ul>
+<li>normal bundle is flat</li>
+<li>parallel submanifolds have constant mean curvature in radial directions</li>
+<li>for any $p\in M$ there exists a <em>section</em> $\Sigma_p$ through $p$<br>
+(totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
+</ul>
+</div>
+</slide-iff>
+
+</section>
+</article>
+</main>
+</body>

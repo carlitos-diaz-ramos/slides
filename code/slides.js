@@ -193,15 +193,116 @@
         }
     }
 
+    class Canvas {
+        constructor(document) {
+            this._document = document;
+            this._stroke = null;
+        }
+
+        start() {
+            this.slide = this._document.querySelector('.current');
+            this._section = this.slide.querySelector('section');
+            this._create_svg();
+        }
+
+        set_size(width, height) {
+            this._width = width;
+            this._height = height;
+        }
+
+        static _SVG_NS = "http://www.w3.org/2000/svg";
+
+        _create_svg() {
+            const ns = this.constructor._SVG_NS;
+            const svg = this._svg = this._document.createElementNS(ns, 'svg');
+            svg.classList.add('scribble');
+            this.set_size(this._section.offsetWidth, this._section.offsetHeight);
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', `0,0 ${this._width},${this._height}`);
+            svg.setAttribute('stroke', 'black');
+            svg.setAttribute('stroke-width', '3');
+            svg.setAttribute('fill', 'none');
+            this._add_listeners();
+            this._section.append(svg);
+        }
+
+        _add_listeners() {
+            this._svg.addEventListener('mousedown', this._on_mouse_down);
+            this._svg.addEventListener('mousemove', this._on_mouse_move);
+            this._svg.addEventListener('mouseup', this._on_mouse_up);
+            this._document.addEventListener('keydown', this._on_key_down);
+        }
+
+        _on_mouse_down = (event) => {
+            const [x, y] = [event.layerX, event.layerY];
+            this.start_stroke(x, y);
+        }
+
+        _on_mouse_move = (event) => {
+            if (event.buttons == 1) {
+                const [x, y] = [event.layerX, event.layerY];
+                this.continue_stroke(x, y);
+            }
+        }
+
+        _on_mouse_up = (event) => {
+            const [x, y] = [event.layerX, event.layerY];
+            this.end_stroke(x, y);
+        }
+
+        _on_key_down = (event) => {
+            if (event.code == "KeyZ" && event.ctrlKey) {
+                this.undo_last();
+            }
+        }
+
+        start_stroke(x, y) {
+            const ns = this.constructor._SVG_NS;
+            this._stroke = this._document.createElementNS(ns, 'polyline');
+            this._stroke.setAttribute('points', `${x},${y}`);
+            this._svg.append(this._stroke);
+        }
+
+        continue_stroke(x, y) {
+            if (this._stroke === null) {
+                this.start_stroke(x, y);
+            } else {
+                this._add_stroke(x, y);
+            }
+        }
+
+        end_stroke(x, y) {
+            this._add_stroke(x, y);
+            this._stroke = null;
+        }
+
+        _add_stroke(x, y) {
+            const previous = this._stroke.getAttribute('points');
+            const current = previous.concat(' ', `${x},${y}`);
+            this._stroke.setAttribute('points', current);
+        }
+
+        undo_last() {
+            const polyline = this._svg.querySelector('polyline:last-child');
+            if (polyline !== null)
+                polyline.remove();
+        }
+    }
+
+
+
     class SlideShow {
         static _BACK_BUTTON = '\u276E';
         static _NEXT_BUTTON = '\u276F';
         static _CONTENTS_BUTTON = '\u2302';
+        static _PENCIL_BUTTON = '\u270E'
 
         constructor(document) {
             this._document = document;
             const articles = this._document.getElementsByTagName("article")
             this._slides = Array.from(articles);
+            this._canvas = new Canvas(document);
         }
 
         start(index) {
@@ -213,28 +314,34 @@
             this._index = null;
             this._current = null;
             const saved = Number(localStorage.getItem("last"))
-            const start = index !== undefined ? index : saved;
+            let start = index !== undefined ? index : saved;
+            if (isNaN(start)) 
+                start = 0;
             this.change_slide(start); 
         }
 
         _insert_title_next_button() {
             const footer = this._document.querySelector('#title footer');
-            const next = this.constructor._NEXT_BUTTON;
-            const button = this._create_button("next", next);
-            footer.insertBefore(button, footer.firstChild);
+            if (footer !== null) {
+                const next = this.constructor._NEXT_BUTTON;
+                const button = this._create_button("next", next);
+                footer.insertBefore(button, footer.firstChild);
+            }
         }
 
         _create_navigation_buttons() {
+            const back = this.constructor._BACK_BUTTON;
+            const next = this.constructor._NEXT_BUTTON;
+            const contents = this.constructor._CONTENTS_BUTTON;
+            const pencil = this.constructor._PENCIL_BUTTON;
             for (let slide of this._slides) {
                 const headers = slide.getElementsByTagName("header");
                 if (headers.length > 0) {
                     const header_nav = this._document.createElement("nav");
-                    const back = this.constructor._BACK_BUTTON;
-                    const next = this.constructor._NEXT_BUTTON;
-                    const contents = this.constructor._CONTENTS_BUTTON;
                     const buttons = [
                         this._create_button('back', back),
                         this._create_button('next', next),
+                        this._create_button('scribble', pencil),
                         this._create_button('contents', contents),
                     ];
                     buttons.map(button => header_nav.appendChild(button));
@@ -260,6 +367,8 @@
                 this.move_backwards();
             else if (id === "button-contents")
                 this.move_home();
+            else if (id === "button-scribble")
+                this.start_scribble();
         }
 
         _link_click_events() {
@@ -270,10 +379,10 @@
         _on_link_click = (event) => {
             /* https://stackoverflow.com/questions/2136461/
             use-javascript-to-intercept-all-document-link-clicks */
-            let anchor = 
+            const anchor = 
                 event.target || event.srcElement || event.originalTarget;
             // Only works for links in the document
-            let target = this._document.getElementById(anchor.hash.slice(1));
+            const target = this._document.getElementById(anchor.hash.slice(1));
             this.change_slide(this._slides.indexOf(target.closest("article")));
         }
 
@@ -298,6 +407,8 @@
                 this.next_slide();
             } else if (code == "F5") {
                 this._save_current_slide();
+            } else if (code == 'KeyD' && event.ctrlKey && event.altKey) {
+                this.start_scribble();
             }
         }
 
@@ -391,22 +502,26 @@
             this._current.show_all();
         }
 
+        start_scribble() {
+            this._canvas.start();
+        }
+
         print_mode() {
             for (let slide of this._slides) 
                 this._process_slide(slide);
         }
 
         _process_slide(slide) {
-            let animation = new Animation(slide);
-            let steps = animation.get_steps();
+            const animation = new Animation(slide);
+            const steps = animation.get_steps();
             for (let i = 0; i < steps.length; i++) 
                 this._create_animation(slide, i);
         }
 
         _create_animation(slide, index) {
-            let copy = slide.cloneNode(true);
-            let animation = new Animation(copy);
-            let steps = animation.get_steps();
+            const copy = slide.cloneNode(true);
+            const animation = new Animation(copy);
+            const steps = animation.get_steps();
             for (let j = 0; j < steps.length - index; j++) {
                 show_all(steps[j]['show']);
                 animate_all(steps[j]['animate']);
@@ -416,6 +531,121 @@
         }
     }
     
+    class TwoBoxes extends HTMLElement {
+        connectedCallback() {
+            this.attachShadow({mode: 'open'});
+            const tmpl = this.constructor.template({
+                color: this.dataset.bg,
+                styles: this.constructor._get_stylesheets()
+            });
+            this.shadowRoot.append(tmpl.content.cloneNode(true));
+        }
+
+        static template({styles = [], color = 'white'}) {
+            const tmpl = document.createElement('template');
+            tmpl.innerHTML = this.prototype.constructor._CODE;
+            this._set_styles(tmpl, styles);
+            this._set_color(tmpl, color);
+            return tmpl;
+        }
+
+        static _set_styles(tmpl, styles) {
+            const div = tmpl.content.querySelector('div.two-boxes');
+            for (let style of styles) {
+                const link = document.createElement('link');
+                link.href = style;
+                link.rel = 'stylesheet';
+                tmpl.content.insertBefore(link, div);
+            }
+        }
+
+        static _set_color(tmpl, color) {
+            const bg = `bg-${color}`;
+            const divs = tmpl.content.querySelectorAll('.two-boxes div');
+            for (let div of divs) 
+                div.classList.add(bg);
+            const path = tmpl.content.querySelector('.two-boxes svg path');
+            path.classList.add(bg);
+        }
+
+        static _get_stylesheets() {
+            const stylesheets = Array.from(document.styleSheets);
+            const with_href = stylesheets.filter(
+                (item) => {return item.href !== null}
+            );
+            return with_href.map((item) => {return item.href});
+        }
+    }
+
+    class SlideIff extends TwoBoxes {
+        static _CODE = `
+            <div class="two-boxes">
+             <div>
+              <slot name="left"></slot>
+             </div>
+             <svg viewBox="0,0 40,22">
+              <title>If and only if</title>
+              <path d="M11,6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 
+               Q29,21 29,20 V16 H11 V20 Q11,21 10.29,20.30 L1,11 10.29,1.70 
+               Q11,1 11,2 z"/>
+             </svg>
+             <div>
+              <slot name="right"></slot>
+             </div>
+            </div>
+        `;
+
+        static template({styles = [], color = 'yellow'}) {
+            return super.template({styles: styles, color: color});
+        }
+    }
+
+    class SlideImplies extends TwoBoxes {
+        static _CODE = `
+            <div class="two-boxes">
+             <div>
+              <slot name="left"></slot>
+             </div>
+             <svg viewBox="0,0 40,22">
+              <title>If and only if</title>
+              <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 
+               Q29,21 29,20 V16 H1 V11 z"/>
+             </svg>
+             <div>
+              <slot name="right"></slot>
+             </div>
+            </div>
+        `;
+
+        static template({styles = [], color = 'green'}) {
+            return super.template({styles: styles, color: color});
+        }
+    }
+
+    class SlideImplied extends TwoBoxes {
+        static _CODE = `
+            <div class="two-boxes">
+             <div>
+              <slot name="left"></slot>
+             </div>
+             <svg viewBox="0,0 40,22">
+              <title>If and only if</title>
+              <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 
+               L14,2 z"/>
+             </svg>
+             <div>
+              <slot name="right"></slot>
+             </div>
+            </div>
+        `;
+    }
+
+    function define_elements() {
+        customElements.define('slide-iff', SlideIff);
+        customElements.define('slide-implies', SlideImplies);
+        customElements.define('slide-implied', SlideImplied);
+    }
+
 
     function start_page() {
         const mode = get_mode();
@@ -429,12 +659,12 @@
 
 
     function on_load() {
-        let slide_show = new SlideShow(document);
+        const slide_show = new SlideShow(document);
         slide_show.start();
     }
 
     function on_print_load() {
-        let slide_show = new SlideShow(document);
+        const slide_show = new SlideShow(document);
         slide_show.print_mode();
         const canvases = document.querySelectorAll('canvas');
         for (let i = 0; i < canvases.length; i++) {
@@ -463,6 +693,7 @@
         return mode;
     }
 
+    define_elements();
     start_page();
 
 })();

@@ -16,12 +16,12 @@
 <link rel="stylesheet" href="../code/slides.css">
 <!-- Include the following stylesheet for printing: -->
 <!-- <link rel="stylesheet" href="../code/print.css"> -->
-<!-- <link rel="stylesheet" media="all" href="../code/notransitions.css"> -->
+<link rel="stylesheet" media="all" href="../code/notransitions.css">
 <link rel="stylesheet" href="custom.css">
-<link rel="stylesheet" href="dark.css">
+<!-- <link rel="stylesheet" href="dark.css"> -->
 
 <script src="../code/jax.js" async></script>
-<script src="../code/slides.js" async></script>
+<script src="../code/slides.js"></script>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 <footer>
 <ul>
 <li>Jos&eacute; Carlos D&iacute;az Ramos</li>
-<li><time datetime="2023-10-11">11 de novembro de 2023</time></li>
+<li><time datetime="2023-10-11">21 de setembro de 2024</time></li>
 </ul>
 </footer>
 </section>
@@ -46,24 +46,25 @@
 <!--************************* Slide ****************************-->
 <article id="contents">
 <header>
-<h1>Contido</h1>
+<h2>Contido</h2>
 </header>
 
-<section>
-<h1><a href="#elemento-head">O elemento <code>&lt;head&gt;</code></a></h1>
-<h1><a href="#diapositivas">Plantillas para diapositivas</a></h1>
-<h1><a href="#comandos">Comandos definidos por defecto</a></h1>
-<h2><a href="#entornos">Entornos tipo teorema</a></h2>
-<h2><a href="#fondos">Fondos con cores e caixas</a></h2>
-<h1><a href="#elementos-svg">Elementos <code>svg</code></a></h1>
-<h2><a href="#frechas">Caixas e frechas</a></h2>
-<h1><a href="#imaxes">Imaxes</a></h1>
-<h1><a href="#animacions">Animaci&oacute;ns</a></h1>
-<h1><a href="#estilos">Estilos</a></h1>
-<h2><a href="#relacion-aspecto">Relaci&oacute;n de aspecto da diapositiva</a></h2>
-<h2><a href="#maquetado">Maquetado da p&aacute;xina</a></h2>
-<h2><a href="#variables">Variables</a></h2>
-<h1><a href="#imprimir">Imprimir diapositivas</a></h1>
+<section class="smaller">
+<h2><a href="#elemento-head">O elemento <code>&lt;head&gt;</code></a></h2>
+<h2><a href="#diapositivas">Plantillas para diapositivas</a></h2>
+<h2><a href="#comandos">Comandos definidos por defecto</a></h2>
+<h3><a href="#entornos">Entornos tipo teorema</a></h3>
+<h3><a href="#fondos">Fondos con cores e caixas</a></h3>
+<h2><a href="#elementos-svg">Elementos <code>svg</code></a></h2>
+<h3><a href="#frechas">Caixas e frechas</a></h3>
+<h2><a href="#imaxes">Imaxes</a></h2>
+<h2><a href="#animacions">Animaci&oacute;ns</a></h2>
+<h2><a href="#anotacions">Anotaci&oacute;ns</a></h2>
+<h2><a href="#estilos">Estilos</a></h2>
+<h3><a href="#relacion-aspecto">Relaci&oacute;n de aspecto da diapositiva</a></h3>
+<h3><a href="#maquetado">Maquetado da p&aacute;xina</a></h3>
+<h3><a href="#variables">Variables</a></h3>
+<h2><a href="#imprimir">Imprimir diapositivas</a></h2>
 </section>
 </article>
 
@@ -71,7 +72,7 @@
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Introducci&oacute;n</h1>
+<h2>Introducci&oacute;n</h2>
 </header>
 
 <section>
@@ -87,7 +88,7 @@
 <!--************************* Slide ****************************-->
 <article id="elemento-head">
 <header>
-<h1>O elemento <code>&lt;head&gt;</code></h1>
+<h2>O elemento <code>&lt;head&gt;</code></h2>
 </header>
 
 <section>
@@ -103,7 +104,7 @@
 &lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;code/print.css&quot;&gt; --&gt;<br>
 &lt;!-- Or this one for avoiding transitions: --&gt;<br>
 &lt;!-- &lt;link rel="stylesheet" media="all" href="code/notransitions.css"&gt; --&gt;<br>
-&lt;script src=&quot;code/slides.js&quot; async&gt;&lt;/script&gt;<br>
+&lt;script src=&quot;code/slides.js&quot;&gt;&lt;/script&gt;<br>
 &lt;/head&gt;<br>
 </code>
 
@@ -119,7 +120,7 @@
 <!--************************* Slide ****************************-->
 <article id="diapositivas">
 <header>
-<h1>Diapositivas</h1>
+<h2>Diapositivas</h2>
 </header>
 
 <section>
@@ -145,7 +146,7 @@
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Plantilla</h1>
+<h2>Plantilla</h2>
 </header>
 
 <section>
@@ -154,7 +155,7 @@
 <code class="space-after">
 &lt;article&gt;<br>
 &lt;header&gt;<br>
-&lt;h1&gt;T&iacute;tulo&lt;/h1&gt;<br>
+&lt;h2&gt;T&iacute;tulo&lt;/h2&gt;<br>
 &lt;/header&gt;<br>
 <br>
 &lt;section&gt;<br>
@@ -175,7 +176,7 @@ O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Diapositiva de t&iacute;tulo</h1>
+<h2>Diapositiva de t&iacute;tulo</h2>
 </header>
 
 <section>
@@ -207,7 +208,7 @@ O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Diapositiva de contidos</h1>
+<h2>Diapositiva de contidos</h2>
 </header>
 
 <section>
@@ -216,16 +217,16 @@ O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 <code class="space-after">
 &lt;article id=&quot;contents&quot;&gt;<br>
 &lt;header&gt;<br>
-&lt;h1&gt;Contidos&lt;/h1&gt;<br>
+&lt;h2&gt;Contidos&lt;/h2&gt;<br>
 &lt;/header&gt;<br>
 <br>
 &lt;section&gt;<br>
-&lt;h1&gt;&lt;a href=&quot;#link-seccion-1&quot;&gt;Secci&oacute;n 1&lt;/a&gt;&lt;/h1&gt;<br>
-&lt;h2&gt;&lt;a href=&quot;#link-subseccion-1-1&quot;&gt;Subsecci&oacute;n 1.1&lt;/a&gt;&lt;/h2&gt;<br>
-&lt;h2&gt;&lt;a href=&quot;#link-subseccion-1-2&quot;&gt;Subsecci&oacute;n 1.2&lt;/a&gt;&lt;/h2&gt;<br>
-&lt;h1&gt;&lt;a href=&quot;#link-seccion-2&quot;&gt;Secci&oacute;n 2&lt;/a&gt;&lt;/h1&gt;<br>
-&lt;h2&gt;&lt;a href=&quot;#link-subseccion-2-1&quot;&gt;Subsecci&oacute;n 2.1&lt;/a&gt;&lt;/h2&gt;<br>
-&lt;h2&gt;&lt;a href=&quot;#etc&quot;&gt;Etc.&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;h2&gt;&lt;a href=&quot;#link-seccion-1&quot;&gt;Secci&oacute;n 1&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;h3&gt;&lt;a href=&quot;#link-subseccion-1-1&quot;&gt;Subsecci&oacute;n 1.1&lt;/a&gt;&lt;/h3&gt;<br>
+&lt;h3&gt;&lt;a href=&quot;#link-subseccion-1-2&quot;&gt;Subsecci&oacute;n 1.2&lt;/a&gt;&lt;/h3&gt;<br>
+&lt;h2&gt;&lt;a href=&quot;#link-seccion-2&quot;&gt;Secci&oacute;n 2&lt;/a&gt;&lt;/h2&gt;<br>
+&lt;h3&gt;&lt;a href=&quot;#link-subseccion-2-1&quot;&gt;Subsecci&oacute;n 2.1&lt;/a&gt;&lt;/h3&gt;<br>
+&lt;h3&gt;&lt;a href=&quot;#etc&quot;&gt;Etc.&lt;/a&gt;&lt;/h3&gt;<br>
 &lt;/section&gt;<br>
 &lt;/article&gt;<br>
 </code>
@@ -237,13 +238,17 @@ O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 <!--************************* Slide ****************************-->
 <article id="comandos">
 <header>
-<h1>Comandos definidos por defecto</h1>
+<h2>Comandos definidos por defecto</h2>
 </header>
 
 <section>
 <p>A continuaci&oacute;n presentaremos alg&uacute;ns entornos que poden ser empregados sen necesidade de definir ning&uacute;n estilo nun arquivo <code>css</code> adicional.</p>
 
-<p>Recordemos que este paquete xa carga <code>Mathjax</code>, co que podemos po&ntilde;er f&oacute;rmulas en li&ntilde;a coma esta $ax^2+b+x+c=0$, ou en display:
+<p>Recordemos que este paquete non carga <code>Mathjax</code>, 
+pero podemos inclu&iacute;lo facilmente mediante
+<code>&lt;script src=&quot;code/jax.js&quot; async&gt;&lt;/script&gt;</code></p>
+
+<p>As&iacute;, podemos po&ntilde;er f&oacute;rmulas en li&ntilde;a coma esta $ax^2+b+x+c=0$, ou en display:
 \[
 x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 \]</p>
@@ -254,7 +259,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article id="entornos">
 <header>
-<h1>Entornos 1</h1>
+<h2>Entornos 1</h2>
 </header>
 
 <section>
@@ -297,7 +302,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Entornos 2</h1>
+<h2>Entornos 2</h2>
 </header>
 
 <section>
@@ -338,7 +343,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Entornos 3</h1>
+<h2>Entornos 3</h2>
 </header>
 
 <section>
@@ -379,7 +384,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Entornos 4</h1>
+<h2>Entornos 4</h2>
 </header>
 
 <section>
@@ -410,13 +415,13 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article id="fondos">
 <header>
-<h1>Fondos de cores</h1>
+<h2>Fondos de cores</h2>
 </header>
 
 <section>
 <p>Ademais dos entornos predefinidos tam&eacute;n se poden empregar caixas de distintas cores:</p>
 
-<div class="bg-yellow space-before">
+<div class="bg-yellow">
 <p>Texto de proba</p>
 </div>  
 
@@ -453,7 +458,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Fondos de cores</h1>
+<h2>Fondos de cores</h2>
 </header>
 
 <section>
@@ -484,7 +489,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Caixas</h1>
+<h2>Caixas</h2>
 </header>
 
 <section>
@@ -507,7 +512,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article id="elementos-svg">
 <header>
-<h1>SVG</h1>
+<h2>SVG</h2>
 </header>
 
 <section>
@@ -542,36 +547,36 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article id="frechas">
 <header>
-<h1>Caixas e frechas 1</h1>
+<h2>Caixas e frechas 1</h2>
 </header>
 
 <section>
-<p>A continuaci&oacute;n pres&eacute;ntanse varias posibilidades para presentar resultados en caixas:</p>
+<p>A continuaci&oacute;n pres&eacute;ntanse outras posibilidades para presentar resultados en caixas:</p>
 
-<p>Pode empregarse a clase <code>two-boxes</code> para definici&oacute;ns:</p>
+<p>Pode empregarse o elementp <code>slide-iff</code> para definici&oacute;ns.
+Con <code>data-bg:<i>cor</i></code> pode especificarse algunha das cores de fondo vistas anteriormente.
+Por defecto a equivalencia &eacute; amarela e a implicaci&oacute;n, verde:</p>
 
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$M$ <strong>homogeneous</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$M=G\cdot o$, with</p>
 <p>$o\in M$, $G\subset I(\bar{M})$</p>
 </div>
-</div>
+</slide-iff>
 
 <code>
-&lt;div class=&quot;two-boxes&quot;&gt;<br>
- &lt;div class=&quot;bg-yellow&quot;&gt;<br>
+&lt;slide-iff&gt;<br>
+ &lt;div slot=&quot;left&quot;&gt;<br>
   &lt;p&gt;$M$ &lt;strong&gt;homogeneous&lt;/strong&gt;&lt;/p&gt;<br>
  &lt;/div&gt;<br>
- &lt;svg&gt;&lt;use href=&quot;#iff&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
- &lt;div class=&quot;bg-yellow&quot;&gt;<br>
+ &lt;div slot=&quot;right&quot;&gt;<br>
   &lt;p&gt;$M=G\cdot o$, with&lt;/p&gt;<br>
   &lt;p&gt;$o\in M$, $G\subset I(\bar{M})$&lt;/p&gt;<br>
  &lt;/div&gt;<br>
-&lt;/div&gt;<br>
+&lt;/slide-iff&gt;<br>
 </code>
 
 </section>
@@ -581,17 +586,98 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Caixas e frechas 2</h1>
+<h2>Caixas e frechas 2</h2>
 </header>
 
 <section>
-<p>Outro exemplo para representar unha implicaci&oacute;n:</p>
+<p>Outro exemplo para representar unha implicaci&oacute;n (con cor expl&iacute;cita):</p>
+
+<slide-implies data-bg="green">
+<div slot="left">
+<p>$M$ homogeneous hypersurface</p>
+</div>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
+</div>
+</slide-implies>
+
+<code>
+&lt;slide-implies data-bg=&quot;green&quot;&gt;<br>
+&lt;div slot=&quot;left&quot;&gt;<br>
+&lt;p&gt;$M$ homogeneous hypersurface&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+&lt;div slot=&quot;right&quot;&gt;<br>
+&lt;ul&gt;<br>
+&lt;li&gt;constant principal curvatures&lt;/li&gt;<br>
+&lt;li&gt;isoparametric&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+&lt;/div&gt;<br>
+&lt;/slide-implies&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h2>Caixas e frechas 3</h2>
+</header>
+
+<section>
+<p>Se unha caixa ten considerablemente m&aacute;is contido ca outra pode empregarse a clase <code>distribute</code> para compensar:</p>
+
+<slide-iff class="distribute">
+<div slot="left">
+<p>$M\subset\bar{M}$</p>
+<p><strong>isoparametric</strong></p>
+</div>
+<div slot="right" class="smaller">
+<ul>
+<li>normal bundle is flat</li>
+<li>parallel submanifolds have constant mean curvature in radial directions</li>
+<li>for any $p\in M$ there exists a <em>section</em> $\Sigma_p$ through $p$<br>
+(totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
+</ul>
+</div>
+</slide-iff>
+
+<code>
+&lt;slide-iff class=&quot;distribute&quot; data-bg=&quot;yellow&quot;&gt;<br>
+&lt;div slot=&quot;left&quot;&gt;<br>
+&lt;p&gt;$M\subset\bar{M}$&lt;/p&gt;<br>
+&lt;p&gt;&lt;strong&gt;isoparametric&lt;/strong&gt;&lt;/p&gt;<br>
+&lt;/div&gt;<br>
+&lt;div slot=&quot;right&quot; class=&quot;smaller&quot;&gt;<br>
+&lt;ul&gt;
+&lt;li&gt;normal bundle is flat&lt;/li&gt; ... 
+&lt;/ul&gt;<br>
+&lt;/div&gt;<br>
+&lt;/slide-iff&gt;<br>
+</code>
+
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h2>Caixas e frechas 4 (antiga versi&oacute;n)</h2>
+</header>
+
+<section>
+<p>En anteriores versi&oacute;ns do paquete tam&eacute;n se pod&iacute;an crear frechas empregando o c&oacute;digo <code>svg</code> que se atopa &oacute; final da plantilla de <code>html</code>.</p>
 
 <div class="two-boxes">
 <div class="bg-green">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
+<svg><use href="#right-arrow" class="bg-green"/></svg>
 <div class="bg-green">
 <ul>
 <li>constant principal curvatures</li>
@@ -601,18 +687,18 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 </div>
 
 <code>
-&lt;div class=&quot;two-boxes&quot;&gt;<br>
-&lt;div class=&quot;bg-green&quot;&gt;<br>
+&lt;div class="two-boxes"&gt;<br>
+&lt;div class="bg-green"&gt;<br>
 &lt;p&gt;$M$ homogeneous hypersurface&lt;/p&gt;<br>
 &lt;/div&gt;<br>
-&lt;svg&gt;&lt;use href=&quot;#implies&quot; class=&quot;bg-green&quot;/&gt;&lt;/svg&gt;<br>
+&lt;svg&gt;&lt;use href=&quot;#right-arrow&quot; class=&quot;bg-green&quot;/&gt;&lt;/svg&gt;<br>
 &lt;div class=&quot;bg-green&quot;&gt;<br>
 &lt;ul&gt;<br>
 &lt;li&gt;constant principal curvatures&lt;/li&gt;<br>
 &lt;li&gt;isoparametric&lt;/li&gt;<br>
 &lt;/ul&gt;<br>
 &lt;/div&gt;<br>
-&lt;/div&gt;<br>
+&lt;/div&gt;
 </code>
 
 </section>
@@ -622,51 +708,7 @@ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Caixas e frechas 3</h1>
-</header>
-
-<section>
-<p>Se unha caixa ten considerablemente m&aacute;is contida c&aacute; outra pode empregarse a clase <code>distribute</code> para compensar:</p>
-
-<div class="two-boxes distribute">
-<div class="bg-yellow">
-<p>$M\subset\bar{M}$</p>
-<p><strong>isoparametric</strong></p>
-</div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow smaller">
-<ul>
-<li>normal bundle is flat</li>
-<li>parallel submanifolds have constant mean curvature in radial directions</li>
-<li>for any $p\in M$ there exists a <em>section</em> $\Sigma_p$ through $p$<br>
-(totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
-</ul>
-</div>
-</div>
-
-<code>
-&lt;div class=&quot;two-boxes distribute&quot;&gt;<br>
-&lt;div class=&quot;bg-yellow&quot;&gt;&lt;<br>
-p&gt;$M\subset\bar{M}$&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;isoparametric&lt;/strong&gt;&lt;/p&gt;<br>
-&lt;/div&gt;<br>
-&lt;svg&gt;&lt;use href=&quot;#iff&quot; class=&quot;bg-yellow&quot;/&gt;&lt;/svg&gt;<br>
-&lt;div class=&quot;bg-yellow smaller&quot;&gt;<br>
-&lt;ul&gt;
-&lt;li&gt;normal bundle is flat&lt;/li&gt; ... 
-&lt;/ul&gt;<br>
-&lt;/div&gt;<br>
-&lt;/div&gt;<br>
-</code>
-
-</section>
-</article>
-
-
-<!--************************* Slide ****************************-->
-<article>
-<header>
-<h1>Caixas e frechas 4</h1>
+<h2>Caixas e frechas 5 (antiga versi&oacute;n)</h2>
 </header>
 
 <section>
@@ -718,7 +760,7 @@ p&gt;$M\subset\bar{M}$&lt;/p&gt;
 <!--************************* Slide ****************************-->
 <article id="imaxes">
 <header>
-<h1>Imaxes</h1>
+<h2>Imaxes</h2>
 </header>
 
 <section>
@@ -749,7 +791,7 @@ figure.picture-side {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Imaxes 1</h1>
+<h2>Imaxes 1</h2>
 </header>
 
 <section>
@@ -759,6 +801,9 @@ figure.picture-side {
 <figure><img src="pics/tubes.png" alt="tubos"></figure>
 <figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
 <figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
 </div>
 
 <code>
@@ -777,24 +822,36 @@ figure.picture-side {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Imaxes 2</h1>
+<h2>Imaxes 2</h2>
 </header>
 
 <section>
-<p>Pode resultar m&aacute;is convinte po&ntilde;er tama&ntilde;os un pouco m&aacute;is pequenos:</p>
-<div class="row-pictures pictures-small">
+<p>Un bo xeito de controla-lo espaciado e o tama&ntilde;o das figuras &eacute; mediante a propiedade <code>gap</code>:</p>
+<div class="row-pictures big-gap">
 <figure><img src="pics/spheres.png" alt="esferas"></figure>
 <figure><img src="pics/tubes.png" alt="tubos"></figure>
 <figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
 <figure><img src="pics/horosphere.png" alt="horosferas"></figure>
 </div>
 
+<p>O c&oacute;digo anterior foi obtido engadindo</p>
 <code>
-&lt;div class=&quot;row-pictures pictures-small&quot;&gt;<br>
-... o resto &eacute; como antes ...<br>
-&lt;/div&gt;<br>
+    gap: 5em<br>
+    margin-inline: 2em
 </code>
 
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h2>Imaxes 3</h2>
+</header>
+
+<section>
+<p>Tam&eacute;n est&aacute;n predefinidos alg&uacute;ns tama&ntilde;os para a altura dos debuxos, pero a propiedade <code>gap</code> parece m&aacute;is flexible.</p>
 <div class="row-pictures pictures-tiny">
 <figure><img src="pics/spheres.png" alt="esferas"></figure>
 <figure><img src="pics/tubes.png" alt="tubos"></figure>
@@ -808,8 +865,18 @@ figure.picture-side {
 &lt;/div&gt;<br>
 </code>
 
-<p>Tam&eacute;n existe <code>pictures-big</code> e <code>pictures-medium</code>.</p>
+<div class="row-pictures pictures-small">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
 
+<code>
+&lt;div class=&quot;row-pictures pictures-small&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
 </section>
 </article>
 
@@ -817,7 +884,55 @@ figure.picture-side {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Imaxes 3</h1>
+<h2>Imaxes 4</h2>
+</header>
+
+<section>
+<div class="row-pictures pictures-medium">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures pictures-medium&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h2>Imaxes 5</h2>
+</header>
+
+<section>
+<div class="row-pictures pictures-big">
+<figure><img src="pics/spheres.png" alt="esferas"></figure>
+<figure><img src="pics/tubes.png" alt="tubos"></figure>
+<figure><img src="pics/solvable.png" alt="foliaci&oacute;n resoluble"></figure>
+<figure><img src="pics/horosphere.png" alt="horosferas"></figure>
+</div>
+
+<code>
+&lt;div class=&quot;row-pictures pictures-big&quot;&gt;<br>
+... o resto &eacute; como antes ...<br>
+&lt;/div&gt;<br>
+</code>
+
+<p>&Eacute; probable que isto se elimine e se empregue s&oacute; <code>gap</code>.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h2>Imaxes 6</h2>
 </header>
 
 <section>
@@ -847,7 +962,7 @@ figure.picture-side {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Imaxes 4</h1>
+<h2>Imaxes 7</h2>
 </header>
 
 <section>
@@ -875,7 +990,7 @@ figure.picture-side {
 <!--************************* Slide ****************************-->
 <article id="animacions">
 <header>
-<h1>Animaci&oacute;ns</h1>
+<h2>Animaci&oacute;ns</h2>
 </header>
 
 <section>
@@ -910,7 +1025,7 @@ Ademais tam&eacute;n &eacute; posible ir facendo aparecer paulatinamente os elem
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Animaci&oacute;ns 2</h1>
+<h2>Animaci&oacute;ns 2</h2>
 </header>
 
 <section>
@@ -930,7 +1045,7 @@ Ademais tam&eacute;n &eacute; posible ir facendo aparecer paulatinamente os elem
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Animaci&oacute;ns 3</h1>
+<h2>Animaci&oacute;ns 3</h2>
 </header>
 
 <section>
@@ -955,7 +1070,7 @@ Ademais tam&eacute;n &eacute; posible ir facendo aparecer paulatinamente os elem
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Animaci&oacute;ns 4</h1>
+<h2>Animaci&oacute;ns 4</h2>
 </header>
 
 <section class="display-block">
@@ -969,8 +1084,8 @@ Por esa raz&oacute;n, esta diapositiva tam&eacute;n ten se coloca con <code>disp
 
 <p class="boxed bg-white">Esta caracter&iacute;stica a&iacute;nda &eacute; experimental.</p>
 
-<div class="row-pictures erase-10">
-<figure class="pictures-tiny">
+<div class="row-pictures pictures-tiny erase-10">
+<figure>
 <img src="pics/horosphere.png" alt="Horosfera de proba.">
 </figure>
 </div>
@@ -981,7 +1096,7 @@ Por esa raz&oacute;n, esta diapositiva tam&eacute;n ten se coloca con <code>disp
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Animaci&oacute;ns 5</h1>
+<h2>Animaci&oacute;ns 5</h2>
 </header>
 
 <section class="display-block">
@@ -1030,7 +1145,7 @@ A parte relevante do c&oacute;digo &eacute;:</p>
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Animaci&oacute;ns 6</h1>
+<h2>Animaci&oacute;ns 6</h2>
 </header>
 
 <section>
@@ -1066,13 +1181,29 @@ A parte relevante do c&oacute;digo &eacute;:</p>
 
 
 <!--************************* Slide ****************************-->
-<article id="estilos">
+<article id="anotacions">
 <header>
-<h1>Cambia-los estilos 1</h1>
+<h2>Anotaci&oacute;ns</h2>
 </header>
 
 <section>
-<p>Os estilos definidos en <code>slides.css</code> poden ser modificados cargando unha folla de estilo.  Por exemplo, nesta presentaci&oacute;n c&aacute;rgase o arquivo <code>custom.css</code> que, entre outras cousas, inserta a imaxe de fondo.</p>
+<p>Presionando a combinaci&oacute;n <code>Control+Alt+D</code> ou seleccionando o lapis &eacute;ntrase en modo escritura, o cal quere dicir que se pode escribir na diapositiva a man alzada.</p>
+
+<p style="margin-block-end: 12em;">D&eacute;ixase un espazo en branco para probar esta caracter&iacute;stica.</p>
+
+<p class="boxed bg-white">Esta caracter&iacute;stica a&iacute;nda &eacute; experimental e a&iacute;nda non est&aacute; desenvolta.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article id="estilos">
+<header>
+<h2>Cambia-los estilos 1</h2>
+</header>
+
+<section>
+<p>Os estilos definidos en <code>slides.css</code> poden ser modificados cargando unha folla de estilo.  Por exemplo, nesta presentaci&oacute;n c&aacute;rgase o arquivo <code>custom.css</code> que, entre outras cousas, inserta a imaxe de fondo. (Se se carga <code>dark.css</code> elim&iacute;nase o fondo.)</p>
 
 <pre class="smaller">
 article {
@@ -1098,15 +1229,15 @@ article {
 <!--************************* Slide ****************************-->
 <article id="relacion-aspecto">
 <header>
-<h1>Relaci&oacute;n de aspecto</h1>
+<h2>Relaci&oacute;n de aspecto</h2>
 </header>
 
 <section>
-<p>O par&aacute;metro m&aacute;is importante que pode ser necesario cambiar &eacute; a relaci&oacute;n de aspecto <code>--screen-width</code>. Os valores t&iacute;picos a tomar son:</p>
+<p>O par&aacute;metro m&aacute;is importante que pode ser necesario cambiar &eacute; a relaci&oacute;n de aspecto <code>--slide-ratio</code>. Os valores t&iacute;picos a tomar son:</p>
 <ul>
-<li>relaci&oacute;n de aspecto 4:3: <code>--screen-width: 133vh</code>.</li>
-<li>relaci&oacute;n de aspecto 16:9: <code>--screen-width: 177vh</code>.</li>
-<li>relaci&oacute;n de aspecto 16:10: <code>--screen-width: 160vh</code>.</li>
+<li>relaci&oacute;n de aspecto 4:3: <code>--slide-ratio: calc(4 / 3);</code>.</li>
+<li>relaci&oacute;n de aspecto 16:9: <code>--slide-ratio: calc(16 / 9);</code>.</li>
+<li>relaci&oacute;n de aspecto 16:10: <code>--slide-ratio: calc(16 / 10);</code>.</li>
 </ul>
 
 <p>Conv&eacute;n tam&eacute;n cambiar <code>--side-margin</code> se a relaci&oacute;n non &eacute; 4:3 para evitar li&ntilde;as moi longas.</p>
@@ -1117,7 +1248,7 @@ article {
 <!--************************* Slide ****************************-->
 <article id="maquetado">
 <header>
-<h1>Maquetado da p&aacute;xina</h1>
+<h2>Maquetado da p&aacute;xina</h2>
 </header>
 
 <section>
@@ -1140,7 +1271,7 @@ article {
 <!--************************* Slide ****************************-->
 <article id="variables">
 <header>
-<h1>Variables <code>css</code> 1</h1>
+<h2>Variables <code>css</code> 1</h2>
 </header>
 
 <section>
@@ -1148,7 +1279,7 @@ article {
 <ul>
 <li>Color de fondo das diapositivas: <code>--bg-color: white</code></li>
 <li>Color do texto: <code>--text-color: black</code></li>
-<li>Tama&ntilde;o da fonte principal: <code>--text-size: 4vh</code></li>
+<li>% de tama&ntilde;o da fonte con respecto &aacute; diapositiva: <code>--text-size: 4</code></li>
 <li>Cor do texto enfatizado fortemente: <code>--strong-color: red</code></li>
 <li>Cor das f&oacute;rmulas matem&aacute;ticas: <code>--math-color: purple</code></li>
 <li>Cor do c&oacute;digo inform&aacute;tico: <code>--code-color: indigo</code></li>
@@ -1165,7 +1296,7 @@ article {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Variables <code>css</code> 2</h1>
+<h2>Variables <code>css</code> 2</h2>
 </header>
 
 <section>
@@ -1189,7 +1320,7 @@ article {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Variables <code>css</code> 3</h1>
+<h2>Variables <code>css</code> 3</h2>
 </header>
 
 <section>
@@ -1214,7 +1345,7 @@ article {
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Variables <code>css</code> 4</h1>
+<h2>Variables <code>css</code> 4</h2>
 </header>
 
 <section>
@@ -1241,7 +1372,7 @@ Por exemplo, as caixas azuis ou os problemas empregan esta combinaci&oacute;n.</
 <!--************************* Slide ****************************-->
 <article id="imprimir">
 <header>
-<h1>Imprimir diapositivas</h1>
+<h2>Imprimir diapositivas</h2>
 </header>
 
 <section>
@@ -1259,24 +1390,25 @@ Por exemplo, as caixas azuis ou os problemas empregan esta combinaci&oacute;n.</
 <!--************************* Slide ****************************-->
 <article id="contents-back">
 <header>
-<h1>Contido</h1>
+<h2>Contido</h2>
 </header>
 
-<section>
-<h1><a href="#elemento-head">O elemento <code>&lt;head&gt;</code></a></h1>
-<h1><a href="#diapositivas">Plantillas para diapositivas</a></h1>
-<h1><a href="#comandos">Comandos definidos por defecto</a></h1>
-<h2><a href="#entornos">Entornos tipo teorema</a></h2>
-<h2><a href="#fondos">Fondos con cores e caixas</a></h2>
-<h1><a href="#elementos-svg">Elementos <code>svg</code></a></h1>
+<section class="smaller">
+<h2><a href="#elemento-head">O elemento <code>&lt;head&gt;</code></a></h2>
+<h2><a href="#diapositivas">Plantillas para diapositivas</a></h2>
+<h2><a href="#comandos">Comandos definidos por defecto</a></h2>
+<h3><a href="#entornos">Entornos tipo teorema</a></h3>
+<h3><a href="#fondos">Fondos con cores e caixas</a></h3>
+<h2><a href="#elementos-svg">Elementos <code>svg</code></a></h2>
 <h2><a href="#frechas">Caixas e frechas</a></h2>
-<h1><a href="#imaxes">Imaxes</a></h1>
-<h1><a href="#animacions">Animaci&oacute;ns</a></h1>
-<h1><a href="#estilos">Estilos</a></h1>
-<h2><a href="#relacion-aspecto">Relaci&oacute;n de aspecto da diapositiva</a></h2>
-<h2><a href="#maquetado">Maquetado da p&aacute;xina</a></h2>
-<h2><a href="#variables">Variables</a></h2>
-<h1><a href="#imprimir">Imprimir diapositivas</a></h1>
+<h2><a href="#imaxes">Imaxes</a></h2>
+<h2><a href="#animacions">Animaci&oacute;ns</a></h2>
+<h2><a href="#anotacions">Anotaci&oacute;ns</a></h2>
+<h2><a href="#estilos">Estilos</a></h2>
+<h3><a href="#relacion-aspecto">Relaci&oacute;n de aspecto da diapositiva</a></h3>
+<h3><a href="#maquetado">Maquetado da p&aacute;xina</a></h3>
+<h3><a href="#variables">Variables</a></h3>
+<h2><a href="#imprimir">Imprimir diapositivas</a></h2>
 </section>
 </article>
 
@@ -1284,7 +1416,7 @@ Por exemplo, as caixas azuis ou os problemas empregan esta combinaci&oacute;n.</
 <!--************************* Slide ****************************-->
 <!-- <article>
 <header>
-<h1>title</h1>
+<h2>title</h2>
 </header>
 
 <section>

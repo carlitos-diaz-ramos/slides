@@ -20,7 +20,7 @@
 <link rel="stylesheet" media="all" href="custom2.css">
 
 <script src="../code/jax.js" async></script>
-<script src="../code/slides.js" async></script>
+<script src="../code/slides.js"></script>
 
 </head>
 
@@ -49,20 +49,20 @@
 <!--************************* Slide ****************************-->
 <article id="contents">
 <header>
-<h1>Contents</h1>
+<h2>Contents</h2>
 </header>
 
 <section>
-<h1><a href="#homogeneous-hypersurfaces">Homogeneous hypersurfaces</a></h1>
-<h2><a href="#space-forms">Homogeneous hypersurfaces in real space forms</a></h2>
-<h2><a href="#homogeneous-chn">Homogeneous hypersurfaces in $\C H^n$</a></h2>
-<h2 style="margin-right: -1ex;"><a href="#cpc">Hypersurfaces with constant principal curvatures in $\C H^n$</a></h2>
-<h2><a href="#isoparametric">Isoparametric hypersurfaces in $\C H^n$</a></h2>
+<h2><a href="#homogeneous-hypersurfaces">Homogeneous hypersurfaces</a></h2>
+<h3><a href="#space-forms">Homogeneous hypersurfaces in real space forms</a></h3>
+<h3><a href="#homogeneous-chn">Homogeneous hypersurfaces in $\C H^n$</a></h3>
+<h2 style="margin-right: -1ex;"><a href="#cpc">Hypersurfaces with constant principal curvatures in $\C H^n$</a></h3>
+<h3><a href="#isoparametric">Isoparametric hypersurfaces in $\C H^n$</a></h3>
 
-<h1><a href="#polar">Polar actions</a></h1>
-<h2><a href="#polar-space-forms">Polar actions in real space forms</a></h2>
-<h2><a href="#polar-chn">Polar actions on $\C H^n$</a></h2>
-<h2><a href="#isoparametric-submanifolds">Isoparametric submanifolds in $\C H^2$</a></h2>
+<h2><a href="#polar">Polar actions</a></h2>
+<h3><a href="#polar-space-forms">Polar actions in real space forms</a></h3>
+<h3><a href="#polar-chn">Polar actions on $\C H^n$</a></h3>
+<h3><a href="#isoparametric-submanifolds">Isoparametric submanifolds in $\C H^2$</a></h3>
 </section>
 </article>
 
@@ -70,11 +70,11 @@
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Introduction</h1>
+<h2>Introduction</h2>
 </header>
 
 <section>
-<h1>Symmetry in Mathematics and Physics</h1>
+<h2>Symmetry in Mathematics and Physics</h2>
 
 <div class="picture-text">
 <div class="column1">
@@ -108,23 +108,22 @@
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1 id="homogeneous-hypersurfaces">Homogeneous hypersurfaces</h1>
+<h2 id="homogeneous-hypersurfaces">Homogeneous hypersurfaces</h2>
 </header>
 
 <section>
 <p>$\bar{M}$ Riemannian manifold, $\bar{\nabla}$ Levi-Civita connection</p>
 <p>$M\subset\bar{M}$ hypersurface, $\xi$ unit normal, $\nabla$ Levi-Civita connection</p>
 
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$M$ <strong>homogeneous</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow center">
+<div slot="right" class="center">
 <p>$M=G\cdot o$, with</p>
 <p>$o\in M$, $G\subset I(\bar{M})$</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="space-after">$G$ is said to act with <strong>cohomogeneity one</strong></p>
 
@@ -142,7 +141,7 @@
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1 id="chn">Complex space forms</h1>
+<h2 id="chn">Complex space forms</h2>
 </header>
 
 <section>
@@ -206,7 +205,7 @@ $\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Complex space forms</h1>
+<h2>Complex space forms</h2>
 </header>
 
 <section>
@@ -277,7 +276,7 @@ $\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>The complex hyperbolic space</h1>
+<h2>The complex hyperbolic space</h2>
 </header>
 
 <section>
@@ -285,7 +284,7 @@ $\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i
 <p class="center">$\displaystyle\C H^n=\frac{SU(1,n)}{S(U(1)U(n))}$</p>
 </div>
 
-<h1>Iwasawa decomposition</h1>
+<h2>Iwasawa decomposition</h2>
 
 <table class="iwasawa">
 <tr>
@@ -333,22 +332,22 @@ $\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i
 <!--************************* Slide ****************************-->
 <article id="space-forms">
 <header>
-<h1>Homogeneous hypersurfaces in space forms</h1>
+<h2>Homogeneous hypersurfaces in space forms</h2>
 </header>
 
 <section class="vertical-justify">
 <ul>
 <li>
 <p>Euclidean spaces $\R^n$ [Somigliana, Levi-Civita, Segre]:</p>
-<div class="row-pictures pictures-small">
-<figure><img src="pics/Rn.png" alt="Parallel planes"></figure>
+<div class="row-pictures pictures-medium">
+<figure><img src="pics/planes.png" alt="Parallel planes"></figure>
 <figure><img src="pics/spheres.png" alt="Concentric spheres"></figure>
 <figure><img src="pics/cylinders.png" alt="Coaxial cylinders"></figure>
 </div>
 </li>
 <li class="show-10">
 <p>Real hyperbolics spaces $\R H^n$ [Cartan]:</p>
-<div class="row-pictures pictures-small">
+<div class="row-pictures pictures-medium">
 <figure><img src="pics/spheres.png" alt="Geodesic spheres"></figure>
 <figure><img src="pics/tubes.png" alt="Tubes around a geodesic"></figure>
 <figure><img src="pics/solvable.png" alt="Solvable foliation"></figure>
@@ -367,7 +366,7 @@ $\langle v,w\rangle=\displaystyle\mathop{\rm Re}\Bigl(\!-\bar{v}_0 w_0+\!\sum_{i
 <!--************************* Slide ****************************-->
 <article id="homogeneous-chn">
 <header>
-<h1>Homogeneous hypersurfaces in $\C P^n$ and $\C H^n$</h1>
+<h2>Homogeneous hypersurfaces in $\C P^n$ and $\C H^n$</h2>
 </header>
 
 <section>
@@ -393,11 +392,11 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Homogeneous hypersurfaces in $\C H^n$</h1>
+<h2>Homogeneous hypersurfaces in $\C H^n$</h2>
 </header>
 
 <section>
-<h1>Hopf examples</h1>
+<h2>Hopf examples</h2>
 
 <ul>
 <li>
@@ -423,22 +422,21 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Homogeneous hypersurfaces in $\C H^n$</h1>
+<h2>Homogeneous hypersurfaces in $\C H^n$</h2>
 </header>
 
 <section>
-<h1>Non-Hopf examples</h1>
+<h2>Non-Hopf examples</h2>
 
-<div class="two-boxes">
-<div class="bg-yellow center">
+<slide-iff>
+<div slot="left">
 <p>$V\subset\,\C^n$ has</p>
 <p><strong>constant K&auml;hler angle $\varphi$</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$\angle(Jv,V)=\varphi$, $\forall v\in V\setminus\{0\}$</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="show-10">$\g{w}\subset\,\g{g}_\alpha$ such that $\g{w}^\perp$ is of constant K&auml;hler angle $\varphi$, &nbsp; $k=\dim\,\g{w}^\perp$</p>
 <p class="show-10">$\g{s}_\g{w}=\g{a}\oplus\g{w}\oplus\g{g}_{2\alpha}$ subalgebra of $\g{a}\oplus\g{n}$</p>
@@ -460,22 +458,21 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Characterization of homogeneous hypersurfaces</h1>
+<h2>Characterization of homogeneous hypersurfaces</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>constant principal curvatures</li>
 <li>isoparametric</li>
 </ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 </section>
@@ -485,7 +482,7 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Characterization in real space forms</h1>
+<h2>Characterization in real space forms</h2>
 </header>
 
 <section>
@@ -497,7 +494,7 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <li class="show-10">
 <p>Euclidean spaces $\R^n$:</p>
 <div class="row-pictures pictures-small">
-<figure><img src="pics/Rn.png" alt="Parallel planes"></figure>
+<figure><img src="pics/planes.png" alt="Parallel planes"></figure>
 <figure><img src="pics/spheres.png" alt="Concentrix spheres"></figure>
 <figure><img src="pics/cylinders.png" alt="Coaxial cylinders"></figure>
 </div>
@@ -523,23 +520,25 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article id="cpc"   >
 <header>
-<h1>Constant principal curvatures</h1>
+<h2>Constant principal curvatures</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>constant principal curvatures</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
-<p class="show-10"><strong>Shape operator</strong>: $\mathcal{S}X=-\bar{\nabla}_X\xi$</p>
+<p class="show-10" style="margin-block-start: -1ex;"><strong>Shape operator</strong>: $\mathcal{S}X=-\bar{\nabla}_X\xi$</p>
 <div class="two-boxes show-10">
 <div class="bg-green">
 <p>$\mathcal{S}$ self-adjoint</p>
@@ -571,19 +570,21 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Constant principal curvatures</h1>
+<h2>Constant principal curvatures</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>constant principal curvatures</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -618,19 +619,21 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Constant principal curvatures</h1>
+<h2>Constant principal curvatures</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>constant principal curvatures</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -659,57 +662,56 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article id="isoparametric">
 <header>
-<h1>Isoparametric hypersurfaces</h1>
+<h2>Isoparametric hypersurfaces</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
-<p>isoparametric</p>
+<div slot="right">
+<ul>
+<li>constant principal curvatures</li>
+<li>isoparametric</li>
+</ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow center">
+<slide-iff>
+<div slot="left">
 <p>$f\colon\bar{M}\to\R$</p>
 <p><strong>isoparametric function</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow center">
+<div slot="right">
 <p>$\lVert\nabla f\rVert^2$ and $\Delta f$ constant</p>
 <p>along the level sets of $f$</p>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow center">
+<slide-iff>
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric hypersurface</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow center">
+<div slot="right">
 <p>level set of codimension $1$</p>
 <p>of isoparametric function</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="show-20">[Cartan]</p>
-<div class="two-boxes show-20">
-<div class="bg-green center">
+<slide-iff class="show-20" data-bg="green">
+<div slot="left" class="center">
 <p>$M$ isoparametric hypersurface</p>
 </div>
-<svg><use href="#iff" class="bg-green"/></svg>
-<div class="bg-green center">
+<div slot="right" class="center">
 <p>nearby parallel hypersurfaces</p>
 <p>of constant mean curvature</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="smaller show-30">In real space forms: isoparametric $\Leftrightarrow$ constant principal curvatures</p>
 </section>
@@ -719,21 +721,20 @@ a principal orbit of the quotient of the isotropy representation of a Hermitian 
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Isoparametric hypersurfaces in $\C H^n$</h1>
+<h2>Isoparametric hypersurfaces in $\C H^n$</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <p>isoparametric</p>
 </div>
-</div>
+</slide-implies>
 
-<h1>Inhomogeneous examples</h1>
+<h2>Inhomogeneous examples</h2>
 
 <div class="show-10">
 <p>$\g{w}\subset\,\g{g}_\alpha\cong\,\C^{n-1}$, &nbsp; $k=\dim\,\g{w}^\perp$</p>
@@ -759,7 +760,7 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Isoparametric hypersurfaces in $\C H^n$</h1>
+<h2>Isoparametric hypersurfaces in $\C H^n$</h2>
 </header>
 
 <section>
@@ -781,22 +782,21 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Characterization of homogeneous hypersurfaces</h1>
+<h2>Characterization of homogeneous hypersurfaces</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-green">
+<slide-implies>
+<div slot="left">
 <p>$M$ homogeneous hypersurface</p>
 </div>
-<svg><use href="#implies" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>constant principal curvatures</li>
 <li>isoparametric</li>
 </ul>
 </div>
-</div>
+</slide-implies>
 <p class="converse">?</p>
 <svg class="converse"><use href="#back-arrow" class="bg-green"/></svg>
 
@@ -819,22 +819,21 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <!--************************* Slide ****************************-->
 <article id="polar">
 <header>
-<h1>Polar actions</h1>
+<h2>Polar actions</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$G$ acts <strong>polarly</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>there is a <em>section</em></p>
 </div>
-</div>
+</slide-iff>
 <p><strong>Section</strong>: submanifold that intersects <em>all</em> orbits of $G$ <em>orthogonally</em></p>
 
-<div class="row-pictures pictures-small space-before space-after">
+<div class="row-pictures pictures-medium">
 <figure><img src="pics/spheres.png" alt="Concentric spheres"></figure>
 <figure><img src="pics/cylinders.png" alt="Coaxial Cylinders"></figure>
 <figure><img src="pics/nopolar.png" alt="Helices"></figure>
@@ -855,22 +854,21 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <!--************************* Slide ****************************-->
 <article>
 <header>
-<h1>Polar actions</h1>
+<h2>Polar actions</h2>
 </header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$G$ acts <strong>polarly</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>there is a <em>section</em></p>
 </div>
-</div>
+</slide-iff>
 <p><strong>Section</strong>: submanifold that intersects <em>all</em> orbits of $G$ <em>orthogonally</em></p>
 
-<div class="row-pictures pictures-small space-before space-after">
+<div class="row-pictures pictures-medium">
 <figure><img src="pics/spheres.png" alt="Concentric spheres"></figure>
 <figure><img src="pics/cylinders.png" alt="Coaxial Cylinders"></figure>
 <figure><img src="pics/nopolar.png" alt="Helices"></figure>
@@ -890,7 +888,7 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <!--************************* Slide ****************************-->
 <article id="polar-space-forms">
 <header>
-<h1>Polar actions on real space forms</h1>
+<h2>Polar actions on real space forms</h2>
 </header>
 
 <section>
@@ -906,13 +904,13 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <li class="show-20">
 <p>Real hyperbolic spaces $\R H^n$</p>
 <p>[Wu] $SO(1,k)\times K$ or $N\times K$, where $K$ acts polarly on $\R^{n-k}$</p>
-<div class="row-pictures pictures-tiny">
+<div class="row-pictures pictures-small">
 <figure><img src="pics/spheres.png" alt="Geodesic spheres"></figure>
 <figure><img src="pics/solvable.png" alt="Solvable foliation"></figure>
 <figure><img src="pics/tubes.png" alt="Tubes around a geodesic"></figure>
 <figure><img src="pics/horosphere.png" alt="Hororphere foliation"></figure>
 </div>
-<div class="row-pictures pictures-tiny">
+<div class="row-pictures pictures-small">
 <figure><img src="pics/polar1.png" alt="Nilpontent codimension 2 foliation"></figure>
 <figure><img src="pics/polar5.png" alt="Solvable codimension 2 foliation"></figure>
 <figure><img src="pics/polar7.png" alt="Circles around an axis of fixed points"></figure>
@@ -926,7 +924,7 @@ is a sum of space of constant K&auml;hler angle [D&iacute;az-Ramos, Dom&iacute;n
 <!--************************* Slide ****************************-->
 <article id="polar-chn">
 <header>
-<h1>Polar actions on $\C H^n$</h1>
+<h2>Polar actions on $\C H^n$</h2>
 </header>
 
 <section>
@@ -958,18 +956,17 @@ $Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
 <!--************************* Slide ****************************-->
 <article id="isoparametric-submanifolds">
 <header>
-<h1>Characterization of orbits of polar actions</h1>
+<h2>Characterization of orbits of polar actions</h2>
 </header>
 
 <section>
 <p>[Heintze, Liu, Olmos]</p>
-<div class="two-boxes distribute">
-<div class="bg-yellow">
+<slide-iff class="distribute">
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow smaller">
+<div slot="right" class="smaller">
 <ul>
 <li>normal bundle is flat</li>
 <li>parallel submanifolds have constant mean curvature in radial directions</li>
@@ -977,47 +974,44 @@ $Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
 (totally geodesic submanifold s.t. $T_p\Sigma_p=\nu_p M$)</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-10">
-<div class="bg-green">
+<slide-iff class="show-10" data-bg="green">
+<div slot="left">
 <p>Isoparametric in $\C H^2$</p>
 </div>
-<svg><use href="#iff" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <p>principal orbit of polar action</p>
 </div>
-</div>
+</slide-iff>
 
 <p class="show-20">[Terng]</p>
-<div class="two-boxes distribute show-20">
-<div class="bg-yellow">
+<slide-iff class="distribute show-20">
+<div slot="left">
 <p>$M\subset\bar{M}$</p>
 <p><strong>isoparametric</strong></p>
 </div>
-<svg><use href="#iff" class="bg-yellow"/></svg>
-<div class="bg-yellow smaller" style="width: 67%;">
+<div slot="right" class="smaller" style="width: 67%;">
 <ul>
 <li>normal bundle is flat</li>
 <li>eigenvalues of the shape operator with respect to any parallel normal vector field are constant</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-30">
-<div class="bg-green center">
+<slide-iff class="show-30">
+<div slot="left" class="center">
 <p>Terng-isoparametric</p>
 <p>in $\C H^2$</p>
 </div>
-<svg><use href="#iff" class="bg-green"/></svg>
-<div class="bg-green">
+<div slot="right">
 <ul>
 <li>principal orbit of polar action</li>
 <li>Chen's surface</li>
 <li>circles</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 </section>
 </article>
 
@@ -1025,20 +1019,20 @@ $Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
 <!--************************* Slide ****************************-->
 <article id="contents-back">
 <header>
-<h1>Contents</h1>
+<h2>Contents</h2>
 </header>
 
 <section>
-<h1><a href="#homogeneous-hypersurfaces">Homogeneous hypersurfaces</a></h1>
-<h2><a href="#space-forms">Homogeneous hypersurfaces in real space forms</a></h2>
-<h2><a href="#homogeneous-chn">Homogeneous hypersurfaces in $\C H^n$</a></h2>
-<h2 style="margin-right: -1ex;"><a href="#cpc">Hypersurfaces with constant principal curvatures in $\C H^n$</a></h2>
-<h2><a href="#isoparametric">Isoparametric hypersurfaces in $\C H^n$</a></h2>
+<h2><a href="#homogeneous-hypersurfaces">Homogeneous hypersurfaces</a></h2>
+<h3><a href="#space-forms">Homogeneous hypersurfaces in real space forms</a></h3>
+<h3><a href="#homogeneous-chn">Homogeneous hypersurfaces in $\C H^n$</a></h3>
+<h2 style="margin-right: -1ex;"><a href="#cpc">Hypersurfaces with constant principal curvatures in $\C H^n$</a></h3>
+<h3><a href="#isoparametric">Isoparametric hypersurfaces in $\C H^n$</a></h3>
 
-<h1><a href="#polar">Polar actions</a></h1>
-<h2><a href="#polar-space-forms">Polar actions in real space forms</a></h2>
-<h2><a href="#polar-chn">Polar actions on $\C H^n$</a></h2>
-<h2><a href="#isoparametric-submanifolds">Isoparametric submanifolds in $\C H^2$</a></h2>
+<h2><a href="#polar">Polar actions</a></h2>
+<h3><a href="#polar-space-forms">Polar actions in real space forms</a></h3>
+<h3><a href="#polar-chn">Polar actions on $\C H^n$</a></h3>
+<h3><a href="#isoparametric-submanifolds">Isoparametric submanifolds in $\C H^2$</a></h3>
 </section>
 </article>
 
@@ -1047,7 +1041,7 @@ $Q$ acts polarly on $\g{g}_\alpha\ominus\g{w}$ with totally real section</li>
 <!--
 <article>
 <header>
-<h1>title</h1>
+<h2>title</h2>
 </header>
 
 <section>

@@ -47,6 +47,6 @@
     }
 
     window.MathJax = mathjax_config;
-    load_mathjax("online");
+    load_mathjax("local");
     
 })();

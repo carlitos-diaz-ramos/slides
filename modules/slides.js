@@ -1,4 +1,5 @@
 import {SlideShow} from './slideshow.js';
+import {define_elements} from './boxes.js';
 
 
 export function start_page() {
@@ -47,4 +48,5 @@ function get_mode() {
     return mode;
 }
 
+define_elements();
 start_page();

@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="dark.css">
 
 <script src="../code/jax.js" async></script>
-<script src="../code/slides.js" async></script>
+<script src="../code/slides.js"></script>
 
 </head>
 
@@ -67,16 +67,16 @@
 <!--------------------- Slide -------------------------->
 <article id="contents">
 <header>
-<h1>Contents</h1>
+<h2>Contents</h2>
 </header>
 
 <section>
-<h1><a href="#main-result">Main result</a></h1>
-<h1><a href="#riemannian-manifold">Riemannian manifolds</a> and <a href="#isometric-action">isometric actions</a></h1>
-<h1><a href="#polar-action">Polar actions</a></h1>
-<h1><a href="#symmetric-space">Symmetric spaces</a></h1>
-<h2><a href="#rank-one">Rank one symmetric spaces of noncompact type</a></h2>
-<h1><a href="#canonical-extension">Canonical extension</a></h1>
+<h2><a href="#main-result">Main result</a></h2>
+<h2><a href="#riemannian-manifold">Riemannian manifolds</a> and <a href="#isometric-action">isometric actions</a></h2>
+<h2><a href="#polar-action">Polar actions</a></h2>
+<h2><a href="#symmetric-space">Symmetric spaces</a></h2>
+<h3><a href="#rank-one">Rank one symmetric spaces of noncompact type</a></h3>
+<h2><a href="#canonical-extension">Canonical extension</a></h2>
 </section>
 </article>
 
@@ -86,18 +86,17 @@
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p><strong>topological manifold</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p><em>locally Euclidean</em> second-countable Haussdorff topological space</p>
 </div>
-</div>
+</slide-iff>
 
-<div class="row-pictures">
-<figure class="pictures-medium">
+<div class="row-pictures pictures-big">
+<figure>
 <img src="pics/parametrizacion.png" alt="Chart.">
 </figure>
 </div>
@@ -110,18 +109,17 @@
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p><strong>smooth manifold</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>topological manifold with an atlas whose change of coordinates are smooth</p>
 </div>
-</div>
+</slide-iff>
 
-<div class="row-pictures">
-<figure class="pictures-medium">
+<div class="row-pictures pictures-big">
+<figure>
 <img src="pics/cambio-cartas.png" alt="Transition functions.">
 </figure>
 </div>
@@ -134,15 +132,14 @@
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p><strong>Riemannian manifold</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>manifold with a smooth inner product in each tangent space</p>
 </div>
-</div>
+</slide-iff>
 
 <div>
 <p class="show-10">In a Riemannian manifold we can measure:</p>
@@ -167,15 +164,14 @@ d(p,q)=\inf\{L(\gamma):\text{$\gamma$ joins $p$ with $q$}\}
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p><strong>isometry</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>diffeomorphism that preserves <em>inner product</em></p>
 </div>
-</div>
+</slide-iff>
 <div class="two-boxes" style="margin-top: -2em">
 <div style="box-shadow: none;"></div>
 <svg><use class="bg-yellow" href="#iff"/></svg>
@@ -201,31 +197,29 @@ d(p,q)=\inf\{L(\gamma):\text{$\gamma$ joins $p$ with $q$}\}
 <header></header>
 
 <section>
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>Lie group <strong>action</strong><br>
 $G\times M\to M$</p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <ul>
 <li>$e\cdot p=p$</li>
 <li>$g\cdot(h\cdot p)=(gh)\cdot p$</li>
 <li>smooth</li>
 </ul>
 </div>
-</div>
+</slide-iff>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow">
+<slide-iff class="show-10">
+<div slot="left">
 <p><strong>isometric action</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$p\mapsto g\cdot p$ <em>isometry</em><br>
 $\forall g\in G$</p>
 </div>
-</div>
+</slide-iff>
 
 <div>
 <p class="show-20">$G$ connected closed subgroup of $I(M)$</p>
@@ -248,30 +242,28 @@ $\forall g\in G$</p>
 <p>$G$ connected closed Lie subgroup of $I(M)$</p>
 
 <div class="space-before">
-<div class="two-boxes">
-<div class="bg-yellow">
+<slide-iff>
+<div slot="left">
 <p>$G$ acts <strong>polarly</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>there is a <em>section</em></p>
 </div>
-</div>
+</slide-iff>
 
 <p><strong>Section</strong>:
 submanifold that intersects <em>all</em> orbits <em>orthogonally</em>
 </div>
 </div>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow">
+<slide-iff class="show-10">
+<div slot="left">
 <p>$G$ acts <strong>hyperpolarly</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"/></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>there is a <em>flat</em> section</p>
 </div>
-</div>
+</slide-iff>
 </section>
 </article>
 
@@ -281,11 +273,11 @@ submanifold that intersects <em>all</em> orbits <em>orthogonally</em>
 <header></header>
 
 <section>
-<div class="row-pictures pictures-medium space-before">
+<div class="row-pictures space-before extra-gap">
 <figure><img src="pics/esfera.png" alt="Spheres."></figure>
 <figure><img src="pics/cylinders.png" alt="Cylinders."></figure>
 </div>
-<div class="row-pictures pictures-medium">
+<div class="row-pictures extra-gap">
 <figure><img src="pics/circles.png" alt="Circles."></figure>
 <figure><img src="pics/nopolar.png" alt="Nonpolar example."></figure>
 </div>
@@ -303,15 +295,14 @@ submanifold that intersects <em>all</em> orbits <em>orthogonally</em>
 <p>Classify polar actions (up to orbit equivalence) on a given Riemannian manifold</p>
 </div>
 
-<div class="two-boxes show-10">
-<div class="bg-yellow">
+<slide-iff class="show-10">
+<div slot="left">
 <p>$G_1$ and $G_2$ acting on $M$ <br><strong>orbit equivalent</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"></use></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>$\exists\varphi\in I(M)$ such that $\varphi(G_1\cdot p)=G_2\cdot\varphi(p)$ $\forall p$</p>
 </div>
-</div>
+</slide-iff>
 </section>
 </article>
 
@@ -321,15 +312,14 @@ submanifold that intersects <em>all</em> orbits <em>orthogonally</em>
 <header></header>
 
 <section class="display-block">
-<div class="two-boxes" style="margin-top: 3em;">
-<div class="bg-yellow">
+<slide-iff style="margin-top: 3em;">
+<div slot="left">
 <p><strong>symmetric space</strong></p>
 </div>
-<svg><use class="bg-yellow" href="#iff"></use></svg>
-<div class="bg-yellow">
+<div slot="right">
 <p>all <em>geodesic reflections</em> are isometries</p>
 </div>
-</div>
+</slide-iff>
 
 <figure class="symmetric-picture show-10">
 <img src="pics/reflection2.png" alt="Geodesic reflection.">
@@ -413,8 +403,8 @@ submanifold that intersects <em>all</em> orbits <em>orthogonally</em>
 <div class="rh2 erase-10">
 <img src="pics/rh2.svg" alt="RH2.">
 </div>
-<div class="row-pictures show-10">
-<figure class="pictures-medium polar-rh2">
+<div class="row-pictures pictures-medium show-10">
+<figure class="polar-rh2">
 <img src="pics/rhn.png" alt="Polar actions on real hyperbolic spaces.">
 </figure>
 </div>
@@ -509,16 +499,16 @@ g(o)\! &amp; \!\!\!\mapsto\!\!\! &amp; \!\!\!g(o)+\frac{1}{c}\xi_{g(o)}
 </td>
 </tr>
 </table>
-<div class="row-pictures pictures-small show-10">
-<figure>
+<div class="row-pictures show-10 big-gap">
+<figure class="row-column">
 <img src="pics/spheres.png" alt="K">
 <figcaption>$K$</figcaption>
 </figure>
-<figure>
+<figure class="row-column">
 <img src="pics/polar1.png" alt="A">
 <figcaption>$A$</figcaption>
 </figure>
-<figure>
+<figure class="row-column">
 <img src="pics/horosphere.png" alt="N">
 <figcaption>$N$</figcaption>
 </figure>
@@ -651,15 +641,14 @@ g(o)\! &amp; \!\!\!\mapsto\!\!\! &amp; \!\!\!g(o)+\frac{1}{c}\xi_{g(o)}
 
 <div class="show-20">
 <p style="margin-bottom: -1ex;">Canonical extension</p>
-<div class="two-boxes">
-<div class="boxed bg-green">
+<slide-implies>
+<div slot="left">
 <p>$G$ acts on $M_\Phi\cdot o$<br> polarly</p>
 </div>
-<svg><use class="bg-green" href="#implies"/></svg>
-<div class="boxed bg-green">
+<div slot="right">
 <p>$G\, A_\Phi M_\Phi$ acts on $M$<br> polarly</p>
 </div>
-</div>
+</slide-implies>
 </div>
 </section>
 </article>
@@ -684,16 +673,16 @@ g(o)\! &amp; \!\!\!\mapsto\!\!\! &amp; \!\!\!g(o)+\frac{1}{c}\xi_{g(o)}
 
 <article id="contents-back">
 <header>
-<h1>Contents</h1>
+<h2>Contents</h2>
 </header>
 
 <section>
-<h1><a href="#main-result">Main result</a></h1>
-<h1><a href="#riemannian-manifold">Riemannian manifolds</a> and <a href="#isometric-action">isometric actions</a></h1>
-<h1><a href="#polar-action">Polar actions</a></h1>
-<h1><a href="#symmetric-space">Symmetric spaces</a></h1>
-<h2><a href="#rank-one">Rank one symmetric spaces of noncompact type</a></h2>
-<h1><a href="#canonical-extension">Canonical extension</a></h1>
+<h2><a href="#main-result">Main result</a></h2>
+<h2><a href="#riemannian-manifold">Riemannian manifolds</a> and <a href="#isometric-action">isometric actions</a></h2>
+<h2><a href="#polar-action">Polar actions</a></h2>
+<h2><a href="#symmetric-space">Symmetric spaces</a></h2>
+<h3><a href="#rank-one">Rank one symmetric spaces of noncompact type</a></h3>
+<h2><a href="#canonical-extension">Canonical extension</a></h2>
 </section>
 </article>
 
@@ -701,7 +690,7 @@ g(o)\! &amp; \!\!\!\mapsto\!\!\! &amp; \!\!\!g(o)+\frac{1}{c}\xi_{g(o)}
 <!--------------------- Slide -------------------------->
 <!-- <article>
 <header>
-<h1>title</h1>
+<h2>title</h2>
 </header>
 
 <section>

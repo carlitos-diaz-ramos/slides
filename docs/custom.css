@@ -1,6 +1,5 @@
 /*****************************************
 * Style sheet for custom styles
-*
 *****************************************/
 :root {
     --text-color: hsl(0, 0%, 20%);
@@ -29,12 +28,13 @@ article {
     font-size: 70%;
 }
 
-figure img {
-    width: 100%;
-}
-
 #imaxes{
     --section-display: block;
+}
+
+.big-gap {
+    gap: 3em;
+    margin-inline: 1.5em;
 }
 
 .erased-example {

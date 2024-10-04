@@ -7,10 +7,6 @@
 
 /* Main blocks
 *****************************************************/
-body {
-    font-size: calc(var(--text-size) - 0.1vh); 
-}
-
 article {
     display: block;
 }

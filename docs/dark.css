@@ -25,22 +25,22 @@ header {
     box-shadow: none;
 }
 
-header h1 {
+header h2 {
     text-shadow: none;
 }
 
 #title h2 {
-    border-top: 1px solid white;
+    border-block-start: 1px solid white;
 }
 
 #title footer li:first-child {
     color: white;
 }
 
-[id^="contents"] section h1 a:link, [id^="contents"] section h1 a:visited {
+[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
     color: white;
 }
-[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
+[id^="contents"] section h3 a:link, [id^="contents"] section h3 a:visited {
     color: hsl(0, 0%, 80%);
 }
 
@@ -86,14 +86,7 @@ header h1 {
     --color-solid: hsl(120, 73%, 10%);
 }
 
-.lemma > p:first-of-type::before,
-.theorem > p:first-of-type::before,
-.proposition > p:first-of-type::before,
-.corollary > p:first-of-type::before,
-.example > p:first-of-type::before,
-.remark > p:first-of-type::before,
-.proof > p:first-of-type::before, 
-.problem > p:first-of-type::before {
+:is(.lemma, .theorem, .proposition, .corollary, .example, .remark, .proof, .problem) > p:first-of-type::before {
     color: white;
 }
 
