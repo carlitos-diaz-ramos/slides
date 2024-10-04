@@ -206,13 +206,13 @@ header {
 
 /* Header
 *****************************************************/
-header h1 {
+header h2 {
     text-shadow: 0 0 0.3rem var(--text-color, black);
     margin-inline-start: calc(0.3*var(--side-margin));
     font-size: var(--header-font-size);
 }
 
-header h1, header .MathJax, header code {
+header h2, header .MathJax, header code {
     color: var(--header-text-color);
 }
 
@@ -247,48 +247,48 @@ header button:hover {
     font-size: 85%;
 }
 
-[id^="contents"] section h1 {
+[id^="contents"] section h2 {
     margin-block-start: var(--par-sep);
 }
 
-[id^="contents"] section h2 {
+[id^="contents"] section h3 {
     margin-inline-start: calc(2 * var(--par-sep));
 }
 
-[id^="contents"] section h1 a:link, [id^="contents"] section h1 a:visited {
+[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
     color: black;
 }
 
-[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
+[id^="contents"] section h3 a:link, [id^="contents"] section h3 a:visited {
     color: DimGrey;
 }
 
-[id^="contents"] section h1 a:hover, [id^="contents"] section h2 a:hover {
+[id^="contents"] section h2 a:hover, [id^="contents"] section h3 a:hover {
     color: darkgrey;
 }
 
-[id^="contents"] h2 .MathJax{
+[id^="contents"] h3 .MathJax{
     --math-color: DimGrey;
 }
 
 
 /* Text
 *****************************************************/
-h1, h2, h3 {
+h2, h3, h4 {
     margin-block: var(--par-sep, 0.3em);
     margin-inline: 0;
     text-align: start;
 }
 
-h1 {
+h2 {
     font-size: 125%;
 }
 
-h2 {
+h3 {
     font-size: 115%;
 }
 
-h3 {
+h4 {
     font-size: 105%;
 }
 
@@ -424,7 +424,7 @@ a:hover {
     justify-content: flex-start;
 }
 
-h1 + .two-boxes {
+h2 + .two-boxes {
     margin-block-start: 0;
 }
 
@@ -474,7 +474,7 @@ h1 + .two-boxes {
         to bottom, var(--color-start), var(--color-end));
 }
 
-h1 + :is(.definition, .lemma, .theorem, .proposition, .corollary, .proof,
+h2 + :is(.definition, .lemma, .theorem, .proposition, .corollary, .proof,
 .example, .exercise, .remark, .problem, .solution, .boxed, .two-boxes) {
     margin-block-start: 0;
 }

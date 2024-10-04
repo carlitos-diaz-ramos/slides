@@ -25,7 +25,7 @@ header {
     box-shadow: none;
 }
 
-header h1 {
+header h2 {
     text-shadow: none;
 }
 
@@ -37,10 +37,10 @@ header h1 {
     color: white;
 }
 
-[id^="contents"] section h1 a:link, [id^="contents"] section h1 a:visited {
+[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
     color: white;
 }
-[id^="contents"] section h2 a:link, [id^="contents"] section h2 a:visited {
+[id^="contents"] section h3 a:link, [id^="contents"] section h3 a:visited {
     color: hsl(0, 0%, 80%);
 }
 
