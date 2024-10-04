@@ -1,4 +1,4 @@
-import {Canvas, CanvasError} from '../modules/canvas.js';
+import {Canvas} from '../modules/canvas.js';
 
 describe('Scribble', () => {
     function create_document() {
@@ -25,10 +25,10 @@ describe('Scribble', () => {
     beforeEach(() => {
         canvas = create_document();
         canvas.start();
-        svg = canvas.slide.querySelector('svg.scribble');
+        svg = canvas.slide.querySelector('section svg.scribble');
     });
 
-    it('Inserts svg at current article', () => {
+    it('Inserts svg at current article section', () => {
         assert.notEqual(svg, null);
     })
 
@@ -73,8 +73,10 @@ describe('Scribble', () => {
         assert.equal(polyline.getAttribute('points'), expected);
     })
 
-    it('Move without starting raises exception', () => {
-        expect(() => canvas.continue_stroke(25, 32)).to.throw(CanvasError);
+    it('Move without starting actually starts stroke', () => {
+        canvas.continue_stroke(25, 32);
+        const polyline = svg.querySelector('polyline');
+        assert.equal(polyline.getAttribute('points'), '25,32');
     })
 
     it('Mouse down, move, mouse up, mouse down produces 2 polyline', () => {
@@ -137,4 +139,11 @@ describe('Scribble', () => {
         assert.equal(polyline, null);
     })
 
+    it('Undo while creating stroke produces no error', () => {
+        canvas.start_stroke(20, 30);
+        canvas.continue_stroke(25, 32);
+        canvas.undo_last();
+        const polyline = svg.querySelector('polyline');
+        assert.equal(polyline, null);
+    })
 })

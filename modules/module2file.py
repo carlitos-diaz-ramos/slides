@@ -17,6 +17,7 @@ _MODULES_FOLDER = _ROOT_FOLDER / 'modules'
 _JS_FILE = _CODE_FOLDER / 'slides.js'
 _UTIL_FILE = _MODULES_FOLDER / 'util.js'
 _ANIMATION_FILE = _MODULES_FOLDER / 'animation.js'
+_SCRIBBLE_FILE = _MODULES_FOLDER / 'canvas.js'
 _SLIDESHOW_FILE = _MODULES_FOLDER / 'slideshow.js'
 _BOXES_FILE = _MODULES_FOLDER / 'boxes.js'
 _SLIDES_FILE = _MODULES_FOLDER / 'slides.js'
@@ -33,6 +34,7 @@ def generate_js() -> None:
         js_file.write('(function() {\n')
         _insert_file(js_file, _UTIL_FILE)
         _insert_file(js_file, _ANIMATION_FILE, skip=4)
+        _insert_file(js_file, _SCRIBBLE_FILE, skip=4)
         _insert_file(js_file, _SLIDESHOW_FILE, skip=3)
         _insert_file(js_file, _BOXES_FILE)
         _insert_file(js_file, _SLIDES_FILE, skip=2)

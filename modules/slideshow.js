@@ -1,16 +1,19 @@
 import {Animation, StopAnimation} from './animation.js';
 import {show_all, animate_all, erase_all, insert_after} from './util.js';
+import {Canvas} from './canvas.js';
 
 
 export class SlideShow {
     static _BACK_BUTTON = '\u276E';
     static _NEXT_BUTTON = '\u276F';
     static _CONTENTS_BUTTON = '\u2302';
+    static _PENCIL_BUTTON = '\u270E'
 
     constructor(document) {
         this._document = document;
         const articles = this._document.getElementsByTagName("article")
         this._slides = Array.from(articles);
+        this._canvas = new Canvas(document);
     }
 
     start(index) {
@@ -41,6 +44,7 @@ export class SlideShow {
         const back = this.constructor._BACK_BUTTON;
         const next = this.constructor._NEXT_BUTTON;
         const contents = this.constructor._CONTENTS_BUTTON;
+        const pencil = this.constructor._PENCIL_BUTTON;
         for (let slide of this._slides) {
             const headers = slide.getElementsByTagName("header");
             if (headers.length > 0) {
@@ -48,6 +52,7 @@ export class SlideShow {
                 const buttons = [
                     this._create_button('back', back),
                     this._create_button('next', next),
+                    this._create_button('scribble', pencil),
                     this._create_button('contents', contents),
                 ];
                 buttons.map(button => header_nav.appendChild(button));
@@ -73,6 +78,8 @@ export class SlideShow {
             this.move_backwards();
         else if (id === "button-contents")
             this.move_home();
+        else if (id === "button-scribble")
+            this.start_scribble();
     }
 
     _link_click_events() {
@@ -111,6 +118,8 @@ export class SlideShow {
             this.next_slide();
         } else if (code == "F5") {
             this._save_current_slide();
+        } else if (code == 'KeyD' && event.ctrlKey && event.altKey) {
+            this.start_scribble();
         }
     }
 
@@ -202,6 +211,10 @@ export class SlideShow {
     previous_slide() {
         this.change_slide(this._index-1);
         this._current.show_all();
+    }
+
+    start_scribble() {
+        this._canvas.start();
     }
 
     print_mode() {

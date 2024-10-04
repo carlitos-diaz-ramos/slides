@@ -115,18 +115,19 @@ describe('SlideShow', function() {
             assert.equal(slide.nodeName.toLowerCase(), 'article');
         })
 
-        it('Three buttons created in second slide', function() {
+        it('Four buttons created in second slide', function() {
             const slideshow = create_slideshow();
             slideshow.start(1);
             const found = slideshow.current.slide.querySelectorAll('button');
             const buttons = Array.from(found);
             const nav = buttons[0].parentNode;
-            assert.equal(buttons.length, 3);
+            assert.equal(buttons.length, 4);
             assert.equal(nav.nodeName.toLowerCase(), 'nav');
             assert.equal(nav.parentNode.nodeName.toLowerCase(), 'header');
             assert.equal(buttons[0].id, 'button-back');
             assert.equal(buttons[1].id, 'button-next');
-            assert.equal(buttons[2].id, 'button-contents');
+            assert.equal(buttons[2].id, 'button-scribble');
+            assert.equal(buttons[3].id, 'button-contents');
         })
 
         it('No animations in title', function() {

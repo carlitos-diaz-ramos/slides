@@ -3,16 +3,15 @@
  */
 
 
-export class CanvasError extends Error {}
-
 export class Canvas {
     constructor(document) {
         this._document = document;
-        this._scribbling = false;
+        this._stroke = null;
     }
 
     start() {
         this.slide = this._document.querySelector('.current');
+        this._section = this.slide.querySelector('section');
         this._create_svg();
     }
 
@@ -27,15 +26,12 @@ export class Canvas {
         const ns = this.constructor._SVG_NS;
         const svg = this._svg = this._document.createElementNS(ns, 'svg');
         svg.classList.add('scribble');
-        this.set_size(this.slide.offsetWidth, this.slide.offsetHeight);
+        this.set_size(this._section.offsetWidth, this._section.offsetHeight);
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
         svg.setAttribute('viewBox', `0,0 ${this._width},${this._height}`);
-        svg.setAttribute('stroke', 'black');
-        svg.setAttribute('stroke-width', '3');
-        svg.setAttribute('fill', 'none');
         this._add_listeners();
-        this.slide.append(svg);
+        this._section.append(svg);
     }
 
     _add_listeners() {
@@ -70,28 +66,28 @@ export class Canvas {
 
     start_stroke(x, y) {
         const ns = this.constructor._SVG_NS;
-        this._scribbling = true;
-        const polyline = this._document.createElementNS(ns, 'polyline');
-        polyline.setAttribute('points', `${x},${y}`);
-        this._svg.append(polyline);
+        this._stroke = this._document.createElementNS(ns, 'polyline');
+        this._stroke.setAttribute('points', `${x},${y}`);
+        this._svg.append(this._stroke);
     }
 
     continue_stroke(x, y) {
-        if (!this._scribbling) 
-            throw new CanvasError('Stroke has not started yet.')
-        this._add_stroke(x, y);
+        if (this._stroke === null) {
+            this.start_stroke(x, y);
+        } else {
+            this._add_stroke(x, y);
+        }
     }
 
     end_stroke(x, y) {
         this._add_stroke(x, y);
-        this._scribbling = false;
+        this._stroke = null;
     }
 
     _add_stroke(x, y) {
-        const polyline = this._svg.querySelector('polyline:last-child');
-        const previous = polyline.getAttribute('points');
+        const previous = this._stroke.getAttribute('points');
         const current = previous.concat(' ', `${x},${y}`);
-        polyline.setAttribute('points', current);
+        this._stroke.setAttribute('points', current);
     }
 
     undo_last() {
@@ -100,4 +96,3 @@ export class Canvas {
             polyline.remove();
     }
 }
-

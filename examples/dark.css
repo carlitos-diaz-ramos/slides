@@ -126,3 +126,6 @@ svg [class*="bg-"] {
     color: hsl(0, 0%, 70%);
 }
 
+.scribble {
+    stroke: white;
+}
