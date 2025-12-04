@@ -2,48 +2,59 @@
 
 (function() {
     const mathjax_config = {
+        loader: {
+            load: ['[tex]/noerrors']
+        },
         tex: {
+            packages: {
+                '[+]': ['noerrors'],
+            },
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             processEscapes: true,
             macros: {
-                R: "{\\mathbb{R}}",
-                C: "{\\mathbb{C}}",
-                H: "{\\mathbb{H}}",
-                O: "{\\mathbb{O}}",
-                g: ["\\mathfrak{#1}", 1],
-                Id: "\\mathop{\\rm Id}",
-            },
-            autoload: {
-                color: [],
-                colorV2: ['color']
-            },
-            packages: {
-                '[+]': ['noerrors']
+                "N": "{\\mathbb{N}}",
+                "Z": "{\\mathbb{Z}}",
+                "R": "{\\mathbb{R}}",
+                "C": "{\\mathbb{C}}",
+                "H": "{\\mathbb{H}}",
+                "O": "{\\mathbb{O}}",
+                "id": "{\\mathop{\\rm id}}",
+                "grad": "{\\mathop{\\rm grad}}",
+                "rot": "{\\mathop{\\rm rot}}",
+                "Span": "{\\mathop{\\rm span}}",
+                "Exp": "{\\mathop{\\rm Exp}}",
+                "exp": "{\\mathop{\\rm exp}}",
+                "tr": "{\\mathop{\\rm tr}}",
+                "Ad": "{\\mathop{\\rm Ad}}",
+                "ad": "{\\mathop{\\rm ad}}",
+                "Re": "{\\mathop{\\rm Re\\,}}",
+                "Im": "{\\mathop{\\rm Im\\,}}",
+                "g": ["\\mathfrak{#1}", 1]
             }
         },
         options: {
-            renderActions: {
-                addMenu: [],
-                checkLoading: []
+            ignoreHtmlClass: 'latex-only',
+            menuOptions: {
+                settings: {
+                    enrich: false,
+                }
             },
-            ignoreHtmlClass: 'tex2jax_ignore',
-            processHtmlClass: 'tex2jax_process'
         },
-        loader: {
-            load: ['[tex]/noerrors']
-        }
+        output: {
+            fontPath: '../code/mathjax/mathjax-newcm-font',
+        },
     };
 
     function load_mathjax(mode) {
-        const online = "https://cdn.jsdelivr.net/npm/mathjax@3";              
+        const online = "https://cdn.jsdelivr.net/npm/mathjax@4";              
         const folder = document.currentScript.src.split('/jax.js')[0];
         const local = `${folder}/mathjax`;
         let run = mode === "online" ? online : local;
         let script = document.createElement('script');
-        script.src = `${run}/es5/tex-chtml.js`
+        script.src = `${run}/tex-chtml.js`;
         script.async = true;
         script.id = "MathJax-script";
-        document.head.appendChild(script);
+        document.head.append(script);
     }
 
     window.MathJax = mathjax_config;

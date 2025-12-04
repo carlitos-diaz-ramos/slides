@@ -37,6 +37,7 @@ Table of contents:
     --par-sep: 0.3em;
     --section-display: flex; /* problems: no collapsing margins, no floats */
     --vertical-justify: flex-start;
+    --hover-animation: transform 0.2s ease 0.5s, box-shadow 0.2s ease 0.5s;
 
     --a-link: brown;
     --a-visited: purple;
@@ -688,8 +689,9 @@ figcaption {
 
 [class*="picture"] :is(img, svg):hover {
     box-shadow: var(--shadow);
-    transform: scale(1.2);
     background: var(--bg-color, white);
+    transform: scale(1.2);
+    transition: var(--hover-animation);
 }
 
 [class^="column"] {
