@@ -74,7 +74,7 @@ export class SlideImplies extends TwoBoxes {
           <slot name="left"></slot>
          </div>
          <svg viewBox="0,0 40,22">
-          <title>If and only if</title>
+          <title>Implies</title>
           <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 
            Q29,21 29,20 V16 H1 V11 z"/>
          </svg>
@@ -96,7 +96,7 @@ export class SlideImplied extends TwoBoxes {
           <slot name="left"></slot>
          </div>
          <svg viewBox="0,0 40,22">
-          <title>If and only if</title>
+          <title>Is implied by</title>
           <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 
            L14,2 z"/>
          </svg>

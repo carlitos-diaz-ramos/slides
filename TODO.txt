@@ -1,2 +1,5 @@
+- Configurara AvPag para que avanza só un paso ou una páxina dependendo dalgunha tecla.
 - En docs, Animacións 3, non se ve o vermello da animación cando se imprime en modo "notransitions".
 - En modo print a presentación no navegador empeza no medio.
+- Script para imprimir automaticamente.
+- https://stackoverflow.com/questions/62823062/adding-a-simple-left-right-swipe-gesture

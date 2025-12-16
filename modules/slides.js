@@ -21,15 +21,11 @@ function on_load() {
 function on_print_load() {
     const slide_show = new SlideShow(document);
     slide_show.print_mode();
-    const canvases = document.querySelectorAll('canvas');
-    for (let i = 0; i < canvases.length; i++) {
-        canvases[i].force_render();
-    }
 }
 
 function get_mode() {
     // Decide if slideshow mode is on, based on whether "code/print.css" 
-    // is loaded or not
+    // or code/notransitions.css is loaded or not
     let parts, mode = "Slideshow";
     for (let sheet of document.styleSheets) {
         if (sheet.href !== null) {
@@ -39,7 +35,7 @@ function get_mode() {
                     mode = "Print";
                     break;
                 } else if (parts[1] === "notransitions.css") {
-                    mode ="No transitions";
+                    mode = "No transitions";
                     break;
                 }
             }

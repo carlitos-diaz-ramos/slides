@@ -87,6 +87,10 @@ main {
     background-color: var(--bg-color, white);
 }
 
+.MathJax {
+    line-height: 0;
+}
+
 article {
     width: var(--slide-width);
     height: var(--slide-height);
@@ -160,7 +164,6 @@ header {
 
 #title h1, #title h2, #title h3 {
     text-align: center;
-    font-family: Garamond, Times, serif;
 }
 
 #title h1 {
