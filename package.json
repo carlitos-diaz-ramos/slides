@@ -1,0 +1,31 @@
+{
+  "name": "slides",
+  "version": "0.1.0",
+  "description": "A Javascript package for building a simple slide show.",
+  "private": true,
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlitos-diaz-ramos/slides.git"
+  },
+  "keywords": [
+    "Slideshow",
+    "html"
+  ],
+  "author": "J. Carlos Díaz Ramos",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://github.com/carlitos-diaz-ramos/slides#readme",
+  "devDependencies": {
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1"
+  }
+}

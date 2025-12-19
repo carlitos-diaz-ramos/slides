@@ -3,4 +3,6 @@ mathjax3
 pics
 server
 code/mathjax
+node_modules
 *.pdf
+dist
