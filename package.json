@@ -3,14 +3,27 @@
   "version": "0.1.0",
   "description": "A Javascript package for building a simple slide show.",
   "private": true,
+  "main": "./docs/doc.html",
+  "exports": {
+    ".": {
+      "import": "./dist/slides.module.js"
+    }
+  },
   "directories": {
     "doc": "docs",
     "example": "examples",
     "test": "tests"
   },
+  "files": [
+    "dist",
+    "examples",
+    "modules"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -25,7 +38,9 @@
   "type": "module",
   "homepage": "https://github.com/carlitos-diaz-ramos/slides#readme",
   "devDependencies": {
+    "esbuild-loader": "^4.4.0",
     "webpack": "^5.104.1",
-    "webpack-cli": "^6.0.1"
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }
