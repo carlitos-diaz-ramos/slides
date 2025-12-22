@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "description": "A Javascript package for building a simple slide show.",
   "private": true,
-  "main": "./docs/doc.html",
+  "main": "./modules/slides.js",
   "exports": {
     ".": {
-      "import": "./dist/slides.module.js"
+      "import": "./dist/slides.bundle.js"
     }
   },
   "directories": {
@@ -17,7 +17,8 @@
   "files": [
     "dist",
     "examples",
-    "modules"
+    "modules",
+    "code"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -42,5 +43,8 @@
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "mathjax": "^4.1.0"
   }
 }

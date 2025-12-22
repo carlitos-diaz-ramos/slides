@@ -299,6 +299,7 @@
             const articles = this._document.getElementsByTagName("article")
             this._slides = Array.from(articles);
             this._canvas = new Canvas(document);
+            this._remote_arrows = true;
         }
 
         start(index) {
@@ -315,6 +316,12 @@
                 start = 0;
             this.change_slide(start); 
         }
+
+        // stop() {
+        //     this._document.removeEventListener("keydown", this._on_key_down);
+        //     this._document.removeEventListener("wheel", this._wheel_handler);
+        //     this._current.slide.classList.remove("current");
+        // }
 
         _insert_title_next_button() {
             const footer = this._document.querySelector('#title footer');
@@ -391,20 +398,34 @@
                 event.stopPropagation();
                 this.move_backwards();
             } else if (code == "Home") {
-                if (event.ctrlKey) 
+                if (event.altKey) 
                     this.move_first();
                 else
                     this.move_home();
             } else if (code == "End") {
                 this.move_end();
             } else if (code == "PageUp") {
-                this.previous_slide();
+                if (event.altKey || this._remote_arrows)
+                    this.previous_slide();
+                else
+                    this.move_backwards();
             } else if (code == "PageDown") {
-                this.next_slide();
+                if (event.altKey || this._remote_arrows)
+                    this.next_slide();
+                else
+                    this.move_forward();
             } else if (code == "F5") {
                 this._save_current_slide();
             } else if (code == 'KeyD' && event.ctrlKey && event.altKey) {
                 this.start_scribble();
+            } else if (code == 'KeyA' && event.ctrlKey && event.altKey) {
+                this.toggle_remote_behavior();
+            // } else if (code == 'KeyR' && event.ctrlKey && event.altKey) {
+            //     this.change_aspect_ratio();
+            // } else if (code == 'KeyP' && event.ctrlKey && event.altKey) {
+            //     this.change_to_print_mode();
+            // } else if (code == 'KeyN' && event.ctrlKey && event.altKey) {
+            //     this.change_to_notransitions_mode();
             }
         }
 
@@ -502,9 +523,26 @@
             this._canvas.start();
         }
 
+        toggle_remote_behavior() {
+            this._remote_arrows = !this._remote_arrows;
+        }
+
         print_mode() {
             for (let slide of this._slides) 
                 this._process_slide(slide);
+            const canvases = document.querySelectorAll('canvas');
+            for (const canvas of canvases) {
+                try {
+                    canvas.force_render();
+                } catch (error) {
+                    if (error instanceof TypeError) {
+                        const msg = `Canvas ${canvas} cannot force render.`;
+                        console.log(msg);
+                    } else {
+                        throw error;
+                    }
+                }
+            }
         }
 
         _process_slide(slide) {
@@ -525,6 +563,48 @@
             }
             insert_after(copy, slide);
         }
+
+        // change_aspect_ratio() {
+        //     const root = document.querySelector(':root');
+        //     const style = window.getComputedStyle(root);
+        //     const current_ratio = style.getPropertyValue('--slide-ratio');
+        //     const updated_ratio = style.getPropertyValue('--alt-slide-ratio');
+        //     const current_margin = style.getPropertyValue('--side-margin');
+        //     const updated_margin = style.getPropertyValue('--alt-side-margin');
+        //     const current_size = style.getPropertyValue('--text-size');
+        //     const updated_size = style.getPropertyValue('--alt-text-size');
+        //     root.style.setProperty('--slide-ratio', updated_ratio);
+        //     root.style.setProperty('--alt-slide-ratio', current_ratio);
+        //     root.style.setProperty('--side-margin', updated_margin);
+        //     root.style.setProperty('--alt-side-margin', current_margin);
+        //     root.style.setProperty('--text-size', updated_size);
+        //     root.style.setProperty('--alt-text-size', current_size);
+        //     console.log(
+        //         'Aspect ratio:', updated_ratio, 
+        //         ', Margin:', updated_margin,
+        //         ', Text size:', updated_size,
+        //     );
+        // }
+
+        // change_to_print_mode() {
+        //     this.stop();
+        //     console.log('Print mode');
+        //     const link = document.createElement('link');
+        //     link.rel = 'stylesheet';
+        //     TODO: insert path correctly; e.g. in doc.html we need ..
+        //     link.href = 'code/print.css';
+        //     document.head.append(link);
+        //     this.print_mode();
+        // }
+
+        // change_to_notransitions_mode() {
+        //     this.stop();
+        //     console.log('No transitions mode');
+        //     const link = document.createElement('link');
+        //     link.rel = 'stylesheet';
+        //     link.href = 'code/notransitions.css';
+        //     document.head.append(link);
+        // }
     }
     
     class TwoBoxes extends HTMLElement {
@@ -603,7 +683,7 @@
               <slot name="left"></slot>
              </div>
              <svg viewBox="0,0 40,22">
-              <title>If and only if</title>
+              <title>Implies</title>
               <path d="M1,11 V6 H29 V2 Q29,1 29.71,1.70 L39,11 29.71,20.30 
                Q29,21 29,20 V16 H1 V11 z"/>
              </svg>
@@ -625,7 +705,7 @@
               <slot name="left"></slot>
              </div>
              <svg viewBox="0,0 40,22">
-              <title>If and only if</title>
+              <title>Is implied by</title>
               <path d="M10,6 Q22,20 33,1 L33,8 39,9 Q22,29 5,11 L1,15 L1,2 
                L14,2 z"/>
              </svg>
@@ -662,15 +742,11 @@
     function on_print_load() {
         const slide_show = new SlideShow(document);
         slide_show.print_mode();
-        const canvases = document.querySelectorAll('canvas');
-        for (let i = 0; i < canvases.length; i++) {
-            canvases[i].force_render();
-        }
     }
 
     function get_mode() {
         // Decide if slideshow mode is on, based on whether "code/print.css" 
-        // is loaded or not
+        // or code/notransitions.css is loaded or not
         let parts, mode = "Slideshow";
         for (let sheet of document.styleSheets) {
             if (sheet.href !== null) {
@@ -680,7 +756,7 @@
                         mode = "Print";
                         break;
                     } else if (parts[1] === "notransitions.css") {
-                        mode ="No transitions";
+                        mode = "No transitions";
                         break;
                     }
                 }

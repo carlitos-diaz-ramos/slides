@@ -3,10 +3,13 @@ import * as path from 'path';
 
 export default {
     mode: 'development',
-    entry: './modules/slides.js',
+    entry: {
+        "slides": './modules/slides.js',
+        // "slides-jax": './modules/slides-jax.js',
+    },
     devtool: 'inline-source-map',
     output: {
-        filename: 'slides.js',
+        filename: '[name].bundle.js',
         path: path.resolve('dist'),
     },
     devServer: {

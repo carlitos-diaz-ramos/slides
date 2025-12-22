@@ -113,19 +113,19 @@ export class SlideShow {
             event.stopPropagation();
             this.move_backwards();
         } else if (code == "Home") {
-            if (event.ctrlKey) 
+            if (event.altKey) 
                 this.move_first();
             else
                 this.move_home();
         } else if (code == "End") {
             this.move_end();
         } else if (code == "PageUp") {
-            if (event.ctrlKey || this._remote_arrows)
+            if (event.altKey || this._remote_arrows)
                 this.previous_slide();
             else
                 this.move_backwards();
         } else if (code == "PageDown") {
-            if (event.ctrlKey || this._remote_arrows)
+            if (event.altKey || this._remote_arrows)
                 this.next_slide();
             else
                 this.move_forward();

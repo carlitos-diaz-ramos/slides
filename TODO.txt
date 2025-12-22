@@ -1,3 +1,6 @@
+- Implementar cambiar aspect-ratio
+- Implementar imprimir.
+- Implementar modo escuro.
 - En docs, Animacións 3, non se ve o vermello da animación cando se imprime en modo "notransitions".
 - En modo print a presentación no navegador empeza no medio.
 - Script para imprimir automaticamente.
