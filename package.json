@@ -21,10 +21,10 @@
     "code"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "webpack serve --open ./tests/test.html",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack serve"
+    "start": "webpack serve --open ./docs/doc.html"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,8 @@
   "type": "module",
   "homepage": "https://github.com/carlitos-diaz-ramos/slides#readme",
   "devDependencies": {
-    "esbuild-loader": "^4.4.0",
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"

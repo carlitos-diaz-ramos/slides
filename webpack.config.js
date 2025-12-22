@@ -16,25 +16,5 @@ export default {
         static: {
             directory: path.resolve(''),
         },
-        open: [
-            './docs/doc.html',
-        ],
-    },
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.[jt]sx?$/,
-    //             loader: 'esbuild-loader',
-    //             options: {
-    //                 target: 'es2015',
-    //             },
-    //         },
-    //     ]
-    // },
-    optimization: {
-        // minimize: true,
-        // minimizer: [
-        //     new EsbuildPlugin({target: 'es2015'}),
-        // ]
     },
 };

@@ -3,21 +3,20 @@
 <html>
 
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+<title>Test slides</title>
+
+<link rel="stylesheet" href="../node_modules/mocha/mocha.css">
   
 <link rel="icon" type="image/x-icon" href="../docs/pics/favicon.ico" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
-<script>
+<script src="../node_modules/mocha/mocha.js"></script>
+<script class="mocha-init">
 mocha.setup('bdd');
 mocha.checkLeaks();
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
-<script>
-const assert = chai.assert;
-const expect = chai.expect;
-</script>
+<script src="../node_modules/chai/register-assert.js" type="module"></script>
+<script src="../node_modules/chai/register-expect.js" type="module"></script>
 </head>
 
 <body>
