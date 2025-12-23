@@ -3,7 +3,7 @@ import {
     animate, animate_all, deanimate, deanimate_all,
     erase, unerase, erase_all, unerase_all,
     insert_after
-} from '../dist/util.js';
+} from '../modules/util.js';
 
 
 describe('Functions that animate elements', function() {

@@ -4,11 +4,11 @@
     "target": "es2015",
     "module": "es2015",
     "rewriteRelativeImportExtensions": true,
-    "outDir": "dist",
+    "outDir": "modules",
     "sourceMap": true,
     "noImplicitAny": false,
     "noImplicitThis": true, 
     "strictNullChecks": false,
   },
-  "include": ["modules"],
+  "include": ["ts"],
 }

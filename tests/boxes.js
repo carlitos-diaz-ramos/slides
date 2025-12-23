@@ -1,4 +1,4 @@
-import {SlideIff, SlideImplies, SlideImplied} from "../dist/boxes.js";
+import {SlideIff, SlideImplies, SlideImplied} from "../modules/boxes.js";
 
 describe('Boxes with arrows', function() {
     describe('SlideIff.template', function() {

@@ -22,6 +22,7 @@
   ],
   "scripts": {
     "test": "webpack serve --open ./tests/test.html",
+    "modules": "tsc",
     "build": "webpack",
     "watch": "webpack --watch",
     "start": "webpack serve --open ./docs/doc.html"

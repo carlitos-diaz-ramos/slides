@@ -1,4 +1,4 @@
-import {Animation, StopAnimation} from '../dist/animation.js';
+import {Animation, StopAnimation} from '../modules/animation.js';
 
 
 function get_class(slide, cls) {
