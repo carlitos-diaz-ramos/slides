@@ -3,7 +3,8 @@
  */
 
 import {
-    hide_all, show_all, animate_all, deanimate_all, erase_all, unerase_all
+    hide_all, show_all, animate_all, deanimate_all, erase_all, unerase_all,
+    SlidesError,
 } from './util.ts';
 
 
@@ -19,16 +20,15 @@ export class Animation {
     /**
      * Represents an animation in a slide.
      */
-    protected _slide: HTMLElement
-    protected _steps
+    protected readonly _slide: HTMLElement
+    protected _steps: {[key: string]: Element[]}[]
     protected _current: number
-
-    protected static _ANIMATION_TYPES = ['show', 'animate', 'erase'];
+    protected static readonly _ANIMATION_TYPES = ['show', 'animate', 'erase'];
 
     constructor(slide: HTMLElement) {
         this._slide = slide;
         this._steps = this.get_steps();
-        this._current = null;
+        this._current = 0;
         this.hide_all();
     }
 
@@ -42,8 +42,8 @@ export class Animation {
         return merged.map(item => item[1]);
     }
     
-    _merge_class(classes: string[]) {
-        let merged = [];
+    protected _merge_class(classes: string[]) {
+        let merged: [number, {[key: string]: Element[]}][] = [];
         const trios = this._get_number_class_list(classes);
         for (let [n, element, cls] of trios) {
             this._add_element(merged, n, element, cls);
@@ -51,7 +51,7 @@ export class Animation {
         return merged;
     }
 
-    _get_number_class_list(classes: string[]) {
+    protected _get_number_class_list(classes: string[]) {
         let trios: [number, Element, string][];
         trios = this._get_classes(classes).map(
             item => [this._get_class_value(...item), ...item]
@@ -60,7 +60,7 @@ export class Animation {
         return trios;
     }
 
-    _get_classes(classes: string[]): [Element, string][] {
+    protected _get_classes(classes: string[]): [Element, string][] {
         let elements: [Element, string][] = [];
         for (let cls of classes) {
             let pattern = `[class*="${cls}-"]`;
@@ -72,22 +72,22 @@ export class Animation {
         return elements;
     }
 
-    _get_class_value(element: Element, cls: string): number {
-        const text = element.attributes['class'].nodeValue;
+    protected _get_class_value(element: Element, cls: string): number {
+        const text = element.className;
         const pattern = `${cls}-(\\d+)`;
         const regex = new RegExp(pattern);
-        const matched = text.match(regex);
+        const matched = text.match(regex)!;
         return Number(matched[matched.length-1]);
     }
 
-    _add_element(
-        merged: [number, any][], 
+    protected _add_element(
+        merged: [number, {[key: string]: Element[]}][], 
         n: number, 
         element: Element, 
         cls: string
     ) {
         if (merged.length > 0) {
-            const last = merged.pop();
+            const last = merged.pop()!;
             if (last[0] == n) {
                 last[1][cls].push(element);
                 merged.push([n, last[1]]);
@@ -100,10 +100,10 @@ export class Animation {
         }
     }
 
-    _start_step(element: Element, cls: string) {
-        let initial = {};
+    protected _start_step(element: Element, cls: string) {
+        const initial: {[key: string]: Element[]} = {};
         const self = this.constructor as typeof Animation;
-        for (let type of self._ANIMATION_TYPES) 
+        for (const type of self._ANIMATION_TYPES) 
             initial[type] = [];
         initial[cls].push(element);        
         return initial;

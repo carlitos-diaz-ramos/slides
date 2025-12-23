@@ -12,12 +12,12 @@ export class SlideShow {
     protected _canvas: Canvas
     protected _remote_arrows: boolean
     protected _index: number
-    protected _current: Animation
+    protected _current: Animation | null
 
-    protected static _BACK_BUTTON = '\u276E';
-    protected static _NEXT_BUTTON = '\u276F';
-    protected static _CONTENTS_BUTTON = '\u2302';
-    protected static _PENCIL_BUTTON = '\u270E'
+    protected static readonly _BACK_BUTTON = '\u276E';
+    protected static readonly _NEXT_BUTTON = '\u276F';
+    protected static readonly _CONTENTS_BUTTON = '\u2302';
+    protected static readonly _PENCIL_BUTTON = '\u270E'
 
     constructor(document: HTMLDocument) {
         this._document = document;
@@ -25,6 +25,8 @@ export class SlideShow {
         this._slides = Array.from(articles);
         this._canvas = new Canvas(document);
         this._remote_arrows = true;
+        this._index = -1;
+        this._current = null;
     }
 
     start(index: number = 0) {
@@ -36,8 +38,6 @@ export class SlideShow {
         this._link_click_events();
         this._document.addEventListener("keydown", this._on_key_down);
         this._document.addEventListener("wheel", this._wheel_handler);
-        this._index = null;
-        this._current = null;
         const saved = Number(localStorage.getItem("last"))
         let start = index !== undefined ? index : saved;
         if (isNaN(start)) 
@@ -51,7 +51,7 @@ export class SlideShow {
     //     this._current.slide.classList.remove("current");
     // }
 
-    _insert_title_next_button() {
+    protected _insert_title_next_button() {
         const footer = this._document.querySelector('#title footer');
         if (footer !== null) {
             const self = this.constructor as typeof SlideShow;
@@ -61,7 +61,7 @@ export class SlideShow {
         }
     }
 
-    _create_navigation_buttons() {
+    protected _create_navigation_buttons() {
         const self = this.constructor as typeof SlideShow;
         const back = self._BACK_BUTTON;
         const next = self._NEXT_BUTTON;
@@ -83,7 +83,7 @@ export class SlideShow {
         }
     }
 
-    _create_button(id: string, text: string) {
+    protected _create_button(id: string, text: string) {
         let button = this._document.createElement("button");
         button.type = "button";
         button.id = `button-${id}`;
@@ -92,7 +92,7 @@ export class SlideShow {
         return button;
     }
 
-    _on_button_click = (event: Event) => {
+    protected _on_button_click = (event: Event) => {
         if (event.target && 'id' in event.target) {
             const id = event.target.id;
             if (id === "button-next") 
@@ -106,12 +106,12 @@ export class SlideShow {
         }
     }
 
-    _link_click_events() {
+    protected _link_click_events() {
         for (let link of this._document.links)
             link.addEventListener("click", this._on_link_click);
     }
 
-    _on_link_click = (event: MouseEvent) => {
+    protected _on_link_click = (event: MouseEvent) => {
         const anchor = event.target as HTMLAnchorElement;
         // Only works for links in the document
         const target = this._document.getElementById(anchor.hash.slice(1));
@@ -122,7 +122,7 @@ export class SlideShow {
         }
     }
 
-    _on_key_down = (event: KeyboardEvent) => {
+    protected _on_key_down = (event: KeyboardEvent) => {
         const code = event.code;
         if (["Enter", "ArrowRight", "Space"].includes(code)) {
             event.stopPropagation();
@@ -162,15 +162,15 @@ export class SlideShow {
         }
     }
 
-    _save_current_slide() {
+    protected _save_current_slide() {
         localStorage.setItem("last", this._index.toString());
     }
 
-    _wheel_handler = (event: WheelEvent) => {
+    protected _wheel_handler = (event: WheelEvent) => {
         this._move(Math.sign(event.deltaY));
     }
 
-    _move(delta: number) {
+    protected _move(delta: number) {
         if (delta > 0) 
             this.move_forward();
         else if (delta < 0) 
@@ -194,8 +194,9 @@ export class SlideShow {
         console.log(`Slide ${this._index+1} of ${this._slides.length}`);
     }
 
-    _set_current_slide(index: number) {
+    protected _set_current_slide(index: number) {
         if (index >= 0 && index < this._slides.length) {
+            // This is the only place where this._current could be null
             if (this._current !== null)
                 this._current.slide.classList.remove("current");
             this._index = index;
@@ -210,7 +211,7 @@ export class SlideShow {
          * Performs the next animation of the slide show.
          */
         try {
-            this._current.move_forward();
+            this._current!.move_forward();
         } catch (error) {
             if (error instanceof StopAnimation) {
                 this.change_slide(this._index+1);
@@ -225,11 +226,11 @@ export class SlideShow {
          * Goes to the previous animation of the slide show.
          */
         try {
-            this._current.move_backwards();
+            this._current!.move_backwards();
         } catch (error) {
             if (error instanceof StopAnimation) {
                 this.change_slide(this._index-1);
-                this._current.show_all();
+                this._current!.show_all();
             } else {
                 console.log(error);
             }
@@ -243,7 +244,7 @@ export class SlideShow {
         const home = this._document.getElementById("contents");
         if (home) {
             this.change_slide(this._slides.indexOf(home));
-            this._current.show_all();
+            this._current!.show_all();
         }
     }
 
@@ -259,7 +260,7 @@ export class SlideShow {
          * Goes to the last animation of the last slide.
          */
         this.change_slide(this._slides.length-1);
-        this._current.show_all();
+        this._current!.show_all();
     }
 
     next_slide() {
@@ -267,7 +268,7 @@ export class SlideShow {
          * Goes to the next slide without doing any animation.
          */
         this.change_slide(this._index+1);
-        this._current.show_all();
+        this._current!.show_all();
     }
 
     previous_slide() {
@@ -275,7 +276,7 @@ export class SlideShow {
          * Goes to the last animation of the previous slide.
          */
         this.change_slide(this._index-1);
-        this._current.show_all();
+        this._current!.show_all();
     }
 
     start_scribble() {
@@ -313,14 +314,14 @@ export class SlideShow {
         }
     }
 
-    _process_slide(slide: HTMLElement) {
+    protected _process_slide(slide: HTMLElement) {
         const animation = new Animation(slide);
         const steps = animation.get_steps();
         for (let i = 0; i < steps.length; i++) 
             this._create_animation(slide, i);
     }
 
-    _create_animation(slide: HTMLElement, index: number) {
+    protected _create_animation(slide: HTMLElement, index: number) {
         const copy = slide.cloneNode(true) as HTMLElement;
         const animation = new Animation(copy);
         const steps = animation.get_steps();

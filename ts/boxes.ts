@@ -3,6 +3,8 @@
  * Used for definitions, implications, equivalences and so on.
  */
 
+import {SlidesError} from './util.ts';
+
 
 class TwoBoxes extends HTMLElement {
     /**
@@ -15,11 +17,16 @@ class TwoBoxes extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: 'open'});
         const self = this.constructor as typeof TwoBoxes;
+        const color = this.dataset.bg;
         const tmpl = self.template({
-            color: this.dataset.bg,
-            styles: self._get_stylesheets()
+            styles: self._get_stylesheets(),
+            color: color ? color : 'white',
         });
-        this.shadowRoot.append(tmpl.content.cloneNode(true));
+        if (this.shadowRoot) {
+            this.shadowRoot.append(tmpl.content.cloneNode(true));
+        } else {
+            throw new SlidesError('Element has no shadowRoot.')
+        }
     }
 
     static template(
@@ -33,7 +40,10 @@ class TwoBoxes extends HTMLElement {
         return tmpl;
     }
 
-    static _set_styles(tmpl: HTMLTemplateElement, styles: string[]) {
+    protected static _set_styles(
+        tmpl: HTMLTemplateElement, 
+        styles: string[]
+    ) {
         const div = tmpl.content.querySelector('div.two-boxes');
         for (let style of styles) {
             const link = document.createElement('link');
@@ -43,21 +53,23 @@ class TwoBoxes extends HTMLElement {
         }
     }
 
-    static _set_color(tmpl: HTMLTemplateElement, color: string) {
+    protected static _set_color(tmpl: HTMLTemplateElement, color: string) {
         const bg = `bg-${color}`;
         const divs = tmpl.content.querySelectorAll('.two-boxes div');
         for (let div of divs) 
             div.classList.add(bg);
         const path = tmpl.content.querySelector('.two-boxes svg path');
-        path.classList.add(bg);
+        if (path) {
+            path.classList.add(bg);
+        } else {
+            throw new SlidesError('Svg arrow has no path element.')
+        }
     }
 
-    static _get_stylesheets() {
+    protected static _get_stylesheets(): string[] {
         const stylesheets = Array.from(document.styleSheets);
-        const with_href = stylesheets.filter(
-            (item) => {return item.href !== null}
-        );
-        return with_href.map((item) => {return item.href});
+        const with_href = stylesheets.filter(item => item.href !== null);
+        return with_href.map(item => item.href ? item.href : '');
     }
 }
 
@@ -67,7 +79,7 @@ export class SlideIff extends TwoBoxes {
      * This is entered in the html as a <slide-iff> element with two slots:
      * a <div slot="left"> and a <div slot="right">.
      */
-    static _CODE = `
+    protected static _CODE = `
         <div class="two-boxes">
          <div>
           <slot name="left"></slot>
@@ -84,7 +96,9 @@ export class SlideIff extends TwoBoxes {
         </div>
     `;
 
-    static template({styles = [], color = 'yellow'}) {
+    static template(
+        {styles = [], color = 'yellow'}: {styles: string[], color: string}
+    ) {
         return super.template({styles: styles, color: color});
     }
 }
@@ -95,7 +109,7 @@ export class SlideImplies extends TwoBoxes {
      * This is entered in the html as a <slide-implies> element with two 
      * slots: a <div slot="left"> and a <div slot="right">.
      */
-    static _CODE = `
+    protected static _CODE = `
         <div class="two-boxes">
          <div>
           <slot name="left"></slot>
@@ -111,7 +125,9 @@ export class SlideImplies extends TwoBoxes {
         </div>
     `;
 
-    static template({styles = [], color = 'green'}) {
+    static template(
+        {styles = [], color = 'green'}: {styles: string[], color: string}
+    ) {
         return super.template({styles: styles, color: color});
     }
 }
@@ -122,7 +138,7 @@ export class SlideImplied extends TwoBoxes {
      * This is entered in the html as a <slide-implied> element with two 
      * slots: a <div slot="left"> and a <div slot="right">.
      */
-    static _CODE = `
+    protected static _CODE = `
         <div class="two-boxes">
          <div>
           <slot name="left"></slot>

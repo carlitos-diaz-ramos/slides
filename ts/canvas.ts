@@ -38,7 +38,7 @@ export class Canvas {
         this._height = height;
     }
 
-    _create_svg() {
+    protected _create_svg() {
         const self = this.constructor as typeof Canvas;
         const ns = self._SVG_NS;
         const svg = this._svg = this._document.createElementNS(ns, 'svg');
@@ -51,31 +51,31 @@ export class Canvas {
         this._section.append(svg);
     }
 
-    _add_listeners() {
+    protected _add_listeners() {
         this._svg.addEventListener('pointerdown', this._on_mouse_down);
         this._svg.addEventListener('pointermove', this._on_mouse_move);
         this._svg.addEventListener('pointerup', this._on_mouse_up);
         this._document.addEventListener('keydown', this._on_key_down);
     }
 
-    _on_mouse_down = (event: PointerEvent) => {
+    protected _on_mouse_down = (event: PointerEvent) => {
         const [x, y] = [event.layerX, event.layerY];
         this.start_stroke(x, y);
     }
 
-    _on_mouse_move = (event: MouseEvent) => {
+    protected _on_mouse_move = (event: MouseEvent) => {
         if (event.buttons == 1) {
             const [x, y] = [event.layerX, event.layerY];
             this.continue_stroke(x, y);
         }
     }
 
-    _on_mouse_up = (event: PointerEvent) => {
+    protected _on_mouse_up = (event: PointerEvent) => {
         const [x, y] = [event.layerX, event.layerY];
         this.end_stroke(x, y);
     }
 
-    _on_key_down = (event: KeyboardEvent) => {
+    protected _on_key_down = (event: KeyboardEvent) => {
         if (event.code == "KeyZ" && event.ctrlKey) {
             this.undo_last();
         }
@@ -103,7 +103,7 @@ export class Canvas {
         this._stroke = null;
     }
 
-    _add_stroke(x: number, y: number) {
+    protected _add_stroke(x: number, y: number) {
         const stroke = this._stroke as SVGPolylineElement;
         const previous = stroke.getAttribute('points') || '';
         const current = previous.concat(' ', `${x},${y}`);

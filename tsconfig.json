@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": false,
     "lib": ["es2015", "dom", "dom.iterable"],
     "target": "es2015",
     "module": "es2015",
@@ -7,9 +8,9 @@
     "outDir": "modules",
     "sourceMap": true,
     "declaration": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitThis": true, 
-    "strictNullChecks": false,
+    "strictNullChecks": true,
   },
   "include": ["ts"],
 }
