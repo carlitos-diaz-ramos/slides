@@ -4,8 +4,8 @@
  */
 
 
-import {SlideShow} from './slideshow.js';
-import {define_elements} from './boxes.js';
+import {SlideShow} from './slideshow.ts';
+import {define_elements} from './boxes.ts';
 
 
 export function start_page() {

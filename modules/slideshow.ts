@@ -1,6 +1,6 @@
-import {Animation, StopAnimation} from './animation.js';
-import {show_all, animate_all, erase_all, insert_after} from './util.js';
-import {Canvas} from './canvas.js';
+import {Animation, StopAnimation} from './animation.ts';
+import {show_all, animate_all, erase_all, insert_after} from './util.ts';
+import {Canvas} from './canvas.ts';
 
 
 export class SlideShow {

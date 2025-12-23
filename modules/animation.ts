@@ -1,6 +1,6 @@
 import {
     hide_all, show_all, animate_all, deanimate_all, erase_all, unerase_all
-} from './util.js';
+} from './util.ts';
 
 
 export class StopAnimation extends Error {

@@ -1,7 +1,7 @@
 /**
  * scribble.ts is a module to allow scribbling in a slide.
  */
-import {Canvas} from './canvas.js';
+import {Canvas} from './canvas.ts';
 
 export function start_scribble() {
     console.log('Start scribbling');
