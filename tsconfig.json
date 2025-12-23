@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "target": "es2022",
+    "module": "es2022",
+    "outDir": "dist",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true, 
+    "strictNullChecks": false,
+  },
+  "include": ["modules"],
+}

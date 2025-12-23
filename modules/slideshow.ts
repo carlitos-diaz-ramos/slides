@@ -4,20 +4,27 @@ import {Canvas} from './canvas.js';
 
 
 export class SlideShow {
-    static _BACK_BUTTON = '\u276E';
-    static _NEXT_BUTTON = '\u276F';
-    static _CONTENTS_BUTTON = '\u2302';
-    static _PENCIL_BUTTON = '\u270E'
+    protected _document: HTMLDocument
+    protected _slides: HTMLElement[]
+    protected _canvas: Canvas
+    protected _remote_arrows: boolean
+    protected _index: number
+    protected _current: Animation
 
-    constructor(document) {
+    protected static _BACK_BUTTON = '\u276E';
+    protected static _NEXT_BUTTON = '\u276F';
+    protected static _CONTENTS_BUTTON = '\u2302';
+    protected static _PENCIL_BUTTON = '\u270E'
+
+    constructor(document: HTMLDocument) {
         this._document = document;
-        const articles = this._document.getElementsByTagName("article")
+        const articles = this._document.getElementsByTagName("article");
         this._slides = Array.from(articles);
         this._canvas = new Canvas(document);
         this._remote_arrows = true;
     }
 
-    start(index) {
+    start(index: number = 0) {
         this._insert_title_next_button();
         this._create_navigation_buttons();
         this._link_click_events();
@@ -41,17 +48,19 @@ export class SlideShow {
     _insert_title_next_button() {
         const footer = this._document.querySelector('#title footer');
         if (footer !== null) {
-            const next = this.constructor._NEXT_BUTTON;
+            const self = this.constructor as typeof SlideShow;
+            const next = self._NEXT_BUTTON;
             const button = this._create_button("next", next);
             footer.insertBefore(button, footer.firstChild);
         }
     }
 
     _create_navigation_buttons() {
-        const back = this.constructor._BACK_BUTTON;
-        const next = this.constructor._NEXT_BUTTON;
-        const contents = this.constructor._CONTENTS_BUTTON;
-        const pencil = this.constructor._PENCIL_BUTTON;
+        const self = this.constructor as typeof SlideShow;
+        const back = self._BACK_BUTTON;
+        const next = self._NEXT_BUTTON;
+        const contents = self._CONTENTS_BUTTON;
+        const pencil = self._PENCIL_BUTTON;
         for (let slide of this._slides) {
             const headers = slide.getElementsByTagName("header");
             if (headers.length > 0) {
@@ -68,7 +77,7 @@ export class SlideShow {
         }
     }
 
-    _create_button(id, text) {
+    _create_button(id: string, text: string) {
         let button = this._document.createElement("button");
         button.type = "button";
         button.id = `button-${id}`;
@@ -77,16 +86,18 @@ export class SlideShow {
         return button;
     }
 
-    _on_button_click = (event) => {
-        const id = event.target.id;
-        if (id === "button-next") 
-            this.move_forward();
-        else if (id === "button-back")
-            this.move_backwards();
-        else if (id === "button-contents")
-            this.move_home();
-        else if (id === "button-scribble")
-            this.start_scribble();
+    _on_button_click = (event: Event) => {
+        if (event.target && 'id' in event.target) {
+            const id = event.target.id;
+            if (id === "button-next") 
+                this.move_forward();
+            else if (id === "button-back")
+                this.move_backwards();
+            else if (id === "button-contents")
+                this.move_home();
+            else if (id === "button-scribble")
+                this.start_scribble();
+        }
     }
 
     _link_click_events() {
@@ -94,17 +105,18 @@ export class SlideShow {
             link.addEventListener("click", this._on_link_click);
     }
 
-    _on_link_click = (event) => {
-        /* https://stackoverflow.com/questions/2136461/
-        use-javascript-to-intercept-all-document-link-clicks */
-        const anchor = 
-            event.target || event.srcElement || event.originalTarget;
+    _on_link_click = (event: MouseEvent) => {
+        const anchor = event.target as HTMLAnchorElement;
         // Only works for links in the document
         const target = this._document.getElementById(anchor.hash.slice(1));
-        this.change_slide(this._slides.indexOf(target.closest("article")));
+        if (target) {
+            const article = target.closest("article");
+            if (article)
+                this.change_slide(this._slides.indexOf(article));
+        }
     }
 
-    _on_key_down = (event) => {
+    _on_key_down = (event: KeyboardEvent) => {
         const code = event.code;
         if (["Enter", "ArrowRight", "Space"].includes(code)) {
             event.stopPropagation();
@@ -145,14 +157,14 @@ export class SlideShow {
     }
 
     _save_current_slide() {
-        localStorage.setItem("last", this._index);
+        localStorage.setItem("last", this._index.toString());
     }
 
-    _wheel_handler = (event) => {
+    _wheel_handler = (event: WheelEvent) => {
         this._move(Math.sign(event.deltaY));
     }
 
-    _move(delta) {
+    _move(delta: number) {
         if (delta > 0) 
             this.move_forward();
         else if (delta < 0) 
@@ -167,13 +179,13 @@ export class SlideShow {
         return this._current;
     }
 
-    change_slide(index) {
+    change_slide(index: number) {
         if (index >= this._slides.length) return;
         this._set_current_slide(index);
         console.log(`Slide ${this._index+1} of ${this._slides.length}`);
     }
 
-    _set_current_slide(index) {
+    _set_current_slide(index: number) {
         if (index >= 0 && index < this._slides.length) {
             if (this._current !== null)
                 this._current.slide.classList.remove("current");
@@ -211,8 +223,10 @@ export class SlideShow {
 
     move_home() {
         const home = this._document.getElementById("contents");
-        this.change_slide(this._slides.indexOf(home));
-        this._current.show_all();
+        if (home) {
+            this.change_slide(this._slides.indexOf(home));
+            this._current.show_all();
+        }
     }
 
     move_first() {
@@ -248,7 +262,7 @@ export class SlideShow {
         const canvases = document.querySelectorAll('canvas');
         for (const canvas of canvases) {
             try {
-                canvas.force_render();
+                (canvas as ThreeCanvas).force_render();
             } catch (error) {
                 if (error instanceof TypeError) {
                     const msg = `Canvas ${canvas} cannot force render.`;
@@ -260,15 +274,15 @@ export class SlideShow {
         }
     }
 
-    _process_slide(slide) {
+    _process_slide(slide: HTMLElement) {
         const animation = new Animation(slide);
         const steps = animation.get_steps();
         for (let i = 0; i < steps.length; i++) 
             this._create_animation(slide, i);
     }
 
-    _create_animation(slide, index) {
-        const copy = slide.cloneNode(true);
+    _create_animation(slide: HTMLElement, index: number) {
+        const copy = slide.cloneNode(true) as HTMLElement;
         const animation = new Animation(copy);
         const steps = animation.get_steps();
         for (let j = 0; j < steps.length - index; j++) {
@@ -322,3 +336,4 @@ export class SlideShow {
     // }
 }
     
+type ThreeCanvas = HTMLCanvasElement & {force_render: () => null};

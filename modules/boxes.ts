@@ -1,22 +1,39 @@
+/**
+ * boxes - A module that creates pairs of boxes with arrows.
+ * Used for definitions, implications, equivalences and so on.
+ */
+
+
 class TwoBoxes extends HTMLElement {
+    /**
+     * Base clase for the boxes definded in this module.
+     * It creates a <template> html element with two slots that contain the 
+     * content for each of the two boxes of the element.
+     */
+    protected static _CODE: string
+
     connectedCallback() {
         this.attachShadow({mode: 'open'});
-        const tmpl = this.constructor.template({
+        const self = this.constructor as typeof TwoBoxes;
+        const tmpl = self.template({
             color: this.dataset.bg,
-            styles: this.constructor._get_stylesheets()
+            styles: self._get_stylesheets()
         });
         this.shadowRoot.append(tmpl.content.cloneNode(true));
     }
 
-    static template({styles = [], color = 'white'}) {
+    static template(
+        {styles = [], color = 'white'}: {styles: string[], color: string}
+    ) {
         const tmpl = document.createElement('template');
-        tmpl.innerHTML = this.prototype.constructor._CODE;
+        const self = this.prototype.constructor as typeof TwoBoxes;
+        tmpl.innerHTML = self._CODE;
         this._set_styles(tmpl, styles);
         this._set_color(tmpl, color);
         return tmpl;
     }
 
-    static _set_styles(tmpl, styles) {
+    static _set_styles(tmpl: HTMLTemplateElement, styles: string[]) {
         const div = tmpl.content.querySelector('div.two-boxes');
         for (let style of styles) {
             const link = document.createElement('link');
@@ -26,7 +43,7 @@ class TwoBoxes extends HTMLElement {
         }
     }
 
-    static _set_color(tmpl, color) {
+    static _set_color(tmpl: HTMLTemplateElement, color: string) {
         const bg = `bg-${color}`;
         const divs = tmpl.content.querySelectorAll('.two-boxes div');
         for (let div of divs) 
@@ -45,6 +62,11 @@ class TwoBoxes extends HTMLElement {
 }
 
 export class SlideIff extends TwoBoxes {
+    /**
+     * Creates two boxes with "if and only if" arrow in the middle.
+     * This is entered in the html as a <slide-iff> element with two slots:
+     * a <div slot="left"> and a <div slot="right">.
+     */
     static _CODE = `
         <div class="two-boxes">
          <div>

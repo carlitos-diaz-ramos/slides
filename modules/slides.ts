@@ -1,3 +1,9 @@
+/**
+ * slides - The main module of this page.
+ * It creates a slide show after the page is loaded.
+ */
+
+
 import {SlideShow} from './slideshow.js';
 import {define_elements} from './boxes.js';
 
@@ -26,7 +32,7 @@ function on_print_load() {
 function get_mode() {
     // Decide if slideshow mode is on, based on whether "code/print.css" 
     // or code/notransitions.css is loaded or not
-    let parts, mode = "Slideshow";
+    let parts: string[], mode = "Slideshow";
     for (let sheet of document.styleSheets) {
         if (sheet.href !== null) {
             parts = sheet.href.split("code/");

@@ -1,4 +1,4 @@
-import {Canvas} from '../modules/canvas.js';
+import {Canvas} from '../dist/canvas.js';
 
 describe('Scribble', () => {
     function create_document() {

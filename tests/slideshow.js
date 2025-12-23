@@ -1,4 +1,4 @@
-import {SlideShow} from '../modules/slideshow.js';
+import {SlideShow} from '../dist/slideshow.js';
 
 
 describe('SlideShow', function() {

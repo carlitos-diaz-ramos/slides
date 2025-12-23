@@ -7,7 +7,10 @@ export default {
         "slides": './modules/slides.js',
         // "slides-jax": './modules/slides-jax.js',
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
+    resolve: {
+        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve('dist'),
@@ -16,5 +19,17 @@ export default {
         static: {
             directory: path.resolve(''),
         },
+    },
+    module: {
+        rules: [
+            { 
+                test: /\.tsx?$/, 
+                loader: "ts-loader", 
+            },
+            { 
+                test: /\.js$/, 
+                loader: "source-map-loader", 
+            },
+        ],
     },
 };

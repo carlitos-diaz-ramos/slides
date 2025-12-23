@@ -1,5 +1,5 @@
 /**
- * scribble.js is a module to allow scribbling in a slide.
+ * scribble.ts is a module to allow scribbling in a slide.
  */
 import {Canvas} from './canvas.js';
 
