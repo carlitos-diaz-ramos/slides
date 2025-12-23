@@ -1,3 +1,8 @@
+/**
+ * util - A module with utility functions for a slide show.
+ */
+
+
 export function show(element: HTMLElement) {
     element.classList.add("shown");
 }

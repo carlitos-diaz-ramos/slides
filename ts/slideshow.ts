@@ -4,6 +4,9 @@ import {Canvas} from './canvas.ts';
 
 
 export class SlideShow {
+    /**
+     * Represents a slide show associated to a given html document.
+     */
     protected _document: HTMLDocument
     protected _slides: HTMLElement[]
     protected _canvas: Canvas
@@ -25,6 +28,9 @@ export class SlideShow {
     }
 
     start(index: number = 0) {
+        /**
+         * Starts presentation at the page with the given index.
+         */
         this._insert_title_next_button();
         this._create_navigation_buttons();
         this._link_click_events();
@@ -180,6 +186,9 @@ export class SlideShow {
     }
 
     change_slide(index: number) {
+        /**
+         * Goes to the slide with the given index.
+         */
         if (index >= this._slides.length) return;
         this._set_current_slide(index);
         console.log(`Slide ${this._index+1} of ${this._slides.length}`);
@@ -197,6 +206,9 @@ export class SlideShow {
     }
 
     move_forward() {
+        /**
+         * Performs the next animation of the slide show.
+         */
         try {
             this._current.move_forward();
         } catch (error) {
@@ -209,6 +221,9 @@ export class SlideShow {
     }
 
     move_backwards() {
+        /**
+         * Goes to the previous animation of the slide show.
+         */
         try {
             this._current.move_backwards();
         } catch (error) {
@@ -222,6 +237,9 @@ export class SlideShow {
     }
 
     move_home() {
+        /**
+         * Goes to the contents slide of the presentation.
+         */
         const home = this._document.getElementById("contents");
         if (home) {
             this.change_slide(this._slides.indexOf(home));
@@ -230,33 +248,54 @@ export class SlideShow {
     }
 
     move_first() {
+        /**
+         * Goes to the first slide without doing any animation.
+         */
         this.change_slide(0);
     }
 
     move_end() {
+        /**
+         * Goes to the last animation of the last slide.
+         */
         this.change_slide(this._slides.length-1);
         this._current.show_all();
     }
 
     next_slide() {
+        /**
+         * Goes to the next slide without doing any animation.
+         */
         this.change_slide(this._index+1);
         this._current.show_all();
     }
 
     previous_slide() {
+        /**
+         * Goes to the last animation of the previous slide.
+         */
         this.change_slide(this._index-1);
         this._current.show_all();
     }
 
     start_scribble() {
+        /**
+         * Allows basic scribbling on a slide.
+         */
         this._canvas.start();
     }
 
     toggle_remote_behavior() {
+        /**
+         * Toggles the behavious of NextPage and PreviousPage keys.
+         */
         this._remote_arrows = !this._remote_arrows;
     }
 
     print_mode() {
+        /**
+         * Produces a static page with all the animations for printing.
+         */
         for (let slide of this._slides) 
             this._process_slide(slide);
         const canvases = document.querySelectorAll('canvas');

@@ -9,6 +9,9 @@ import {define_elements} from './boxes.ts';
 
 
 export function start_page() {
+    /**
+     * Creates a callback that starts the slide show after the page is loaded.
+     */
     const mode = get_mode();
     console.log(`${mode} mode`)
     if (mode === "Slideshow") {
@@ -20,11 +23,18 @@ export function start_page() {
 
 
 function on_load() {
+    /**
+     * Callback that creates the slide show.
+     */
     const slide_show = new SlideShow(document);
     slide_show.start();
 }
 
 function on_print_load() {
+    /**
+     * Callback that creates a printable version of the slide show with all
+     * the animations.
+     */
     const slide_show = new SlideShow(document);
     slide_show.print_mode();
 }

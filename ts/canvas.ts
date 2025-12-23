@@ -4,6 +4,9 @@
 
 
 export class Canvas {
+    /**
+     * Represents a canvas for very basic drawing on a slide.
+     */
     protected _document: HTMLDocument
     protected _section: HTMLElement
     protected _stroke: SVGPolylineElement | null
@@ -20,6 +23,9 @@ export class Canvas {
     }
 
     start() {
+        /**
+         * Starts the drawing process.
+         */
         const current = this._document.querySelector('.current');
         this.slide = current as HTMLElement;
         const section = this.slide.querySelector('section');
@@ -105,6 +111,9 @@ export class Canvas {
     }
 
     undo_last() {
+        /**
+         * Undoes the last stroke.
+         */
         const polyline = this._svg.querySelector('polyline:last-child');
         if (polyline !== null)
             polyline.remove();

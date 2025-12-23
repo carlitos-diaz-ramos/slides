@@ -6,6 +6,7 @@
     "rewriteRelativeImportExtensions": true,
     "outDir": "modules",
     "sourceMap": true,
+    "declaration": true,
     "noImplicitAny": false,
     "noImplicitThis": true, 
     "strictNullChecks": false,

@@ -1,3 +1,7 @@
+/**
+ * animations - A module that takes care of animations within a fixed slide.
+ */
+
 import {
     hide_all, show_all, animate_all, deanimate_all, erase_all, unerase_all
 } from './util.ts';
@@ -12,6 +16,9 @@ export class StopAnimation extends Error {
 
 
 export class Animation {
+    /**
+     * Represents an animation in a slide.
+     */
     protected _slide: HTMLElement
     protected _steps
     protected _current: number
@@ -103,28 +110,39 @@ export class Animation {
     }
 
     move_forward() {
+        /**
+         * Performs the next animation of the slide or informs that there are
+         * no more animations by throwing an exception.
+         */
         if (this._current + 1 <= this._steps.length) {
             show_all(this._steps[this._current]['show']);
             animate_all(this._steps[this._current]['animate']);
             erase_all(this._steps[this._current]['erase']);
             this._current++;
         } else {
-            throw new StopAnimation('');
+            throw new StopAnimation('No more animations');
         }
     }
 
     move_backwards() {
+        /**
+         * Performs the previous animation of the slide or informs that there 
+         * are no previous animations by throwing an exception.
+         */
         if (this._current > 0) {
             --this._current;
             hide_all(this._steps[this._current]['show']);
             deanimate_all(this._steps[this._current]['animate']);
             unerase_all(this._steps[this._current]['erase']);
         } else {
-            throw new StopAnimation('');
+            throw new StopAnimation('No more animations');
         }
     }
 
     show_all() {
+        /**
+         * Goes to the last animation of the slide.
+         */
         for (let step of this._steps) {
             show_all(step['show']);
             animate_all(step['animate']);
@@ -134,6 +152,9 @@ export class Animation {
     }
 
     hide_all() {
+        /**
+         * Goes to the state of the slide before any animation.
+         */
         for (let step of this._steps) {
             hide_all(step['show']);
             deanimate_all(step['animate']);

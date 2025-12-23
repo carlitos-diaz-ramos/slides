@@ -1,15 +1,19 @@
 import * as path from 'path';
-// import {EsbuildPlugin} from 'esbuild-loader';
 
 export default {
     mode: 'development',
     entry: {
-        "slides": './modules/slides.js',
+        "slides": './ts/slides.ts',
         // "slides-jax": './modules/slides-jax.js',
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
+        extensions: [".ts", ".tsx", ".js"],
+        extensionAlias: {
+            ".js": [".js", ".ts"],
+            ".cjs": [".cjs", ".cts"],
+            ".mjs": [".mjs", ".mts"]
+        }
     },
     output: {
         filename: '[name].bundle.js',
@@ -23,7 +27,7 @@ export default {
     module: {
         rules: [
             { 
-                test: /\.tsx?$/, 
+                test: /\.([cm]?ts|tsx)$/, 
                 loader: "ts-loader", 
             },
             { 

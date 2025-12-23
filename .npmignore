@@ -1,0 +1,5 @@
+*.ts # Ignore .ts files
+!*.d.ts # Allow .d.ts files
+# .gitignore
+*.d.ts # Ignore .d.ts files
+*.js # Ignore .js files

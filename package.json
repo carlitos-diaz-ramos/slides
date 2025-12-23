@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "A Javascript package for building a simple slide show.",
   "private": true,
-  "main": "./modules/slides.js",
+  "main": "./dist/slides.bundle.ts",
+  "types": "./dist/slides.bundle.d.ts",
   "exports": {
     ".": {
       "import": "./dist/slides.bundle.js"
@@ -22,10 +23,10 @@
   ],
   "scripts": {
     "test": "webpack serve --open ./tests/test.html",
-    "modules": "tsc",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack serve --open ./docs/doc.html"
+    "doc": "webpack serve --open ./docs/doc.html",
+    "modules": "tsc"
   },
   "repository": {
     "type": "git",

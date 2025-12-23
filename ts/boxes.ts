@@ -90,6 +90,11 @@ export class SlideIff extends TwoBoxes {
 }
 
 export class SlideImplies extends TwoBoxes {
+    /**
+     * Creates two boxes with right-pointing arrow in the middle.
+     * This is entered in the html as a <slide-implies> element with two 
+     * slots: a <div slot="left"> and a <div slot="right">.
+     */
     static _CODE = `
         <div class="two-boxes">
          <div>
@@ -112,6 +117,11 @@ export class SlideImplies extends TwoBoxes {
 }
 
 export class SlideImplied extends TwoBoxes {
+    /**
+     * Creates two boxes with a left-pointing arrow in the middle.
+     * This is entered in the html as a <slide-implied> element with two 
+     * slots: a <div slot="left"> and a <div slot="right">.
+     */
     static _CODE = `
         <div class="two-boxes">
          <div>
