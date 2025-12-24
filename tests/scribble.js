@@ -1,4 +1,5 @@
 import {Canvas} from '../modules/canvas.js';
+import { SlideShow } from '../modules/slideshow.js';
 
 describe('Scribble', () => {
     function create_document() {
@@ -12,7 +13,7 @@ describe('Scribble', () => {
         `;
         const main = slide.createElement('main');
         main.innerHTML = code;
-        slide.body.appendChild(main)
+        slide.body.append(main)
         const canvas = new Canvas(slide);
         canvas.set_size = (width, height) => {
             [canvas._width, canvas._height] = [400, 300]
@@ -145,5 +146,58 @@ describe('Scribble', () => {
         canvas.undo_last();
         const polyline = svg.querySelector('polyline');
         assert.equal(polyline, null);
+    })
+
+    describe('Tests with generated events', () => {
+        function create_slideshow() {
+            const slides = document.implementation.createHTMLDocument('Test');
+            const code = `
+                <article>
+                <section>
+                <p>Some content</p>
+                </section>
+                </article>
+            `;
+            const main = slides.createElement('main');
+            main.style.width = '100px';
+            main.style.height = '100px';
+            main.innerHTML = code;
+            slides.body.append(main)
+            return new SlideShow(slides);
+        }
+
+        function press_control_alt_D(slideshow) {
+            const key = {'code': 'KeyD', 'altKey': true, 'ctrlKey': true};
+            const event = new KeyboardEvent('keydown', key);
+            return slideshow._document.dispatchEvent(event)
+        }
+
+        it('Slideshow has no svgs', () => {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            assert.equal(slideshow.index, 0);
+            svg = slideshow.current.slide.querySelector('svg');
+            assert.equal(svg, null);
+        })
+
+        it('[Control+Alt+D] creates svg', () => {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_D(slideshow);
+            svg = slideshow.current.slide.querySelector('svg');
+            assert.notEqual(svg, null);
+        })
+
+        it('[Control+Alt+D] pointer down: start stroke', () => {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_D(slideshow);
+            const event = new PointerEvent('pointerdown');
+            svg = slideshow.current.slide.querySelector('svg');
+            svg.dispatchEvent(event);
+            const polyline = svg.querySelector('polyline');
+            assert.notEqual(polyline, null);
+            assert.equal(polyline.getAttribute('points'), '0,0');
+        })
     })
 })

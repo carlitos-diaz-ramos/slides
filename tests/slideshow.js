@@ -53,7 +53,7 @@ describe('SlideShow', function() {
         `;
         const main = slideshow.createElement('main');
         main.innerHTML = code;
-        slideshow.body.appendChild(main);
+        slideshow.body.append(main);
         return new SlideShow(slideshow);
     }
 
