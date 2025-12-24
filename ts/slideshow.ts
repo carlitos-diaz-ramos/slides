@@ -128,7 +128,7 @@ export class SlideShow {
             event.stopPropagation();
             this.move_backwards();
         } else if (code == "Home") {
-            if (event.altKey) 
+            if (event.ctrlKey) 
                 this.move_first();
             else
                 this.move_home();

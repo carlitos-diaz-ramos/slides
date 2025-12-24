@@ -79,6 +79,12 @@ describe('SlideShow', function() {
         return slideshow;
     }
 
+    function press_key(slideshow, code, alt=false) {
+        const key = {'code': code, 'altKey': alt};
+        const event = new KeyboardEvent('keydown', key);
+        return slideshow._document.dispatchEvent(event)
+    }
+
     describe('Test slideshow from example code', function() {
         it('Start at first slide', function() {
             const slideshow = create_slideshow();
@@ -470,11 +476,550 @@ describe('SlideShow', function() {
         })
     })
 
+    describe('Test slideshow from example code with keyboard', function() {
+        it('Start at first slide', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('Move 1: slide 2 contents', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'ArrowRight')
+            assert.equal(slideshow.index, 1);
+            const article = slideshow.current.slide;
+            assert.equal(article.id, 'contents');
+        })
+
+        it('Move 2: slide 3', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'ArrowRight')
+            press_key(slideshow, 'ArrowRight')
+            assert.equal(slideshow.index, 2);
+        })
+
+        it('Move 3: slide 3, show 1, animate 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'ArrowRight')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 1);
+            assert.equal(get_text(shown[0]), 'First animated');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 1);
+            assert.equal(get_text(animated[0]), 'animated');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 0);
+        })
+
+        it('Move 4: slide 3, show 2, animate 1, erase 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 4; i++)
+                press_key(slideshow, 'ArrowRight')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 2);
+            assert.equal(get_text(shown[1]), 'Second animated 2');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 1);
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+            assert.equal(get_text(erased[0]), 'First animated');
+        })
+
+        it('Move 9: end (same as move 8)', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 9; i++)
+                press_key(slideshow, 'ArrowRight')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 1);
+            assert.equal(get_text(shown[0]), 'First');
+        })
+
+        it('Back 1: start (same as nothing)', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'ArrowLeft')
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('Move 1, Back 1: start', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'ArrowRight')
+            press_key(slideshow, 'ArrowLeft')
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('Move 6, Back 6: start', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 6; i++)
+                press_key(slideshow, 'ArrowRight')
+            for (let i = 0; i < 6; i++)
+                press_key(slideshow, 'ArrowLeft')
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('Move 3, Back 6: start', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'ArrowRight')
+            for (let i = 0; i < 6; i++)
+                press_key(slideshow, 'ArrowLeft')
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('Move 7, back 2: slide 3, show 4, animate 3, erase 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 7; i++)
+                press_key(slideshow, 'ArrowRight')
+            for (let i = 0; i < 2; i++)
+                press_key(slideshow, 'ArrowLeft')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Move 7, back 2 with [Enter]', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 7; i++)
+                press_key(slideshow, 'Enter')
+            for (let i = 0; i < 2; i++)
+                press_key(slideshow, 'ArrowLeft')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Move 7, back 2 with [Space]', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            for (let i = 0; i < 7; i++)
+                press_key(slideshow, 'Space')
+            for (let i = 0; i < 2; i++)
+                press_key(slideshow, 'ArrowLeft')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Start slide 3, move 3: show 4, animate 3, erase 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(2);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'ArrowRight')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Start slide 3, move 3 with [Enter]', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(2);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'Enter')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Start slide 3, move 3 with [Space]', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(2);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'Space')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Change slide 3, move 3: show 4, animate 3, erase 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            slideshow.change_slide(2);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'ArrowRight')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Change slide 3, move 3 with [Enter]', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            slideshow.change_slide(2);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'Enter')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Change slide 3, move 3 with [Space]', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            slideshow.change_slide(2);
+            for (let i = 0; i < 3; i++)
+                press_key(slideshow, 'Space')
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Change slide 3, back 1: slide 2', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            slideshow.change_slide(2);
+            press_key(slideshow, 'ArrowLeft')
+            assert.equal(slideshow.index, 1);
+        })
+
+        it('Slide 4, back 1: slide 3, show 4, animate 4, erase 3', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            slideshow.change_slide(3);
+            press_key(slideshow, 'ArrowLeft')
+            assert.equal(slideshow.index, 2);
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 4);
+            assert.equal(get_text(animated[2]), 'Fourth');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 3);
+            assert.equal(get_text(erased[0]), 'Third');
+            assert.equal(get_text(erased[2]), 'animated 2');
+        })
+
+        it('[Home]: slide 2', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_key(slideshow, 'Home')
+            assert.equal(slideshow.index, 1);
+        })
+
+        it('Slide 4, move 2, [Home]: slide 2', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            slideshow.change_slide(3);
+            press_key(slideshow, 'ArrowLeft')
+            press_key(slideshow, 'ArrowLeft')
+            press_key(slideshow, 'Home')
+            assert.equal(slideshow.index, 1);
+        })
+
+        it('[Control+Home]: slide 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            const key = {'code': 'Home', 'ctrlKey': true, 'altKey': false};
+            const event = new KeyboardEvent('keydown', key);
+            slideshow._document.dispatchEvent(event);
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('Slide 4, move 2, [Control+Home]: slide 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            slideshow.change_slide(3);
+            press_key(slideshow, 'ArrowLeft')
+            press_key(slideshow, 'ArrowLeft')
+            const key = {'code': 'Home', 'ctrlKey': true, 'altKey': false};
+            const event = new KeyboardEvent('keydown', key);
+            slideshow._document.dispatchEvent(event);
+            assert.equal(slideshow.index, 0);
+        })
+
+        it('[End]: slide 4', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_key(slideshow, 'End')
+            assert.equal(slideshow.index, 3);
+        })
+
+        it('Slide 2, move 2, [End]: slide 4', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            slideshow.change_slide(1);
+            press_key(slideshow, 'ArrowLeft')
+            press_key(slideshow, 'ArrowLeft')
+            press_key(slideshow, 'End')
+            assert.equal(slideshow.index, 3);
+        })
+
+        it('[PageDown] 2, back 1: show 4, animate 3, erase 1', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'ArrowLeft');
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it(
+            `[PageDown] 3, [PageUp] 1, back 1: 
+            show 4, animate 3, erase 1`, function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageUp');
+            press_key(slideshow, 'ArrowLeft');
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('[PageDown] 5: end', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 1);
+            assert.equal(get_text(shown[0]), 'First');
+        })
+
+        it('[PageUp] 2: start', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'PageUp');
+            press_key(slideshow, 'PageUp');
+            assert.equal(slideshow.index, 0);
+        })
+    })
+
+    describe('Toggle behaviour of PageDown/PageUp', function() {
+        function press_control_alt_A(slideshow) {
+            const key = {'code': 'KeyA', 'ctrlKey': true, 'altKey': true};
+            const event = new KeyboardEvent('keydown', key);
+            return slideshow._document.dispatchEvent(event);
+        }
+
+        it('Default behaviour is going to next slide', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'ArrowLeft');
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Default behaviour with Alt is going to next slide', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(0);
+            press_key(slideshow, 'PageDown', true);
+            press_key(slideshow, 'PageDown', true);
+            press_key(slideshow, 'ArrowLeft', true);
+            const slide = slideshow.current;
+            const shown = get_shown(slide);
+            assert.equal(shown.length, 4);
+            assert.equal(get_text(shown[0]), 'Third');
+            assert.equal(get_text(shown[3]), 'Also third');
+            const animated = get_animated(slide);
+            assert.equal(animated.length, 3);
+            assert.equal(get_text(animated[1]), 'animated');
+            assert.equal(get_text(animated[2]), 'animated 2');
+            const erased = get_erased(slide);
+            assert.equal(erased.length, 1);
+        })
+
+        it('Default [PageDown] 3: slide 3', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            assert.equal(slideshow.index, 3);
+        })
+
+        it('Default start 3, [PageUp]: slide 2', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(3);
+            press_key(slideshow, 'PageUp');
+            assert.equal(slideshow.index, 2);
+        })
+
+        it('[Control+Alt+A] [PageDown] 3: slide 2', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_A(slideshow);
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            press_key(slideshow, 'PageDown');
+            assert.equal(slideshow.index, 2);
+        })
+
+        it('[Control+Alt+A] start 3, [->] [PageUp]: slide 3', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(3);
+            press_control_alt_A(slideshow);
+            press_key(slideshow, 'ArrowRight');
+            press_key(slideshow, 'PageUp');
+            assert.equal(slideshow.index, 3);
+        })
+
+        it('[Control+Alt+A] [Alt+PageDown] 3: slide 3', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_A(slideshow);
+            press_key(slideshow, 'PageDown', true);
+            press_key(slideshow, 'PageDown', true);
+            press_key(slideshow, 'PageDown', true);
+            assert.equal(slideshow.index, 3);
+        })
+
+        it('[Control+Alt+A] start 3, [->] [Alt+PageUp]: slide 2', function() {
+            const slideshow = create_slideshow();
+            slideshow.start(3);
+            press_control_alt_A(slideshow);
+            press_key(slideshow, 'ArrowRight');
+            press_key(slideshow, 'PageUp', true);
+            assert.equal(slideshow.index, 2);
+        })
+
+        it('[Control+Alt+A] 2, [Alt+PageDown] 3: slide 3', function() {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_A(slideshow);
+            press_key(slideshow, 'PageDown', true);
+            press_key(slideshow, 'PageDown', true);
+            press_key(slideshow, 'PageDown', true);
+            assert.equal(slideshow.index, 3);
+        })
+
+        it('Start 3, [Control+Alt+A] 2, [->] [Alt+PageUp]: slide 2', () => {
+            const slideshow = create_slideshow();
+            slideshow.start(3);
+            press_control_alt_A(slideshow);
+            press_control_alt_A(slideshow);
+            press_key(slideshow, 'ArrowRight');
+            press_key(slideshow, 'PageUp', true);
+            assert.equal(slideshow.index, 2);
+        })
+    })
+
     describe('Print mode', function() {
         function get_animations() {
             const slideshow = create_slideshow();
             slideshow.print_mode();
-            const slides = slideshow._document.getElementsByTagName('article')
+            const slides = slideshow._document.querySelectorAll('article')
             return Array.from(slides);
         }
 
