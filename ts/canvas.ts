@@ -7,19 +7,18 @@ export class Canvas {
     /**
      * Represents a canvas for very basic drawing on a slide.
      */
-    protected _document: HTMLDocument
-    protected _section: HTMLElement
-    protected _stroke: SVGPolylineElement | null
-    protected _svg: Element
-    protected _width: number
-    protected _height: number
-    public slide: HTMLElement
+    protected _document: HTMLDocument;
+    protected _section: HTMLElement | null = null;
+    protected _stroke: SVGPolylineElement | null = null;
+    protected _svg: SVGElement | null = null;
+    protected _width: number = 0;
+    protected _height: number = 0;
+    public slide: HTMLElement | null = null;
 
     protected static _SVG_NS = "http://www.w3.org/2000/svg";
 
     constructor(document: HTMLDocument) {
         this._document = document;
-        this._stroke = null;
     }
 
     start() {
@@ -41,20 +40,22 @@ export class Canvas {
     protected _create_svg() {
         const self = this.constructor as typeof Canvas;
         const ns = self._SVG_NS;
-        const svg = this._svg = this._document.createElementNS(ns, 'svg');
+        const svg = this._document.createElementNS(ns, 'svg') as SVGElement;
+        this._svg = svg;
         svg.classList.add('scribble');
-        this.set_size(this._section.offsetWidth, this._section.offsetHeight);
+        const section = this._section!;
+        this.set_size(section.offsetWidth, section.offsetHeight);
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
         svg.setAttribute('viewBox', `0,0 ${this._width},${this._height}`);
         this._add_listeners();
-        this._section.append(svg);
+        section.append(svg);
     }
 
     protected _add_listeners() {
-        this._svg.addEventListener('pointerdown', this._on_mouse_down);
-        this._svg.addEventListener('pointermove', this._on_mouse_move);
-        this._svg.addEventListener('pointerup', this._on_mouse_up);
+        this._svg!.addEventListener('pointerdown', this._on_mouse_down);
+        this._svg!.addEventListener('pointermove', this._on_mouse_move);
+        this._svg!.addEventListener('pointerup', this._on_mouse_up);
         this._document.addEventListener('keydown', this._on_key_down);
     }
 
@@ -63,7 +64,7 @@ export class Canvas {
         this.start_stroke(x, y);
     }
 
-    protected _on_mouse_move = (event: MouseEvent) => {
+    protected _on_mouse_move = (event: PointerEvent) => {
         if (event.buttons == 1) {
             const [x, y] = [event.layerX, event.layerY];
             this.continue_stroke(x, y);
@@ -87,7 +88,7 @@ export class Canvas {
         const stroke = this._document.createElementNS(ns, 'polyline');
         this._stroke = stroke as SVGPolylineElement;
         this._stroke.setAttribute('points', `${x},${y}`);
-        this._svg.append(this._stroke);
+        this._svg!.append(this._stroke);
     }
 
     continue_stroke(x: number, y: number) {
@@ -114,7 +115,7 @@ export class Canvas {
         /**
          * Undoes the last stroke.
          */
-        const polyline = this._svg.querySelector('polyline:last-child');
+        const polyline = this._svg!.querySelector('polyline:last-child');
         if (polyline !== null)
             polyline.remove();
     }

@@ -20,9 +20,9 @@ export class Animation {
     /**
      * Represents an animation in a slide.
      */
-    protected readonly _slide: HTMLElement
-    protected _steps: {[key: string]: Element[]}[]
-    protected _current: number
+    protected readonly _slide: HTMLElement;
+    protected _steps: {[key: string]: Element[]}[];
+    protected _current: number;
     protected static readonly _ANIMATION_TYPES = ['show', 'animate', 'erase'];
 
     constructor(slide: HTMLElement) {

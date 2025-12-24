@@ -7,12 +7,12 @@ export class SlideShow {
     /**
      * Represents a slide show associated to a given html document.
      */
-    protected _document: HTMLDocument
-    protected _slides: HTMLElement[]
-    protected _canvas: Canvas
-    protected _remote_arrows: boolean
-    protected _index: number
-    protected _current: Animation | null
+    protected _document: HTMLDocument;
+    protected _slides: HTMLElement[];
+    protected _canvas: Canvas;
+    protected _remote_arrows: boolean = true;
+    protected _index: number = -1;
+    protected _current: Animation | null = null;
 
     protected static readonly _BACK_BUTTON = '\u276E';
     protected static readonly _NEXT_BUTTON = '\u276F';
@@ -24,9 +24,6 @@ export class SlideShow {
         const articles = this._document.getElementsByTagName("article");
         this._slides = Array.from(articles);
         this._canvas = new Canvas(document);
-        this._remote_arrows = true;
-        this._index = -1;
-        this._current = null;
     }
 
     start(index: number = 0) {
@@ -107,11 +104,11 @@ export class SlideShow {
     }
 
     protected _link_click_events() {
-        for (let link of this._document.links)
+        for (const link of this._document.links)
             link.addEventListener("click", this._on_link_click);
     }
 
-    protected _on_link_click = (event: MouseEvent) => {
+    protected _on_link_click = (event: Event) => {
         const anchor = event.target as HTMLAnchorElement;
         // Only works for links in the document
         const target = this._document.getElementById(anchor.hash.slice(1));

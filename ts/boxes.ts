@@ -12,7 +12,7 @@ class TwoBoxes extends HTMLElement {
      * It creates a <template> html element with two slots that contain the 
      * content for each of the two boxes of the element.
      */
-    protected static _CODE: string
+    protected static _CODE: string;
 
     connectedCallback() {
         this.attachShadow({mode: 'open'});
