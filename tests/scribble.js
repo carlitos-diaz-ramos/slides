@@ -159,8 +159,6 @@ describe('Scribble', () => {
                 </article>
             `;
             const main = slides.createElement('main');
-            main.style.width = '100px';
-            main.style.height = '100px';
             main.innerHTML = code;
             slides.body.append(main)
             return new SlideShow(slides);

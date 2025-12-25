@@ -23,17 +23,20 @@ Table of contents:
 /* Main blocks
 *****************************************************/
 :root {
-    --slide-ratio: calc(16 / 10); /* Usual values: 16:10, 16:9, 4:3 */
+    --slide-ratio: calc(16 / 9); /* Usual values: 16:10, 16:9, 4:3 */
+    --alt-slide-ratio: calc(4 / 3);
     --slide-width: min(100vw, var(--slide-ratio) * 100vh);
     --slide-height: calc(var(--slide-width) / var(--slide-ratio));
     --bg-color: white;
     --text-color: black;
-    --text-size: 4; /* Percentage of slide size */
+    --text-size: 5; /* Percentage of slide size */
+    --alt-text-size: 4.5;
     --strong-color: red;
     --math-color: purple;
     --code-color: indigo;
     --sec-margin-top: 1em;
-    --side-margin: 2em; /* 4:3 -> 1em, 16:10 -> 2em */
+    --side-margin: 2.5em; /* 4:3 -> 1em, 16:10 -> 2em */
+    --alt-side-margin: 1em;
     --par-sep: 0.3em;
     --section-display: flex; /* problems: no collapsing margins, no floats */
     --vertical-justify: flex-start;

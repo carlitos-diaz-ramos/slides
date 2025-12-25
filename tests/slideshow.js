@@ -1085,4 +1085,76 @@ describe('SlideShow', function() {
             assert.equal(erased.length, 0);
         })
     })
+
+    describe('Configurations of the slide show', () => {
+        function styled_slideshow() {
+            const slideshow = document.implementation.createHTMLDocument('');
+            const style = slideshow.documentElement.style;
+            style.setProperty('--slide-ratio', '2');
+            style.setProperty('--alt-slide-ratio', '1');
+            style.setProperty('--text-size', '5');
+            style.setProperty('--alt-text-size', '4.5');
+            style.setProperty('--side-margin', '2.5em');
+            style.setProperty('--alt-side-margin', '1em');
+            const code = `
+                <article id="title">
+                <section>
+                <h1>Title of presentation</h1>
+                <h2>Subtitle</h2>
+                </article>
+            `;
+            const main = slideshow.createElement('main');
+            main.innerHTML = code;
+            slideshow.body.append(main);
+            return new SlideShow(slideshow);
+        }
+
+        function press_control_alt_R(slideshow) {
+            const key = {'code': 'KeyR', 'ctrlKey': true, 'altKey': true};
+            const event = new KeyboardEvent('keydown', key);
+            return slideshow._document.dispatchEvent(event);
+        }
+
+        it('Regular values of ratio, text size, and margin', () => {
+            const slideshow = styled_slideshow();
+            slideshow.start(0);
+            const root = slideshow._document.documentElement;
+            const style = window.getComputedStyle(root);
+            const ratio = style.getPropertyValue('--slide-ratio');
+            assert.equal(ratio, '2')
+            const text_size = style.getPropertyValue('--text-size');
+            assert.equal(text_size, '5')
+            const margin = style.getPropertyValue('--side-margin');
+            assert.equal(margin, '2.5em')
+        })
+
+        it('[Control+Alt+R] changes aspect ratio', () => {
+            const slideshow = styled_slideshow();
+            slideshow.start(0);
+            press_control_alt_R(slideshow);
+            const root = slideshow._document.documentElement;
+            const style = window.getComputedStyle(root);
+            const ratio = style.getPropertyValue('--slide-ratio');
+            assert.equal(ratio, '1')
+            const text_size = style.getPropertyValue('--text-size');
+            assert.equal(text_size, '4.5')
+            const margin = style.getPropertyValue('--side-margin');
+            assert.equal(margin, '1em')
+        })
+
+        it('[Control+Alt+R] 2: back to normal', () => {
+            const slideshow = styled_slideshow();
+            slideshow.start(0);
+            press_control_alt_R(slideshow);
+            press_control_alt_R(slideshow);
+            const root = slideshow._document.documentElement;
+            const style = window.getComputedStyle(root);
+            const ratio = style.getPropertyValue('--slide-ratio');
+            assert.equal(ratio, '2')
+            const text_size = style.getPropertyValue('--text-size');
+            assert.equal(text_size, '5')
+            const margin = style.getPropertyValue('--side-margin');
+            assert.equal(margin, '2.5em')
+        })
+    })
 })

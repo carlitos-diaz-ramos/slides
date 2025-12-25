@@ -150,8 +150,8 @@ export class SlideShow {
             this.start_scribble();
         } else if (code == 'KeyA' && event.ctrlKey && event.altKey) {
             this.toggle_remote_behavior();
-        // } else if (code == 'KeyR' && event.ctrlKey && event.altKey) {
-        //     this.change_aspect_ratio();
+        } else if (code == 'KeyR' && event.ctrlKey && event.altKey) {
+            this.change_aspect_ratio();
         // } else if (code == 'KeyP' && event.ctrlKey && event.altKey) {
         //     this.change_to_print_mode();
         // } else if (code == 'KeyN' && event.ctrlKey && event.altKey) {
@@ -330,27 +330,27 @@ export class SlideShow {
         insert_after(copy, slide);
     }
 
-    // change_aspect_ratio() {
-    //     const root = document.querySelector(':root');
-    //     const style = window.getComputedStyle(root);
-    //     const current_ratio = style.getPropertyValue('--slide-ratio');
-    //     const updated_ratio = style.getPropertyValue('--alt-slide-ratio');
-    //     const current_margin = style.getPropertyValue('--side-margin');
-    //     const updated_margin = style.getPropertyValue('--alt-side-margin');
-    //     const current_size = style.getPropertyValue('--text-size');
-    //     const updated_size = style.getPropertyValue('--alt-text-size');
-    //     root.style.setProperty('--slide-ratio', updated_ratio);
-    //     root.style.setProperty('--alt-slide-ratio', current_ratio);
-    //     root.style.setProperty('--side-margin', updated_margin);
-    //     root.style.setProperty('--alt-side-margin', current_margin);
-    //     root.style.setProperty('--text-size', updated_size);
-    //     root.style.setProperty('--alt-text-size', current_size);
-    //     console.log(
-    //         'Aspect ratio:', updated_ratio, 
-    //         ', Margin:', updated_margin,
-    //         ', Text size:', updated_size,
-    //     );
-    // }
+    change_aspect_ratio() {
+        const root = this._document.documentElement;
+        const style = window.getComputedStyle(root);
+        const current_ratio = style.getPropertyValue('--slide-ratio');
+        const updated_ratio = style.getPropertyValue('--alt-slide-ratio');
+        const current_margin = style.getPropertyValue('--side-margin');
+        const updated_margin = style.getPropertyValue('--alt-side-margin');
+        const current_size = style.getPropertyValue('--text-size');
+        const updated_size = style.getPropertyValue('--alt-text-size');
+        root.style.setProperty('--slide-ratio', updated_ratio);
+        root.style.setProperty('--alt-slide-ratio', current_ratio);
+        root.style.setProperty('--side-margin', updated_margin);
+        root.style.setProperty('--alt-side-margin', current_margin);
+        root.style.setProperty('--text-size', updated_size);
+        root.style.setProperty('--alt-text-size', current_size);
+        console.log(
+            'Aspect ratio:', updated_ratio, 
+            ', Margin:', updated_margin,
+            ', Text size:', updated_size,
+        );
+    }
 
     // change_to_print_mode() {
     //     this.stop();
