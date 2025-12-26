@@ -1,5 +1,5 @@
 import {Animation, StopAnimation} from './animation.ts';
-import {show_all, animate_all, erase_all, insert_after} from './util.ts';
+import {show_all, animate_all, erase_all, insert_after, SlidesError} from './util.ts';
 import {Canvas} from './canvas.ts';
 
 
@@ -42,11 +42,11 @@ export class SlideShow {
         this.change_slide(start); 
     }
 
-    // stop() {
-    //     this._document.removeEventListener("keydown", this._on_key_down);
-    //     this._document.removeEventListener("wheel", this._wheel_handler);
-    //     this._current.slide.classList.remove("current");
-    // }
+    stop() {
+        this._document.removeEventListener("keydown", this._on_key_down);
+        this._document.removeEventListener("wheel", this._wheel_handler);
+        this._current!.slide.classList.remove("current");
+    }
 
     protected _insert_title_next_button() {
         const footer = this._document.querySelector('#title footer');
@@ -152,10 +152,10 @@ export class SlideShow {
             this.toggle_remote_behavior();
         } else if (code == 'KeyR' && event.ctrlKey && event.altKey) {
             this.change_aspect_ratio();
-        // } else if (code == 'KeyP' && event.ctrlKey && event.altKey) {
-        //     this.change_to_print_mode();
-        // } else if (code == 'KeyN' && event.ctrlKey && event.altKey) {
-        //     this.change_to_notransitions_mode();
+        } else if (code == 'KeyP' && event.ctrlKey && event.altKey) {
+            this.change_to_print_mode();
+        } else if (code == 'KeyN' && event.ctrlKey && event.altKey) {
+            this.change_to_notransitions_mode();
         }
     }
 
@@ -352,25 +352,36 @@ export class SlideShow {
         );
     }
 
-    // change_to_print_mode() {
-    //     this.stop();
-    //     console.log('Print mode');
-    //     const link = document.createElement('link');
-    //     link.rel = 'stylesheet';
-    //     TODO: insert path correctly; e.g. in doc.html we need ..
-    //     link.href = 'code/print.css';
-    //     document.head.append(link);
-    //     this.print_mode();
-    // }
+    change_to_print_mode() {
+        this.stop();
+        console.log('Print mode');
+        this._add_style_sheet('print.css');
+        this.print_mode();
+    }
 
-    // change_to_notransitions_mode() {
-    //     this.stop();
-    //     console.log('No transitions mode');
-    //     const link = document.createElement('link');
-    //     link.rel = 'stylesheet';
-    //     link.href = 'code/notransitions.css';
-    //     document.head.append(link);
-    // }
+    change_to_notransitions_mode() {
+        this.stop();
+        console.log('No transitions mode');
+        this._add_style_sheet('notransitions.css')
+    }
+
+    _add_style_sheet(file: string) {
+        const link = this._document.createElement('link');
+        link.rel = 'stylesheet';
+        // All slides' style sheets are assumed to be in the same folder
+        const path = this._get_style_sheet_path();
+        link.href = `${path}${file}`;
+        this._document.head.append(link);
+    }
+
+    _get_style_sheet_path() {
+        const links = Array.from(this._document.querySelectorAll('link'));
+        for (const link of links) {
+            if (link.href !== null && link.href.endsWith('slides.css')) 
+                return link.href.split('slides.css')[0];
+        }
+        throw new SlidesError('slides.css not included.');
+    }
 }
     
 type ThreeCanvas = HTMLCanvasElement & {force_render: () => null};

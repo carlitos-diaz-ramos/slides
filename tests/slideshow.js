@@ -51,6 +51,10 @@ describe('SlideShow', function() {
              </section>
             </article>
         `;
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'mypath/slides.css';
+        slideshow.head.append(link);
         const main = slideshow.createElement('main');
         main.innerHTML = code;
         slideshow.body.append(main);
@@ -83,6 +87,12 @@ describe('SlideShow', function() {
         const key = {'code': code, 'altKey': alt};
         const event = new KeyboardEvent('keydown', key);
         return slideshow._document.dispatchEvent(event)
+    }
+
+    function press_control_alt_key(slideshow, key) {
+        const pushed = {'code': `Key${key}`, 'ctrlKey': true, 'altKey': true};
+        const event = new KeyboardEvent('keydown', pushed);
+        return slideshow._document.dispatchEvent(event);
     }
 
     describe('Test slideshow from example code', function() {
@@ -896,12 +906,6 @@ describe('SlideShow', function() {
     })
 
     describe('Toggle behaviour of PageDown/PageUp', function() {
-        function press_control_alt_A(slideshow) {
-            const key = {'code': 'KeyA', 'ctrlKey': true, 'altKey': true};
-            const event = new KeyboardEvent('keydown', key);
-            return slideshow._document.dispatchEvent(event);
-        }
-
         it('Default behaviour is going to next slide', function() {
             const slideshow = create_slideshow();
             slideshow.start(0);
@@ -959,7 +963,7 @@ describe('SlideShow', function() {
         it('[Control+Alt+A] [PageDown] 3: slide 2', function() {
             const slideshow = create_slideshow();
             slideshow.start();
-            press_control_alt_A(slideshow);
+            press_control_alt_key(slideshow, 'A');
             press_key(slideshow, 'PageDown');
             press_key(slideshow, 'PageDown');
             press_key(slideshow, 'PageDown');
@@ -969,7 +973,7 @@ describe('SlideShow', function() {
         it('[Control+Alt+A] start 3, [->] [PageUp]: slide 3', function() {
             const slideshow = create_slideshow();
             slideshow.start(3);
-            press_control_alt_A(slideshow);
+            press_control_alt_key(slideshow, 'A');
             press_key(slideshow, 'ArrowRight');
             press_key(slideshow, 'PageUp');
             assert.equal(slideshow.index, 3);
@@ -978,7 +982,7 @@ describe('SlideShow', function() {
         it('[Control+Alt+A] [Alt+PageDown] 3: slide 3', function() {
             const slideshow = create_slideshow();
             slideshow.start();
-            press_control_alt_A(slideshow);
+            press_control_alt_key(slideshow, 'A');
             press_key(slideshow, 'PageDown', true);
             press_key(slideshow, 'PageDown', true);
             press_key(slideshow, 'PageDown', true);
@@ -988,7 +992,7 @@ describe('SlideShow', function() {
         it('[Control+Alt+A] start 3, [->] [Alt+PageUp]: slide 2', function() {
             const slideshow = create_slideshow();
             slideshow.start(3);
-            press_control_alt_A(slideshow);
+            press_control_alt_key(slideshow, 'A');
             press_key(slideshow, 'ArrowRight');
             press_key(slideshow, 'PageUp', true);
             assert.equal(slideshow.index, 2);
@@ -997,7 +1001,7 @@ describe('SlideShow', function() {
         it('[Control+Alt+A] 2, [Alt+PageDown] 3: slide 3', function() {
             const slideshow = create_slideshow();
             slideshow.start();
-            press_control_alt_A(slideshow);
+            press_control_alt_key(slideshow, 'A');
             press_key(slideshow, 'PageDown', true);
             press_key(slideshow, 'PageDown', true);
             press_key(slideshow, 'PageDown', true);
@@ -1007,8 +1011,8 @@ describe('SlideShow', function() {
         it('Start 3, [Control+Alt+A] 2, [->] [Alt+PageUp]: slide 2', () => {
             const slideshow = create_slideshow();
             slideshow.start(3);
-            press_control_alt_A(slideshow);
-            press_control_alt_A(slideshow);
+            press_control_alt_key(slideshow, 'A');
+            press_control_alt_key(slideshow, 'A');
             press_key(slideshow, 'ArrowRight');
             press_key(slideshow, 'PageUp', true);
             assert.equal(slideshow.index, 2);
@@ -1019,7 +1023,7 @@ describe('SlideShow', function() {
         function get_animations() {
             const slideshow = create_slideshow();
             slideshow.print_mode();
-            const slides = slideshow._document.querySelectorAll('article')
+            const slides = slideshow._document.querySelectorAll('article');
             return Array.from(slides);
         }
 
@@ -1040,6 +1044,12 @@ describe('SlideShow', function() {
             assert.equal(slides.length, 9);
         })
 
+        function has_style_sheet(slideshow, file) {
+            const links = slideshow._document.querySelectorAll('link');
+            const style_sheets = Array.from(links).map(path => path.href);
+            return style_sheets.includes(file);
+        }
+        
         it('Article 5: slide 3, show 2, animate 1, erase 1', function() {
             const slides = get_animations();
             const slide = slides[4];
@@ -1069,13 +1079,13 @@ describe('SlideShow', function() {
 
         it('No transitions: there are 4 slides', function() {
             const slideshow = create_slideshow();
-            let slides = slideshow._document.getElementsByTagName('article')
+            let slides = slideshow._document.querySelectorAll('article')
             assert.equal(Array.from(slides).length, 4);
         })
 
         it('No transitions, slide 3: show 4, animate 4, erase 3', function() {
             const slideshow = create_slideshow();
-            const slides = slideshow._document.getElementsByTagName('article')
+            const slides = slideshow._document.querySelectorAll('article');
             const slide = Array.from(slides)[2];
             const shown = get_shown(slide);
             assert.equal(shown.length, 0);
@@ -1083,6 +1093,47 @@ describe('SlideShow', function() {
             assert.equal(animated.length, 0);
             const erased = get_erased(slide);
             assert.equal(erased.length, 0);
+        })
+
+        it('Start in normal mode', () => {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            const slides = slideshow._document.querySelectorAll('article');
+            assert.equal(slides.length, 4);
+            const current = slideshow._document.querySelector('.current');
+            assert.notEqual(current, null);
+            assert.isTrue(has_style_sheet(slideshow, 'mypath/slides.css'));
+            assert.isFalse(has_style_sheet(slideshow, 'mypath/print.css'));
+            assert.isFalse(
+                has_style_sheet(slideshow, 'mypath/notransitions.css'));
+        })
+
+        it('[Control+Alt+N]: no transtions mode', () => {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_key(slideshow, 'N');
+            const slides = slideshow._document.querySelectorAll('article');
+            assert.equal(slides.length, 4);
+            const current = slideshow._document.querySelector('.current');
+            assert.equal(current, null);
+            assert.isTrue(has_style_sheet(slideshow, 'mypath/slides.css'));
+            assert.isFalse(has_style_sheet(slideshow, 'mypath/print.css'));
+            assert.isTrue(
+                has_style_sheet(slideshow, 'mypath/notransitions.css'));
+        })
+
+        it('[Control+Alt+P]: print mode', () => {
+            const slideshow = create_slideshow();
+            slideshow.start();
+            press_control_alt_key(slideshow, 'P');
+            const slides = slideshow._document.querySelectorAll('article');
+            assert.equal(slides.length, 9);
+            const current = slideshow._document.querySelector('.current');
+            assert.equal(current, null);
+            assert.isTrue(has_style_sheet(slideshow, 'mypath/slides.css'));
+            assert.isTrue(has_style_sheet(slideshow, 'mypath/print.css'));
+            assert.isFalse(
+                has_style_sheet(slideshow, 'mypath/notransitions.css'));
         })
     })
 
@@ -1109,12 +1160,6 @@ describe('SlideShow', function() {
             return new SlideShow(slideshow);
         }
 
-        function press_control_alt_R(slideshow) {
-            const key = {'code': 'KeyR', 'ctrlKey': true, 'altKey': true};
-            const event = new KeyboardEvent('keydown', key);
-            return slideshow._document.dispatchEvent(event);
-        }
-
         it('Regular values of ratio, text size, and margin', () => {
             const slideshow = styled_slideshow();
             slideshow.start(0);
@@ -1131,7 +1176,7 @@ describe('SlideShow', function() {
         it('[Control+Alt+R] changes aspect ratio', () => {
             const slideshow = styled_slideshow();
             slideshow.start(0);
-            press_control_alt_R(slideshow);
+            press_control_alt_key(slideshow, 'R');
             const root = slideshow._document.documentElement;
             const style = window.getComputedStyle(root);
             const ratio = style.getPropertyValue('--slide-ratio');
@@ -1145,8 +1190,8 @@ describe('SlideShow', function() {
         it('[Control+Alt+R] 2: back to normal', () => {
             const slideshow = styled_slideshow();
             slideshow.start(0);
-            press_control_alt_R(slideshow);
-            press_control_alt_R(slideshow);
+            press_control_alt_key(slideshow, 'R');
+            press_control_alt_key(slideshow, 'R');
             const root = slideshow._document.documentElement;
             const style = window.getComputedStyle(root);
             const ratio = style.getPropertyValue('--slide-ratio');
