@@ -1,5 +1,12 @@
+/**
+ * slideshow - A module that define the class SlideShow whose aim is to 
+ * represent a slide show.
+ */
+
 import {Animation, StopAnimation} from './animation.ts';
-import {show_all, animate_all, erase_all, insert_after, SlidesError} from './util.ts';
+import {
+    show_all, animate_all, erase_all, insert_after, SlidesError
+} from './util.ts';
 import {Canvas} from './canvas.ts';
 
 
@@ -7,9 +14,9 @@ export class SlideShow {
     /**
      * Represents a slide show associated to a given html document.
      */
-    protected _document: HTMLDocument;
-    protected _slides: HTMLElement[];
-    protected _canvas: Canvas;
+    protected readonly _document: HTMLDocument;
+    protected readonly _slides: HTMLElement[];
+    protected readonly _canvas: Canvas;
     protected _remote_arrows: boolean = true;
     protected _index: number = -1;
     protected _current: Animation | null = null;
@@ -331,6 +338,10 @@ export class SlideShow {
     }
 
     change_aspect_ratio() {
+        /**
+         * Changes the aspect ratio to an alternative configuration set in a
+         * css file.
+         */
         const root = this._document.documentElement;
         const style = window.getComputedStyle(root);
         const current_ratio = style.getPropertyValue('--slide-ratio');
@@ -353,6 +364,10 @@ export class SlideShow {
     }
 
     change_to_print_mode() {
+        /**
+         * Stops the slide show and enters print mode producing a slide for
+         * each animation.
+         */
         this.stop();
         console.log('Print mode');
         this._add_style_sheet('print.css');
@@ -360,12 +375,16 @@ export class SlideShow {
     }
 
     change_to_notransitions_mode() {
+        /**
+         * Stops the slide show and enters print mode producing a slide with
+         * its last animation.
+         */
         this.stop();
         console.log('No transitions mode');
         this._add_style_sheet('notransitions.css')
     }
 
-    _add_style_sheet(file: string) {
+    protected _add_style_sheet(file: string) {
         const link = this._document.createElement('link');
         link.rel = 'stylesheet';
         // All slides' style sheets are assumed to be in the same folder
@@ -374,7 +393,7 @@ export class SlideShow {
         this._document.head.append(link);
     }
 
-    _get_style_sheet_path() {
+    protected _get_style_sheet_path() {
         const links = Array.from(this._document.querySelectorAll('link'));
         for (const link of links) {
             if (link.href !== null && link.href.endsWith('slides.css')) 

@@ -40,8 +40,10 @@ function on_print_load() {
 }
 
 function get_mode() {
-    // Decide if slideshow mode is on, based on whether "code/print.css" 
-    // or code/notransitions.css is loaded or not
+    /**
+     * Decide if slideshow mode is on, based on whether "print.css" or 
+     * "notransitions.css" is loaded or not.
+     */
     let parts: string[], mode = "Slideshow";
     for (let sheet of document.styleSheets) {
         if (sheet.href !== null) {

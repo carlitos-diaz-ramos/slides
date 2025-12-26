@@ -4,7 +4,6 @@
 
 import {
     hide_all, show_all, animate_all, deanimate_all, erase_all, unerase_all,
-    SlidesError,
 } from './util.ts';
 
 

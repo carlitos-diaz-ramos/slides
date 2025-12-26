@@ -7,7 +7,7 @@ export class Canvas {
     /**
      * Represents a canvas for very basic drawing on a slide.
      */
-    protected _document: HTMLDocument;
+    protected readonly _document: HTMLDocument;
     protected _section: HTMLElement | null = null;
     protected _stroke: SVGPolylineElement | null = null;
     protected _svg: SVGElement | null = null;
