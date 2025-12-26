@@ -33,7 +33,7 @@ export class SlideShow {
         this._canvas = new Canvas(document);
     }
 
-    start(index: number = 0) {
+    start(index: number | undefined = undefined) {
         /**
          * Starts presentation at the page with the given index.
          */

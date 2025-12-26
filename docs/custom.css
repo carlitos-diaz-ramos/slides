@@ -2,6 +2,8 @@
 * Style sheet for custom styles
 *****************************************/
 :root {
+    --text-size: 4;
+    --alt-text-size: 3.5;
     --text-color: hsl(0, 0%, 20%);
 
     --content-lemma: "Lema. ";

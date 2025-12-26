@@ -32,8 +32,8 @@ Table of contents:
     --text-size: 5; /* Percentage of slide size */
     --alt-text-size: 4.5;
     --strong-color: red;
-    --math-color: purple;
-    --code-color: indigo;
+    --math-color: indigo;
+    --code-color: purple;
     --sec-margin-top: 1em;
     --side-margin: 2.5em; /* 4:3 -> 1em, 16:10 -> 2em */
     --alt-side-margin: 1em;
@@ -568,7 +568,7 @@ svg [class*="bg-"] {
 *****************************************************/
 ul {
     margin-block: 0;
-    margin-inline: calc(0.5*var(--side-margin, 1ex)) 0;
+    margin-inline: 1em 0;
     list-style-type: square;
 }
 

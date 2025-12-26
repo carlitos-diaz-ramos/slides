@@ -100,14 +100,15 @@
 &lt;/head&gt;<br>
 </code>
 
-<p>No directorio <code>code</code> est&aacute;n os arquivos necesarios.
+<p>No directorio <code>dist</code> est&aacute;n os arquivos necesarios.
 Cambia-lo nome en <code>head</code> se se escolle outro directorio.</p>
 
 <p>O arquivo <code>slides.css</code> &eacute; responsable do estilo b&aacute;sico da presentaci&oacute;n. P&oacute;dense engadir outros arquivos de estilo a maiores.</p>
 
 <p>O arquivo <code>slides.js</code> ten o c&oacute;digo para facer as transici&oacute;ns.</p>
 
-<p>En caso de querer imprimir, cambia-lo arquivo <code>slide.css</code> por <code>print.css</code>. Para imprimir sen transici&oacute;ns empregar en cambio <code>notransitions.css</code></p>
+<p>En caso de querer imprimir, cambia-lo arquivo <code>slide.css</code> por <code>print.css</code>. Para imprimir sen transici&oacute;ns empregar en cambio <code>notransitions.css</code>.
+Non obstante, ver <a href="#imprimir">imprimir</a> para máis información.</p>
 </section>
 </article>
 
@@ -128,7 +129,7 @@ Cambia-lo nome en <code>head</code> se se escolle outro directorio.</p>
 <li>Alt+&#x21DF;: diapositiva seguinte.</li>
 <li>Alt+&#x21DE;: diapositiva anterior.</li>
 <li>&#x2196;: t&aacute;boa de contidos.</li>
-<li>Alt+&#x2196;: primeira diapositiva.</li>
+<li>Control+&#x2196;: primeira diapositiva.</li>
 <li>&#x2198;: &uacute;ltima diapositiva.</li>
 <li>Movemento da roda do rato: permite moverse cara adiante e atr&aacute;s.</li>
 </ul>
@@ -146,7 +147,10 @@ Cambia-lo nome en <code>head</code> se se escolle outro directorio.</p>
 <p>Outros commandos para facer cousas:</p>
 <ul>
 <li>Control+Alt+A: altera-lo comportamento de &#x21DF; e &#x21DE; como se explica na diapositiva seguinte.</li>
+<li>Control+Alt+R: cambia a <a href="#relacion-aspecto">relación de aspecto</a> a unha configuración alternativa.</li>
 <li>Control+Alt+D: <a href="#anotacions">debuxar a man alzada</a>.</li>
+<li>Control+Alt+P: <a href="#imprimir">imprimir</a> diapositivas con animacións.</li>
+<li>Control+Alt+N: <a href="#imprimir">imprimir</a> diapositivas sen animacións.</li>
 </ul>
 </section>
 </article>
@@ -163,7 +167,7 @@ Cambia-lo nome en <code>head</code> se se escolle outro directorio.</p>
 Control+Alt+A altera o comportamento de &#x21DF; e &#x21DE; 
 (avanzar e retroceder p&aacute;xina).</p>
 
-<p>Por defecto Control+&#x21DF; e Control+&#x21DE; serven para pasar &aacute; seguinte ou &aacute; anterior diapositiva respectivamente.
+<p>Por defecto &#x21DF; e &#x21DE; serven para pasar &aacute; seguinte ou &aacute; anterior diapositiva respectivamente.
 Non obstante, alg&uacute;ns mandos a distancia est&aacute;n configurados para que as frechas de avanzar e retroceder funcionen como &#x21DF; e &#x21DE;.</p>
 
 <p>Para evitar que se perdan as animaci&oacute;ns, Control+Alt+A altera o comportamento de &#x21DF; e &#x21DE; para que funcionen como avanzar animaci&oacute;n, e que as&iacute; o mando a distancia funcione do xeito requerido.</p>
@@ -197,7 +201,7 @@ Non obstante, alg&uacute;ns mandos a distancia est&aacute;n configurados para qu
 No <code>&lt;h1&gt;</code> situado en <code>&lt;header&gt;</code> vai o seu t&iacute;tulo, que por defecto se ve como unha cinta.
 O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 
-<p>Na barra de t&iacute;tulo ins&eacute;rtanse automaticamente tres bot&oacute;ns para ir adiante, atr&aacute;s, e &oacute;s contidos.</p>
+<p>Na barra de t&iacute;tulo ins&eacute;rtanse automaticamente tres bot&oacute;ns para ir adiante, atr&aacute;s, pintar a man alzada, e &oacute;s contidos.</p>
 </section>
 </article>
 
@@ -275,7 +279,8 @@ O contido da diapositiva vai dentro de <code>&lt;section&gt;</code>.</p>
 
 <p>Recordemos que este paquete non carga <code>Mathjax</code>, 
 pero podemos inclu&iacute;lo facilmente mediante
-<code>&lt;script src=&quot;code/jax.js&quot; async&gt;&lt;/script&gt;</code></p>
+<code>&lt;script src=&quot;jax.js&quot; async&gt;&lt;/script&gt;</code>
+(poñendo o directorio axeitado).</p>
 
 <p>As&iacute;, podemos po&ntilde;er f&oacute;rmulas en li&ntilde;a coma esta $ax^2+b+x+c=0$, ou en display:
 \[
@@ -1090,8 +1095,6 @@ Ademais tam&eacute;n &eacute; posible ir facendo aparecer paulatinamente os elem
     color: red;
 }
 </pre>
-
-<p class="boxed bg-white">Esta caracter&iacute;stica a&iacute;nda &eacute; experimental.</p>
 </section>
 </article>
 
@@ -1109,9 +1112,7 @@ Por tanto, a&iacute;nda que o elemento desapareza, o seu espacio segue sendo ocu
 
 <p>Como exemplo, no fondo desta diapositiva faise desaparecer un debuxo.
 Nesta diapositiva o elemento foi colocado con <code>position: absolute</code> para que non infl&uacute;a no fluxo da diapositiva.
-Por esa raz&oacute;n, esta diapositiva tam&eacute;n ten se coloca con <code>display: block</code>.</p>
-
-<p class="boxed bg-white">Esta caracter&iacute;stica a&iacute;nda &eacute; experimental.</p>
+Por esa raz&oacute;n, esta diapositiva tam&eacute;n se coloca con <code>display: block</code>.</p>
 
 <div class="row-pictures pictures-tiny erase-10">
 <figure>
@@ -1137,7 +1138,7 @@ A parte relevante do c&oacute;digo &eacute;:</p>
 ...
 &lt;/div&gt;
 
-&lt;div class="row-pictures erased-example show-10"&gt;
+&lt;div class="row-pictures erased-example erase-10"&gt;
 ...
 &lt;/div&gt;
 </code>
@@ -1269,7 +1270,38 @@ article {
 <li>relaci&oacute;n de aspecto 16:10: <code>--slide-ratio: calc(16 / 10);</code>.</li>
 </ul>
 
-<p>Conv&eacute;n tam&eacute;n cambiar <code>--side-margin</code> se a relaci&oacute;n non &eacute; 4:3 para evitar li&ntilde;as moi longas.</p>
+<p>Conv&eacute;n tam&eacute;n cambiar <code>--side-margin</code> se a relaci&oacute;n non &eacute; 4:3 para evitar li&ntilde;as moi longas, 
+ou o tamaño do texto <code>--text-size</code> para adapata-lo á superficie dispoñible.</p>
+</section>
+</article>
+
+
+<!--************************* Slide ****************************-->
+<article>
+<header>
+<h2>Relaci&oacute;n de aspecto</h2>
+</header>
+
+<section>
+<p>Para adaptarse dinamicamente á relación de aspecto (que depende do proxector), permítese cambiar esta entre dúas opcións alternativas mediante a combinación de teclas <code>Control+Alt+R</code>.</p>
+
+<p>No arquivo <code>css</code> debe haber dúas configuracións posibles que afectan ás seguintes variables:</p>
+<table>
+<tr>
+<td><code>--aspect-ratio</code></td>
+<td><code>--alt-aspect-ratio</code></td>
+</tr>
+<tr>
+<td><code>--side-margin</code></td>
+<td><code>--alt-side-margin</code></td>
+</tr>
+<tr>
+<td><code>--text-size</code></td>
+<td><code>--alt-text-size</code></td>
+</tr>
+</table>
+
+<p>A combinación de teclas permite alternar entre os valores por defecto (sen <code>alt-</code>) e os valores alternativos (con <code>alt-</code>).</p>
 </section>
 </article>
 
@@ -1308,12 +1340,12 @@ article {
 <ul>
 <li>Color de fondo das diapositivas: <code>--bg-color: white</code></li>
 <li>Color do texto: <code>--text-color: black</code></li>
-<li>% de tama&ntilde;o da fonte con respecto &aacute; diapositiva: <code>--text-size: 4</code></li>
+<li>% de tama&ntilde;o da fonte con respecto &aacute; diapositiva: <code>--text-size: 5</code></li>
 <li>Cor do texto enfatizado fortemente: <code>--strong-color: red</code></li>
-<li>Cor das f&oacute;rmulas matem&aacute;ticas: <code>--math-color: purple</code></li>
-<li>Cor do c&oacute;digo inform&aacute;tico: <code>--code-color: indigo</code></li>
-<li>Marxe superior do contido principal: <code>--sec-margin-top: 1rem</code></li>
-<li>Marxe lateral do contido principal: <code>--side-margin: 2em</code></li>
+<li>Cor das f&oacute;rmulas matem&aacute;ticas: <code>--math-color: indigo</code></li>
+<li>Cor do c&oacute;digo inform&aacute;tico: <code>--code-color: purple</code></li>
+<li>Marxe superior do contido principal: <code>--sec-margin-top: 1em</code></li>
+<!-- <li>Marxe lateral do contido principal: <code>--side-margin: 2.5em</code></li> -->
 <li>Separaci&oacute;n entre p&aacute;rrafos: <code>--par-sep: 0.3em</code></li>
 <li>Modo de maquetaci&oacute;n: <code>--section-display: flex</code></li>
 <li>Xustificaci&oacute;n vertical: <code>--vertical-justify: flex-start</code></li>
@@ -1337,9 +1369,9 @@ article {
 <li>Cor do t&iacute;tulo: <code>--title-color: maroon;</code></li>
 <li>Cor da cinta da cabeceira: <code>--header-color: linear-gradient(to bottom right, black, blue);</code></li>
 <li>Cor do texto da cabeceira: <code>--header-text-color: white;</code></li>
-<li>Altura da cinta da cabeceira: <code>--header-height: 2.2em;</code></li>
+<li>Altura da cinta da cabeceira: <code>--header-height: 1.5em;</code></li>
 <li>Marxe lateral dos entornos e caixas: <code>--box-side-margin: -0.3em;</code></li>
-<li>Sombra do borde (para entornos e caixas): <code>--shadow: 0 0.15rem 0.3rem 0 lightgrey, 0 0.2rem 0.7rem 0 lightgrey;</code></li>
+<li>Sombra do borde (para entornos e caixas): <code>--shadow: 0.2ex 0.3ex 0.2ex 0 lightgrey, 0 -0.2ex 0.7ex 0 lightgrey;</code></li>
 <li>Radio dos bordes: <code>--border: 0.3rem;</code></li>
 </ul>
 </section>
@@ -1405,13 +1437,20 @@ Por exemplo, as caixas azuis ou os problemas empregan esta combinaci&oacute;n.</
 </header>
 
 <section>
-<p>Para imprimir a <code>pdf</code>:</p>
+<p>Para imprimir a <code>pdf</code> pódese seleccionar o arquivo <code>print.css</code> incluído co código.</p>
+
+<p>Alternativamente, a combinación de teclas <code>Control+Alt+P</code> pasa a modo impresión automaticamente.
+Para volver ó modo normal hai que recargá-la páxina con <code>F5</code>.</p>
+
+<p>Despois de poñernos en modo impresión hai que imprimi-la páxina web co navegador:</p>
 <ul>
-<li>Seleccionar (descomentar na plantilla) o arquivo <code>css</code> <code>code/print.css</code>.</li>
 <li>Seleccionar "Imprimir co cadro de di&aacute;logo de sistema" e en "Adobe" ir a "Preferencias".  En "Adobe PDF Page Size" darlle a "Add..." e crear un tama&ntilde;o da proporci&oacute;n necesaria (p. ex. 320mm x 200mm para 16:10).  Salvar.</li>
 <li>A seguinte vez que se imprima aparecer&aacute; ese tama&ntilde;o, e imprimir normal.</li>
 </ul>
-<p>En vez de <code>code/print.css</code> p&oacute;dese coller <code>code/notransitions.css</code>. Con este m&eacute;todo non se conservan as animaci&oacute;ns, o cal &eacute; bo para distribu&iacute;-la presentaci&oacute;n.</p>
+
+<p>En vez de <code>print.css</code> p&oacute;dese coller <code>notransitions.css</code>. Con este m&eacute;todo non se conservan as animaci&oacute;ns, o cal &eacute; bo para distribu&iacute;-la presentaci&oacute;n.
+Alternativamente, isto pode conseguirse coa combinación de teclas
+<code>Control+Alt+N</code> e os comentarios anteriores aplícanse a este caso.</p>
 </section>
 </article>
 
