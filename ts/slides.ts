@@ -44,22 +44,15 @@ function get_mode() {
      * Decide if slideshow mode is on, based on whether "print.css" or 
      * "notransitions.css" is loaded or not.
      */
-    let parts: string[], mode = "Slideshow";
     for (let sheet of document.styleSheets) {
         if (sheet.href !== null) {
-            parts = sheet.href.split("code/");
-            if (parts.length > 1) {
-                if (parts[1] === "print.css") {
-                    mode = "Print";
-                    break;
-                } else if (parts[1] === "notransitions.css") {
-                    mode = "No transitions";
-                    break;
-                }
-            }
+            if (sheet.href.endsWith('print.css')) 
+                return 'Print';
+            else if (sheet.href.endsWith('notransitions.css')) 
+                return 'No transitions';
         }
     }
-    return mode;
+    return 'Slideshow';
 }
 
 define_elements();
