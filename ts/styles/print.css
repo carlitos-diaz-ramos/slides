@@ -1,0 +1,37 @@
+/****************************************************
+* Printing slides:
+- Seleccionar "Imprimir co cadro de diálogo de sistema" e en "Adobe" ir a 
+"Preferencias".  En "Adobe PDF Page Size" darlle a "Add..." e crear un tamaño 
+da proporción necesaria (p. ex. 320mm x 200mm para 16:10).  Salvar.
+- A seguinte vez que se imprima aparecerá ese tamaño, e imprimir normal.
+- Tamén hai tamaños por defecto que poden valer. E.g.:
+    + North America 5x8 (5inx8in) para 16:10.
+*****************************************************/
+
+/* Main blocks
+*****************************************************/
+article {
+    display: block;
+}
+
+#title button, header button {
+	display: none;
+}
+
+
+@media print {
+    @page { 
+        margin-block: 0;
+        margin-inline: 0;
+    }
+
+    body {
+        height: 100%;
+    }
+    
+	article {
+		page-break-after: always;
+        page-break-inside: avoid;
+	}  
+}
+

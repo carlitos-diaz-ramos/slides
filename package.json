@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "A Javascript package for building a simple slide show.",
   "private": true,
-  "main": "./dist/slides.bundle.ts",
-  "types": "./dist/slides.bundle.d.ts",
+  "main": "./dist/slides.bundle.js",
   "exports": {
     ".": {
       "import": "./dist/slides.bundle.js"

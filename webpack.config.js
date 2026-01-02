@@ -3,8 +3,7 @@ import * as path from 'path';
 export default {
     mode: 'development',
     entry: {
-        "slides": './ts/slides.ts',
-        // "slides-jax": './modules/slides-jax.js',
+        "slides": './ts/index.ts',
     },
     devtool: 'source-map',
     resolve: {
@@ -16,8 +15,9 @@ export default {
         }
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].js',
         path: path.resolve('dist'),
+        assetModuleFilename: '[name][ext]'
     },
     devServer: {
         static: {
@@ -33,6 +33,10 @@ export default {
             { 
                 test: /\.js$/, 
                 loader: "source-map-loader", 
+            },
+            {
+                test: /\.css$/,
+                type: 'asset/resource',
             },
         ],
     },
