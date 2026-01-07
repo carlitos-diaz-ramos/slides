@@ -1,7 +1,11 @@
-"use strict";
+import {relative_path, parent_folder} from "./path.ts";
 
-(function() {
-    const mathjax_config = {
+function mathjax_config() {
+    const doc = document.baseURI;
+    const script = document.currentScript as HTMLScriptElement;
+    const file = script.src;
+    const folder = parent_folder(relative_path(file, doc));
+    return {
         loader: {
             load: ['[tex]/noerrors']
         },
@@ -34,6 +38,7 @@
         },
         options: {
             ignoreHtmlClass: 'latex-only',
+            enableMenu: false,
             menuOptions: {
                 settings: {
                     enrich: false,
@@ -41,23 +46,26 @@
             },
         },
         output: {
-            fontPath: '../code/mathjax/mathjax-newcm-font',
+            fontPath: `${folder}mathjax/mathjax-newcm-font`,
         },
     };
+} 
 
-    function load_mathjax(mode) {
-        const online = "https://cdn.jsdelivr.net/npm/mathjax@4";              
-        const folder = document.currentScript.src.split('/jax.js')[0];
-        const local = `${folder}/mathjax`;
-        let run = mode === "online" ? online : local;
-        let script = document.createElement('script');
-        script.src = `${run}/tex-chtml.js`;
-        script.async = true;
-        script.id = "MathJax-script";
-        document.head.append(script);
-    }
+function load_mathjax(mode: string) {
+    const online = "https://cdn.jsdelivr.net/npm/mathjax@4";              
+    const element = document.currentScript! as HTMLScriptElement;
+    const folder = element.src.split('/jax.js')[0];
+    const local = `${folder}/mathjax`;
+    let run = mode === "online" ? online : local;
+    let script = document.createElement('script');
+    script.src = `${run}/tex-chtml.js`;
+    script.async = true;
+    script.id = "MathJax-script";
+    document.head.append(script);
+}
 
-    window.MathJax = mathjax_config;
-    load_mathjax("local");
-    
-})();
+type JaxWindow = Window & typeof globalThis & {MathJax: object};
+
+const jax_window = window as JaxWindow;
+jax_window.MathJax = mathjax_config();
+load_mathjax("local");

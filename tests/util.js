@@ -2,8 +2,9 @@ import {
     show, show_all, hide, hide_all, 
     animate, animate_all, deanimate, deanimate_all,
     erase, unerase, erase_all, unerase_all,
-    insert_after
+    insert_after,
 } from '../modules/util.js';
+import {relative_path, parent_folder} from '../modules/path.js';
 
 
 describe('Functions that animate elements', function() {
@@ -297,5 +298,63 @@ describe('insert_after', function() {
         const newps = Array.from(div.getElementsByTagName('p'));
         assert.equal(newps.length, 4);
         assert.equal(newps[3].innerText.trim(), text);
+    })
+})
+
+describe('Path operations', () => {
+    describe('Folder of a file', () => {
+        it('There is a file', () => {
+            const file = 'file:///E:/colonio/path/html/dist/mathjax/jax.js';
+            const expected = 'file:///E:/colonio/path/html/dist/mathjax/';
+            assert.equal(parent_folder(file), expected);
+        })
+
+        it('If there is no file, return folder', () => {
+            const folder = 'file:///E:/colonio/path/html/dist/mathjax';
+            assert.equal(parent_folder(folder), folder);
+        })
+    })
+
+    describe('Relative paths', () => {
+        it('In different folders', () => {
+            const other = 'file:///E:/colonio/path/html/dist/mathjax/';
+            const main = 'file:///E:/colonio/path/html/docs/';
+            const result = relative_path(other, main);
+            const expected = '../dist/mathjax/';
+            assert.equal(result, expected);
+        })
+
+        it('In the same folder', () => {
+            const main = 'file:///E:/colonio/path/html/docs/';
+            const other = 'file:///E:/colonio/path/html/docs/';
+            const result = relative_path(other, main);
+            const expected = './';
+            assert.equal(result, expected);
+        })
+
+        it('Deeper in the same folder', () => {
+            const main = 'file:///E:/colonio/path/html/docs/';
+            const other = 'file:///E:/colonio/path/html/docs/code/';
+            const result = relative_path(other, main);
+            const expected = './code/';
+            assert.equal(result, expected);
+        })
+
+        it('Files in different folders', () => {
+            const other = 'file:///E:/colonio/path/html/dist/mathjax/jax.js';
+            const main = 'file:///E:/colonio/path/html/docs/doc.html';
+            const result = relative_path(other, main);
+            const expected = '../dist/mathjax/jax.js';
+            assert.equal(result, expected);
+        })
+
+        it('Files deeper in the same folder', () => {
+            const main = 'file:///E:/colonio/path/html/docs/doc.html';
+            const other = 'file:///E:/colonio/path/html/docs/code/jax.js';
+            const result = relative_path(other, main);
+            const expected = './code/jax.js';
+            assert.equal(result, expected);
+        })
+
     })
 })

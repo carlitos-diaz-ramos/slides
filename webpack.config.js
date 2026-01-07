@@ -3,7 +3,8 @@ import * as path from 'path';
 export default {
     mode: 'development',
     entry: {
-        "slides": './ts/index.ts',
+        slides: './ts/index.ts',
+        jax: './ts/jax.ts',
     },
     devtool: 'source-map',
     resolve: {
@@ -35,7 +36,7 @@ export default {
                 loader: "source-map-loader", 
             },
             {
-                test: /\.css$/,
+                test: /\.css|\.js$/,
                 type: 'asset/resource',
             },
         ],

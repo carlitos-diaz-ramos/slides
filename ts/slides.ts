@@ -1,5 +1,5 @@
 /**
- * slides - The main module of this page.
+ * slides - The main module of this package.
  * It creates a slide show after the page is loaded.
  */
 

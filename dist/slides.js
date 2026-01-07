@@ -453,7 +453,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slideshow_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slideshow.js */ "./ts/slideshow.ts");
 /* harmony import */ var _boxes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./boxes.js */ "./ts/boxes.ts");
 /**
- * slides - The main module of this page.
+ * slides - The main module of this package.
  * It creates a slide show after the page is loaded.
  */
 
