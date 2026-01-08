@@ -3,6 +3,11 @@
 *
 *****************************************/
 
+:root {
+    --slide-ratio: calc(16 / 9);
+    --text-size: 4;
+}
+
 article {
     background-image: url("pics/berndt-difuse.png");
     background-position: 10% 12%;
