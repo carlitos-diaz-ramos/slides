@@ -116,13 +116,12 @@ var __webpack_exports__ = {};
   \*******************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _path_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./path.js */ "./ts/path.ts");
+/**
+ * jax - A module that configures MathJax.
+ */
 
-function mathjax_config() {
-    const doc = document.baseURI;
-    const script = document.currentScript;
-    const file = script.src;
-    const folder = (0,_path_js__WEBPACK_IMPORTED_MODULE_0__.parent_folder)((0,_path_js__WEBPACK_IMPORTED_MODULE_0__.relative_path)(file, doc));
-    return {
+function mathjax_config(mode) {
+    const config = {
         loader: {
             load: ['[tex]/noerrors']
         },
@@ -162,10 +161,15 @@ function mathjax_config() {
                 }
             },
         },
-        output: {
-            fontPath: `${folder}mathjax/mathjax-newcm-font`,
-        },
     };
+    if (mode == 'local') {
+        const doc = document.baseURI;
+        const script = document.currentScript;
+        const file = script.src;
+        const folder = (0,_path_js__WEBPACK_IMPORTED_MODULE_0__.parent_folder)((0,_path_js__WEBPACK_IMPORTED_MODULE_0__.relative_path)(file, doc));
+        config.output = { fontPath: `${folder}mathjax/mathjax-newcm-font` };
+    }
+    return config;
 }
 function load_mathjax(mode) {
     const online = "https://cdn.jsdelivr.net/npm/mathjax@4";
@@ -180,8 +184,8 @@ function load_mathjax(mode) {
     document.head.append(script);
 }
 const jax_window = window;
-jax_window.MathJax = mathjax_config();
-load_mathjax("local");
+jax_window.MathJax = mathjax_config('online');
+load_mathjax('online');
 
 })();
 

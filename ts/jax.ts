@@ -1,11 +1,23 @@
+/**
+ * jax - A module that configures MathJax.
+ */
+
+
 import {relative_path, parent_folder} from "./path.ts";
 
-function mathjax_config() {
-    const doc = document.baseURI;
-    const script = document.currentScript as HTMLScriptElement;
-    const file = script.src;
-    const folder = parent_folder(relative_path(file, doc));
-    return {
+
+type Mode = 'local' | 'online';
+type JaxOptions = {
+    loader: object,
+    tex: object,
+    options: object,
+    output?: object,
+};
+type JaxWindow = Window & typeof globalThis & {MathJax: object};
+
+
+function mathjax_config(mode: Mode) {
+    const config: JaxOptions = {
         loader: {
             load: ['[tex]/noerrors']
         },
@@ -45,13 +57,18 @@ function mathjax_config() {
                 }
             },
         },
-        output: {
-            fontPath: `${folder}mathjax/mathjax-newcm-font`,
-        },
     };
+    if (mode == 'local') {
+        const doc = document.baseURI;
+        const script = document.currentScript as HTMLScriptElement;
+        const file = script.src;
+        const folder = parent_folder(relative_path(file, doc));
+        config.output = {fontPath: `${folder}mathjax/mathjax-newcm-font`};
+    }
+    return config;
 } 
 
-function load_mathjax(mode: string) {
+function load_mathjax(mode: Mode) {
     const online = "https://cdn.jsdelivr.net/npm/mathjax@4";              
     const element = document.currentScript! as HTMLScriptElement;
     const folder = element.src.split('/jax.js')[0];
@@ -64,8 +81,6 @@ function load_mathjax(mode: string) {
     document.head.append(script);
 }
 
-type JaxWindow = Window & typeof globalThis & {MathJax: object};
-
 const jax_window = window as JaxWindow;
-jax_window.MathJax = mathjax_config();
-load_mathjax("local");
+jax_window.MathJax = mathjax_config('online');
+load_mathjax('online');
